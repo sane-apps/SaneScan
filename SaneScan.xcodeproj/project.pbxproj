@@ -1,0 +1,759 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0757231580BFA37ACBA81E13 /* SaneScanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1DBCD4ECEAF38A464377BE /* SaneScanApp.swift */; };
+		2B1DD4CCD49C9833BE770326 /* SaneScanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A20CBBA33C2659D362B233 /* SaneScanUITests.swift */; };
+		330F889E323452FF93502FBD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D18D43B1F35A956767B436 /* ContentView.swift */; };
+		365882973BFF7160141D2779 /* ScanDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3486432AB83D36F8142B20C /* ScanDocument.swift */; };
+		418602D1A7D352BC77C832B8 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C318CC0480992CC23DA8F1A /* PurchaseManager.swift */; };
+		5851CD016D6BCC31CE4201FA /* ScanLibraryFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D753FEE6938F00578C83E62 /* ScanLibraryFixtures.swift */; };
+		88FC877173EB4E54373E8D4A /* PDFExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12720666A9F17228D1A404B6 /* PDFExportService.swift */; };
+		A9569151A9551E61C47F98AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEB2AFCF8B764CBAB9766F84 /* Assets.xcassets */; };
+		AC0149AA8E8C85E4E9F5033C /* ScanSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F703F3B74274C60B694F35 /* ScanSheets.swift */; };
+		ACD65725C8E973B44F8C0179 /* ScanQuotaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAE3AC4E5CFE3BF49BA8949 /* ScanQuotaTests.swift */; };
+		B3310EAB7F587112F1BC48F4 /* ImageEnhancementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5DF8519D232D4399D8A002 /* ImageEnhancementService.swift */; };
+		CA2B9034E855F0632AA66EA7 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22DD51C44AFD496B3843639 /* ShareSheet.swift */; };
+		D08673466D39B7FB6008DA63 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6F39D5FE31171E70F0D6E /* PaywallView.swift */; };
+		E3591DFBD75DB673CE92709E /* ScanLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02217A25CAC4CA54B71DEB33 /* ScanLibrary.swift */; };
+		EE4620586AE7A933FA049463 /* OCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708CDF61E4C0BE14B248A640 /* OCRService.swift */; };
+		F209C45FB03A91FCCE693D0A /* DocumentCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EEA1E9BCFC37C670883198 /* DocumentCameraView.swift */; };
+		F41C5DC53A0D0499C980D51A /* DocumentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0340AB090346A265FF4A9D7D /* DocumentDetailView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9C5932B5D16FE39B2E43A550 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB12002A89F33AC6214788EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76F601965E84F5CA06D690D6;
+			remoteInfo = SaneScan;
+		};
+		A617A8D0F873449FF0DBF370 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB12002A89F33AC6214788EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76F601965E84F5CA06D690D6;
+			remoteInfo = SaneScan;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02217A25CAC4CA54B71DEB33 /* ScanLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanLibrary.swift; sourceTree = "<group>"; };
+		02C6F39D5FE31171E70F0D6E /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		0340AB090346A265FF4A9D7D /* DocumentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDetailView.swift; sourceTree = "<group>"; };
+		12720666A9F17228D1A404B6 /* PDFExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExportService.swift; sourceTree = "<group>"; };
+		1C1DBCD4ECEAF38A464377BE /* SaneScanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaneScanApp.swift; sourceTree = "<group>"; };
+		2DAE3AC4E5CFE3BF49BA8949 /* ScanQuotaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQuotaTests.swift; sourceTree = "<group>"; };
+		51EEA1E9BCFC37C670883198 /* DocumentCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCameraView.swift; sourceTree = "<group>"; };
+		55A20CBBA33C2659D362B233 /* SaneScanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaneScanUITests.swift; sourceTree = "<group>"; };
+		5C318CC0480992CC23DA8F1A /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
+		6D753FEE6938F00578C83E62 /* ScanLibraryFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanLibraryFixtures.swift; sourceTree = "<group>"; };
+		708CDF61E4C0BE14B248A640 /* OCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRService.swift; sourceTree = "<group>"; };
+		70E8ECD8D0F33A9E968BF8E5 /* SaneScan.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SaneScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A5DF8519D232D4399D8A002 /* ImageEnhancementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEnhancementService.swift; sourceTree = "<group>"; };
+		A8F703F3B74274C60B694F35 /* ScanSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSheets.swift; sourceTree = "<group>"; };
+		AEB2AFCF8B764CBAB9766F84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B3486432AB83D36F8142B20C /* ScanDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocument.swift; sourceTree = "<group>"; };
+		B4D18D43B1F35A956767B436 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E446F20873B7C7CF7E0C7C03 /* SaneScanUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SaneScanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDC39EFD1660F14A5CDC5BF3 /* SaneScanTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SaneScanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F22DD51C44AFD496B3843639 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		173B3302747C00FFA9C945C0 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				55A20CBBA33C2659D362B233 /* SaneScanUITests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		1EC52FF2778ECB1D4AF4E784 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				AEB2AFCF8B764CBAB9766F84 /* Assets.xcassets */,
+				C7D8EF4353E29CF5DA52AC09 /* Views */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		2AC8E3A55E1A4F3DBFB0C589 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B3486432AB83D36F8142B20C /* ScanDocument.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4912C7C898CC1839B3F354EB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2AC8E3A55E1A4F3DBFB0C589 /* Models */,
+				DA40FEE6667A632FA2271848 /* Services */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		7D809D441B7EF1CBC3EAA488 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70E8ECD8D0F33A9E968BF8E5 /* SaneScan.app */,
+				EDC39EFD1660F14A5CDC5BF3 /* SaneScanTests.xctest */,
+				E446F20873B7C7CF7E0C7C03 /* SaneScanUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A937FD00589F619B0E3E2207 = {
+			isa = PBXGroup;
+			children = (
+				4912C7C898CC1839B3F354EB /* Core */,
+				1EC52FF2778ECB1D4AF4E784 /* iOS */,
+				AE27B61EFCBF2CA107774696 /* SaneScan */,
+				EAA1CEFDABB7522422EFFE6A /* Tests */,
+				173B3302747C00FFA9C945C0 /* UITests */,
+				7D809D441B7EF1CBC3EAA488 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AE27B61EFCBF2CA107774696 /* SaneScan */ = {
+			isa = PBXGroup;
+			children = (
+				1C1DBCD4ECEAF38A464377BE /* SaneScanApp.swift */,
+			);
+			path = SaneScan;
+			sourceTree = "<group>";
+		};
+		C7D8EF4353E29CF5DA52AC09 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B4D18D43B1F35A956767B436 /* ContentView.swift */,
+				51EEA1E9BCFC37C670883198 /* DocumentCameraView.swift */,
+				0340AB090346A265FF4A9D7D /* DocumentDetailView.swift */,
+				02C6F39D5FE31171E70F0D6E /* PaywallView.swift */,
+				A8F703F3B74274C60B694F35 /* ScanSheets.swift */,
+				F22DD51C44AFD496B3843639 /* ShareSheet.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DA40FEE6667A632FA2271848 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7A5DF8519D232D4399D8A002 /* ImageEnhancementService.swift */,
+				708CDF61E4C0BE14B248A640 /* OCRService.swift */,
+				12720666A9F17228D1A404B6 /* PDFExportService.swift */,
+				5C318CC0480992CC23DA8F1A /* PurchaseManager.swift */,
+				02217A25CAC4CA54B71DEB33 /* ScanLibrary.swift */,
+				6D753FEE6938F00578C83E62 /* ScanLibraryFixtures.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		EAA1CEFDABB7522422EFFE6A /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				2DAE3AC4E5CFE3BF49BA8949 /* ScanQuotaTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		037C4DEC6E49B42DA445E8F0 /* SaneScanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDC706C008E26DE021C7A937 /* Build configuration list for PBXNativeTarget "SaneScanTests" */;
+			buildPhases = (
+				C418C120CB65EDB564AEF76A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6A8B3754AEDA5091356BCE54 /* PBXTargetDependency */,
+			);
+			name = SaneScanTests;
+			packageProductDependencies = (
+			);
+			productName = SaneScanTests;
+			productReference = EDC39EFD1660F14A5CDC5BF3 /* SaneScanTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		76F601965E84F5CA06D690D6 /* SaneScan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 61DD8708F333052FBAE9621A /* Build configuration list for PBXNativeTarget "SaneScan" */;
+			buildPhases = (
+				A72DEDC93676AAD1C2789FA0 /* Sources */,
+				C09A938F0C455ADAAE160DEA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SaneScan;
+			packageProductDependencies = (
+			);
+			productName = SaneScan;
+			productReference = 70E8ECD8D0F33A9E968BF8E5 /* SaneScan.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BC3784D264410A425184CC09 /* SaneScanUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DE22795EC3E9447736AC528 /* Build configuration list for PBXNativeTarget "SaneScanUITests" */;
+			buildPhases = (
+				B55074A5A48C790FBD118E3A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5CBBC6013AB6445311CD3270 /* PBXTargetDependency */,
+			);
+			name = SaneScanUITests;
+			packageProductDependencies = (
+			);
+			productName = SaneScanUITests;
+			productReference = E446F20873B7C7CF7E0C7C03 /* SaneScanUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB12002A89F33AC6214788EF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					037C4DEC6E49B42DA445E8F0 = {
+						DevelopmentTeam = M78L6FXD48;
+						ProvisioningStyle = Automatic;
+					};
+					76F601965E84F5CA06D690D6 = {
+						DevelopmentTeam = M78L6FXD48;
+					};
+					BC3784D264410A425184CC09 = {
+						DevelopmentTeam = M78L6FXD48;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 76F601965E84F5CA06D690D6;
+					};
+				};
+			};
+			buildConfigurationList = 0052CEC5C5AF5FC8118AB08C /* Build configuration list for PBXProject "SaneScan" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = A937FD00589F619B0E3E2207;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				76F601965E84F5CA06D690D6 /* SaneScan */,
+				037C4DEC6E49B42DA445E8F0 /* SaneScanTests */,
+				BC3784D264410A425184CC09 /* SaneScanUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C09A938F0C455ADAAE160DEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9569151A9551E61C47F98AF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A72DEDC93676AAD1C2789FA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				330F889E323452FF93502FBD /* ContentView.swift in Sources */,
+				F209C45FB03A91FCCE693D0A /* DocumentCameraView.swift in Sources */,
+				F41C5DC53A0D0499C980D51A /* DocumentDetailView.swift in Sources */,
+				B3310EAB7F587112F1BC48F4 /* ImageEnhancementService.swift in Sources */,
+				EE4620586AE7A933FA049463 /* OCRService.swift in Sources */,
+				88FC877173EB4E54373E8D4A /* PDFExportService.swift in Sources */,
+				D08673466D39B7FB6008DA63 /* PaywallView.swift in Sources */,
+				418602D1A7D352BC77C832B8 /* PurchaseManager.swift in Sources */,
+				0757231580BFA37ACBA81E13 /* SaneScanApp.swift in Sources */,
+				365882973BFF7160141D2779 /* ScanDocument.swift in Sources */,
+				E3591DFBD75DB673CE92709E /* ScanLibrary.swift in Sources */,
+				5851CD016D6BCC31CE4201FA /* ScanLibraryFixtures.swift in Sources */,
+				AC0149AA8E8C85E4E9F5033C /* ScanSheets.swift in Sources */,
+				CA2B9034E855F0632AA66EA7 /* ShareSheet.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B55074A5A48C790FBD118E3A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B1DD4CCD49C9833BE770326 /* SaneScanUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C418C120CB65EDB564AEF76A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACD65725C8E973B44F8C0179 /* ScanQuotaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5CBBC6013AB6445311CD3270 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76F601965E84F5CA06D690D6 /* SaneScan */;
+			targetProxy = 9C5932B5D16FE39B2E43A550 /* PBXContainerItemProxy */;
+		};
+		6A8B3754AEDA5091356BCE54 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76F601965E84F5CA06D690D6 /* SaneScan */;
+			targetProxy = A617A8D0F873449FF0DBF370 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		04FBBB9C6F2EF800FC155B11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iOS/SaneScan.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 100;
+				DEVELOPMENT_TEAM = M78L6FXD48;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.dev;
+				PRODUCT_NAME = SaneScan;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		15B9E266662D2DC5D99377D7 /* Release-AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iOS/SaneScan.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 100;
+				DEVELOPMENT_TEAM = M78L6FXD48;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				OTHER_SWIFT_FLAGS = "-D APP_STORE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.app;
+				PRODUCT_NAME = SaneScan;
+				PROVISIONING_PROFILE_SPECIFIER = "SaneScan iOS App Store";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-AppStore";
+		};
+		54FA923F7DB65D9109077886 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SaneScan.app/SaneScan";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M78L6FXD48;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.SaneScanTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SaneScan.app/SaneScan";
+			};
+			name = Debug;
+		};
+		61AE332A81CEE567AA98B4A3 /* Release-AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 5.0;
+			};
+			name = "Release-AppStore";
+		};
+		66DA183F72A3E20857D4FB07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M78L6FXD48;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.SaneScanUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SaneScan;
+			};
+			name = Release;
+		};
+		6E73F7206748BF04DA7ADBED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SaneScan.app/SaneScan";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M78L6FXD48;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.SaneScanTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SaneScan.app/SaneScan";
+			};
+			name = Release;
+		};
+		AADBF1098992B6D2C8683310 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		AE2EBA733D7143947E7D3B90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iOS/SaneScan.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 100;
+				DEVELOPMENT_TEAM = M78L6FXD48;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.app;
+				PRODUCT_NAME = SaneScan;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B343F159DE97877AA7578045 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B4722C8169A3E0D58C730175 /* Release-AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SaneScan.app/SaneScan";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M78L6FXD48;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.SaneScanTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SaneScan.app/SaneScan";
+			};
+			name = "Release-AppStore";
+		};
+		B850D35E1A1213F969D7CDD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M78L6FXD48;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.SaneScanUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SaneScan;
+			};
+			name = Debug;
+		};
+		E44E723C3C43A34C73606C56 /* Release-AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M78L6FXD48;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.SaneScanUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SaneScan;
+			};
+			name = "Release-AppStore";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0052CEC5C5AF5FC8118AB08C /* Build configuration list for PBXProject "SaneScan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B343F159DE97877AA7578045 /* Debug */,
+				AADBF1098992B6D2C8683310 /* Release */,
+				61AE332A81CEE567AA98B4A3 /* Release-AppStore */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		1DE22795EC3E9447736AC528 /* Build configuration list for PBXNativeTarget "SaneScanUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B850D35E1A1213F969D7CDD3 /* Debug */,
+				66DA183F72A3E20857D4FB07 /* Release */,
+				E44E723C3C43A34C73606C56 /* Release-AppStore */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		61DD8708F333052FBAE9621A /* Build configuration list for PBXNativeTarget "SaneScan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04FBBB9C6F2EF800FC155B11 /* Debug */,
+				AE2EBA733D7143947E7D3B90 /* Release */,
+				15B9E266662D2DC5D99377D7 /* Release-AppStore */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FDC706C008E26DE021C7A937 /* Build configuration list for PBXNativeTarget "SaneScanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				54FA923F7DB65D9109077886 /* Debug */,
+				6E73F7206748BF04DA7ADBED /* Release */,
+				B4722C8169A3E0D58C730175 /* Release-AppStore */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DB12002A89F33AC6214788EF /* Project object */;
+}
