@@ -35,7 +35,7 @@ ssh mini 'xcrun simctl list devices available'
 - UI/runtime camera proof needs a real device because `VNDocumentCameraViewController` is not available on all simulators.
 - Simulator proof should still cover launch, Photos import UI, library display, paywall UI, PDF export code paths where possible.
 
-Latest Mini receipt, 2026-05-17 16:05 ET:
+Latest Mini receipt, 2026-05-17 16:27 ET:
 
 ```bash
 SANESCAN_SCREENSHOT_DIR=/tmp/sanescan-visual-audit \
@@ -60,3 +60,4 @@ Current App Store Connect state, 2026-05-17:
 - Bundle ID `com.sanescan.app` exists in Apple Developer/App Store Connect as `UT3A85VYT3`.
 - The App Store app record is not created yet. The App Store Connect API returned `FORBIDDEN_ERROR` because the `apps` resource does not allow `CREATE`; it allows only get/update operations.
 - The Mini Safari session is stopped at App Store Connect login. Remote JavaScript and Accessibility can see the Apple sign-in iframe but not interact with the iframe controls, and the Mini keychain did not expose saved entries for `idmsa.apple.com` or `appstoreconnect.apple.com`.
+- GitHub remote exists at `https://github.com/sane-apps/SaneScan`.

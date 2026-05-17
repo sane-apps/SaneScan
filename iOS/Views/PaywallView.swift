@@ -75,7 +75,7 @@ struct PaywallView: View {
         } else {
             ForEach(purchases.products, id: \.id) { product in
                 Button {
-                    Task { await purchases.purchase(product) }
+                    Task { await purchases.purchasePro(product) }
                 } label: {
                     HStack {
                         Text(product.displayName)

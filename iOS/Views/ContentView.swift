@@ -33,7 +33,7 @@ struct ContentView: View {
                 selectedDocument: $selectedDocument,
                 exportedFile: $exportedFile,
                 showPaywall: $showPaywall,
-                maxPhotoSelection: purchases.hasPro ? 50 : 6,
+                maxPhotoSelection: purchases.isPro ? 50 : 6,
                 createDocument: createDocument,
                 importPhotos: importPhotos
             ))
@@ -57,8 +57,8 @@ struct ContentView: View {
         } else {
             LibraryView(
                 documents: library.documents,
-                quota: library.quota(hasPro: purchases.hasPro),
-                hasPro: purchases.hasPro,
+                quota: library.quota(hasPro: purchases.isPro),
+                isPro: purchases.isPro,
                 onUpgrade: { showPaywall = true },
                 onSelect: { selectedDocument = $0 },
                 onDelete: { library.delete($0) }
@@ -105,7 +105,7 @@ struct ContentView: View {
     }
 
     private func startDocumentScan() {
-        guard library.quota(hasPro: purchases.hasPro).canCreateScan else {
+        guard library.quota(hasPro: purchases.isPro).canCreateScan else {
             showPaywall = true
             return
         }
@@ -117,7 +117,7 @@ struct ContentView: View {
     }
 
     private func startPhotoImport() {
-        guard library.quota(hasPro: purchases.hasPro).canCreateScan else {
+        guard library.quota(hasPro: purchases.isPro).canCreateScan else {
             showPaywall = true
             return
         }
@@ -192,7 +192,7 @@ private struct EmptyLibraryView: View {
 private struct LibraryView: View {
     let documents: [ScanDocument]
     let quota: ScanQuota
-    let hasPro: Bool
+    let isPro: Bool
     let onUpgrade: () -> Void
     let onSelect: (ScanDocument) -> Void
     let onDelete: (ScanDocument) -> Void
@@ -200,7 +200,7 @@ private struct LibraryView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 14) {
-                QuotaCard(quota: quota, hasPro: hasPro, onUpgrade: onUpgrade)
+                QuotaCard(quota: quota, isPro: isPro, onUpgrade: onUpgrade)
 
                 ForEach(documents) { document in
                     ScanRow(document: document)
@@ -226,33 +226,33 @@ private struct LibraryView: View {
 
 private struct QuotaCard: View {
     let quota: ScanQuota
-    let hasPro: Bool
+    let isPro: Bool
     let onUpgrade: () -> Void
 
     var body: some View {
         HStack(spacing: 14) {
-            Image(systemName: hasPro ? "checkmark.seal.fill" : "gauge.with.dots.needle.67percent")
+            Image(systemName: isPro ? "checkmark.seal.fill" : "gauge.with.dots.needle.67percent")
                 .font(.system(size: 24, weight: .bold))
-                .foregroundStyle(hasPro ? SaneScanTheme.proGradient : SaneScanTheme.archiveGradient)
+                .foregroundStyle(isPro ? SaneScanTheme.proGradient : SaneScanTheme.archiveGradient)
                 .frame(width: 50, height: 50)
                 .background(SaneScanTheme.blueDeep.opacity(0.74), in: RoundedRectangle(cornerRadius: 8))
                 .overlay(
                     RoundedRectangle(cornerRadius: 8)
-                        .stroke(hasPro ? SaneScanTheme.green.opacity(0.5) : SaneScanTheme.warmHairline, lineWidth: 1)
+                        .stroke(isPro ? SaneScanTheme.green.opacity(0.5) : SaneScanTheme.warmHairline, lineWidth: 1)
                 )
 
             VStack(alignment: .leading, spacing: 2) {
-                Text(hasPro ? "Pro active" : "\(quota.remainingFreeScans) free scans left")
+                Text(isPro ? "Pro active" : "\(quota.remainingFreeScans) free scans left")
                     .font(.headline)
                     .foregroundStyle(SaneScanTheme.primaryText)
-                Text(hasPro ? "Unlimited scans" : "Go unlimited")
+                Text(isPro ? "Unlimited scans" : "Go unlimited")
                     .font(.subheadline)
                     .foregroundStyle(SaneScanTheme.secondaryText)
             }
 
             Spacer()
 
-            GradientActionPill(title: hasPro ? "Manage" : "Upgrade", action: onUpgrade)
+            GradientActionPill(title: isPro ? "Manage" : "Upgrade", action: onUpgrade)
                 .accessibilityIdentifier("upgrade-button")
         }
         .padding(16)

@@ -7,7 +7,7 @@ final class PurchaseManager: ObservableObject {
     static let lifetimeID = "com.sanescan.app.pro.lifetime"
 
     @Published private(set) var products: [Product] = []
-    @Published private(set) var hasPro = false
+    @Published private(set) var isPro = false
     @Published var purchaseError: String?
 
     func refresh() async {
@@ -15,7 +15,7 @@ final class PurchaseManager: ObservableObject {
         await updateEntitlements()
     }
 
-    func purchase(_ product: Product) async {
+    func purchasePro(_ product: Product) async {
         do {
             let result = try await product.purchase()
             switch result {
@@ -30,6 +30,10 @@ final class PurchaseManager: ObservableObject {
         } catch {
             purchaseError = error.localizedDescription
         }
+    }
+
+    func purchase(_ product: Product) async {
+        await purchasePro(product)
     }
 
     func restore() async {
@@ -58,7 +62,7 @@ final class PurchaseManager: ObservableObject {
                 unlocked = true
             }
         }
-        hasPro = unlocked
+        isPro = unlocked
     }
 
     private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {

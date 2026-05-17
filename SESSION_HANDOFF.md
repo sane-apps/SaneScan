@@ -40,6 +40,9 @@
 - Blocked: App Store Connect app record creation still requires the website. API `POST /apps` returned `FORBIDDEN_ERROR` because Apple allows only get/update on `apps`; Mini Safari is at the App Store Connect login iframe, which was not script-interactable from the remote session, and Mini keychain lookup did not find `idmsa.apple.com` or `appstoreconnect.apple.com` entries.
 - Latest document-first verification: `TEST SUCCEEDED` in `Test-SaneScan-2026.05.17_16-04-04--0400.xcresult`; 3 Swift Testing unit tests and 4 XCTest UI tests passed. `swiftlint lint --quiet` passed.
 - Latest visual-only proof after seeding document images into Photos: `TEST SUCCEEDED` in `Test-SaneScan-2026.05.17_16-09-08--0400.xcresult`. Screenshots saved locally at `/Users/sj/SaneApps/apps/SaneScan/outputs/visual-audit-docs-icon-2026-05-17-1609/`.
+- Completed: GitHub remote created and pushed at `https://github.com/sane-apps/SaneScan`.
+- Completed: local App Store preflight noise reduced by adding the conventional 1024 icon filename and aligning StoreKit gates with `isPro`/`purchasePro`; Mini verification after this change passed in `Test-SaneScan-2026.05.17_16-26-36--0400.xcresult`, and `swiftlint lint --quiet` passed.
+- Latest App Store preflight status: routed preflight now runs on the Mini and blocks on real submission setup: missing ASC app id, screenshots config, review contact, live `sanescan.com` privacy URL, App Store provisioning profile, and ASC StoreKit records after app creation.
 
 ## Open Follow-Up
 
