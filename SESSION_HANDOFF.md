@@ -34,7 +34,7 @@
 - Latest valid app-owned redesign screenshots: empty library, fixture library, document detail, and paywall development state. Native share sheet and native photo picker reachability were also captured.
 - Pending: real-device VisionKit camera proof.
 - Completed: document-first fixture/media correction after user feedback. UI fixtures now use `Contract Packet`, `Tax Receipt`, and `Clinic Intake Form` document scans instead of family-photo demos; the simulator Photos library was seeded with generated document images for picker proof.
-- Completed: app icon replaced with the same scanner/document mark used by the app direction: a clean scan glyph inside a teal squircle, with the squirrel/line concept removed.
+- Completed: app icon replaced with the same scanner/document mark used by the empty-state app UI: gradient outer squircle, dark inner squircle, scan corners, and single document glyph. The horizontal-line document icon is removed.
 - Completed: git repo initialized on `main`; `LICENSE` is PolyForm Shield and README now links it.
 - Completed: Apple Developer/App Store Connect Bundle ID `com.sanescan.app` created with id `UT3A85VYT3`.
 - Blocked: App Store Connect app record creation still requires the website. API `POST /apps` returned `FORBIDDEN_ERROR` because Apple allows only get/update on `apps`; Mini Safari is at the App Store Connect login iframe, which was not script-interactable from the remote session, and Mini keychain lookup did not find `idmsa.apple.com` or `appstoreconnect.apple.com` entries.
