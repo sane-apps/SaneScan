@@ -53,9 +53,17 @@ SaneScan follows SaneClip's iOS target shape and OCR sorting approach, and SaneV
 - `NSPhotoLibraryUsageDescription`: photo access is tied to explicit import.
 - Privacy manifest declares no collected data and no tracking.
 
-## 6. Release Blockers
+## 6. App Store State
 
-- Create App Store Connect app record through the App Store Connect website. Bundle ID `com.sanescan.app` already exists as `UT3A85VYT3`, but Apple forbids app-record creation through the API.
-- Create StoreKit products for yearly and lifetime Pro after the app record exists. The yearly subscription is the primary ongoing-sales product.
-- Replace placeholder website domain with live Cloudflare Pages deployment.
-- Add real device proof for VisionKit document camera before App Store submission.
+- App Store Connect app ID: `6770391054`.
+- Bundle ID: `com.sanescan.app` / Apple Developer ID `UT3A85VYT3`.
+- iOS version `1.0` is submitted and reports `WAITING_FOR_REVIEW`; submission ID `aa25a650-7eb8-4b5f-9e71-a93ec3d856b8`.
+- Build `100` is attached to the version.
+- Annual subscription `com.sanescan.app.pro.annual` is created, priced, attached, and submitted with the version.
+- App Privacy is published as `Data Not Collected`.
+- Privacy policy URL: `https://sanescan-site.pages.dev/privacy`.
+
+## 7. Follow-Up
+
+- Add real-device VisionKit document camera proof when an iPhone connection is available.
+- Fix SaneMaster's SaneScan/iOS-only test destination handling so App Store preflight uses an iOS simulator instead of a macOS install attempt.

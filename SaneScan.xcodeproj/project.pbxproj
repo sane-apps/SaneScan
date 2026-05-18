@@ -13,6 +13,7 @@
 		365882973BFF7160141D2779 /* ScanDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3486432AB83D36F8142B20C /* ScanDocument.swift */; };
 		418602D1A7D352BC77C832B8 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C318CC0480992CC23DA8F1A /* PurchaseManager.swift */; };
 		5851CD016D6BCC31CE4201FA /* ScanLibraryFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D753FEE6938F00578C83E62 /* ScanLibraryFixtures.swift */; };
+		881E83FB73518A1FEC3902E9 /* SaneScanVisualComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E1A80F7A7DAF8B2908F6BB /* SaneScanVisualComponents.swift */; };
 		88FC877173EB4E54373E8D4A /* PDFExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12720666A9F17228D1A404B6 /* PDFExportService.swift */; };
 		A9569151A9551E61C47F98AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEB2AFCF8B764CBAB9766F84 /* Assets.xcassets */; };
 		AC0149AA8E8C85E4E9F5033C /* ScanSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F703F3B74274C60B694F35 /* ScanSheets.swift */; };
@@ -56,6 +57,7 @@
 		6D753FEE6938F00578C83E62 /* ScanLibraryFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanLibraryFixtures.swift; sourceTree = "<group>"; };
 		708CDF61E4C0BE14B248A640 /* OCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRService.swift; sourceTree = "<group>"; };
 		70E8ECD8D0F33A9E968BF8E5 /* SaneScan.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SaneScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74E1A80F7A7DAF8B2908F6BB /* SaneScanVisualComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaneScanVisualComponents.swift; sourceTree = "<group>"; };
 		7A5DF8519D232D4399D8A002 /* ImageEnhancementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEnhancementService.swift; sourceTree = "<group>"; };
 		A8F703F3B74274C60B694F35 /* ScanSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSheets.swift; sourceTree = "<group>"; };
 		AEB2AFCF8B764CBAB9766F84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				51EEA1E9BCFC37C670883198 /* DocumentCameraView.swift */,
 				0340AB090346A265FF4A9D7D /* DocumentDetailView.swift */,
 				02C6F39D5FE31171E70F0D6E /* PaywallView.swift */,
+				74E1A80F7A7DAF8B2908F6BB /* SaneScanVisualComponents.swift */,
 				A8F703F3B74274C60B694F35 /* ScanSheets.swift */,
 				F22DD51C44AFD496B3843639 /* ShareSheet.swift */,
 			);
@@ -291,6 +294,7 @@
 				D08673466D39B7FB6008DA63 /* PaywallView.swift in Sources */,
 				418602D1A7D352BC77C832B8 /* PurchaseManager.swift in Sources */,
 				0757231580BFA37ACBA81E13 /* SaneScanApp.swift in Sources */,
+				881E83FB73518A1FEC3902E9 /* SaneScanVisualComponents.swift in Sources */,
 				365882973BFF7160141D2779 /* ScanDocument.swift in Sources */,
 				E3591DFBD75DB673CE92709E /* ScanLibrary.swift in Sources */,
 				5851CD016D6BCC31CE4201FA /* ScanLibraryFixtures.swift in Sources */,
@@ -347,7 +351,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.dev;
 				PRODUCT_NAME = SaneScan;
 				SDKROOT = iphoneos;
@@ -372,7 +376,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-D APP_STORE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.app;
 				PRODUCT_NAME = SaneScan;
@@ -578,7 +582,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.app;
 				PRODUCT_NAME = SaneScan;
 				SDKROOT = iphoneos;

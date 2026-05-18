@@ -17,7 +17,7 @@ It uses Apple's VisionKit scanner, Vision OCR, local image cleanup, and PDF expo
 
 SaneScan does not require an account, does not track users, and does not upload scan content. Camera and Photos access are requested only when the user starts a scan or import.
 
-Public privacy page: `https://sanescan.com/privacy.html`
+Public privacy page: `https://sanescan-site.pages.dev/privacy`
 
 ## License
 

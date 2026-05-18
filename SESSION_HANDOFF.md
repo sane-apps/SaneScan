@@ -42,13 +42,19 @@
 - Latest visual-only proof after seeding document images into Photos: `TEST SUCCEEDED` in `Test-SaneScan-2026.05.17_16-09-08--0400.xcresult`. Screenshots saved locally at `/Users/sj/SaneApps/apps/SaneScan/outputs/visual-audit-docs-icon-2026-05-17-1609/`.
 - Completed: GitHub remote created and pushed at `https://github.com/sane-apps/SaneScan`.
 - Completed: local App Store preflight noise reduced by adding the conventional 1024 icon filename and aligning StoreKit gates with `isPro`/`purchasePro`; Mini verification after this change passed in `Test-SaneScan-2026.05.17_16-26-36--0400.xcresult`, and `swiftlint lint --quiet` passed.
-- Latest App Store preflight status: routed preflight now runs on the Mini. Icon and monetization guardrails pass. Remaining blockers are missing ASC app id, screenshots config, review contact, live `sanescan.com` privacy URL, App Store provisioning profile, and the preflight test-runner export issue. Explicit Mini `xcodebuild` tests are green despite the preflight test-log failure.
+- Completed: App Store Connect app record created for `SaneScan` with app ID `6770391054`; Bundle ID is `com.sanescan.app`.
+- Completed: Cloudflare Pages privacy URL is live at `https://sanescan-site.pages.dev/privacy`.
+- Completed: App Store screenshots uploaded for iPhone 6.7-inch and iPad Pro 12.9-inch.
+- Completed: App Store build `100` for version `1.0` was archived, exported, uploaded, processed, and attached to the iOS version.
+- Completed: annual subscription `com.sanescan.app.pro.annual` was created in subscription group `SaneScan Pro`, priced across all Apple territories, attached to the version, and submitted with the app.
+- Completed: App Privacy was published as `Data Not Collected`.
+- Completed: SaneScan iOS `1.0` is submitted to Apple and App Store Connect reports `WAITING_FOR_REVIEW` with submission ID `aa25a650-7eb8-4b5f-9e71-a93ec3d856b8`.
+- Latest release verification, 2026-05-17 23:45 ET: explicit Mini simulator `xcodebuild` test passed in `Test-SaneScan-2026.05.17_23-45-46--0400.xcresult`; 3 Swift Testing unit tests and 4 XCTest UI tests passed. `swiftlint lint --quiet` and Ruby syntax checks for the patched App Store helper files also passed.
+- Latest App Store preflight status: ASC lane, screenshots, privacy URL, review contact, version lane, subscription, StoreKit routing, signing profile, debug audit, review notes, category, age rating, and listing copy all pass. The remaining red is a known SaneMaster test-runner false failure: it targets `platform=macOS,arch=arm64` with signing disabled for this iOS app, causing an install error (`No code signature found`) despite the explicit simulator test run being green.
+- SOP fix from this session: App Store Connect / Apple Developer / Apple ID portal work must reuse one Mini Safari tab via `mini-safari.sh open-current` / `open-read-current`; `mini-safari.sh open` and `open-read` now refuse Apple portal URLs unless an explicit recovery override is set.
 
 ## Open Follow-Up
 
-- Create App Store Connect app record through Safari/App Store Connect, then update `.saneprocess` `appstore.app_id`.
-- Create StoreKit products:
-  - `com.sanescan.app.pro.yearly`
-  - `com.sanescan.app.pro.lifetime`
-- Deploy `website/` to Cloudflare Pages before App Store submission.
-- Add screenshots and App Store metadata after simulator/device proof.
+- Monitor App Store review for SaneScan iOS `1.0`.
+- Fix SaneMaster's SaneScan/iOS-only test destination handling so `appstore_preflight` uses the explicit simulator path instead of a macOS install attempt.
+- Add real-device VisionKit document camera proof when an iPhone connection is available; simulator coverage remains valid for launch, Photos import, fixtures, PDF export/share sheet, and paywall surfaces.

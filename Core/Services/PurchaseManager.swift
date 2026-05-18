@@ -3,7 +3,7 @@ import StoreKit
 
 @MainActor
 final class PurchaseManager: ObservableObject {
-    static let yearlyID = "com.sanescan.app.pro.yearly"
+    static let yearlyID = "com.sanescan.app.pro.annual"
     static let lifetimeID = "com.sanescan.app.pro.lifetime"
 
     @Published private(set) var products: [Product] = []

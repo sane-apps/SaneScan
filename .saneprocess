@@ -34,17 +34,17 @@ mcps:
 
 appstore:
   enabled: true
-  app_id: ""
-  product_id: "com.sanescan.app.pro.yearly"
+  app_id: "6770391054"
+  product_id: "com.sanescan.app.pro.annual"
   scheme: SaneScan
   configuration: Release-AppStore
   platforms: [ios]
   ios_scheme: SaneScan
   category: public.app-category.productivity
   age_rating: "4+"
-  privacy_policy_url: "https://sanescan.com/privacy.html"
+  privacy_policy_url: "https://sanescan-site.pages.dev/privacy"
   support_url: "https://saneapps.com"
-  marketing_url: "https://sanescan.com"
+  marketing_url: "https://sanescan-site.pages.dev"
   metadata:
     ios:
       subtitle: "Private Document Scanner"
@@ -57,10 +57,10 @@ appstore:
         to SaneApps servers.
       keywords: "scanner,document,receipt,ocr,pdf,form,private,archive,photo scan"
       whats_new: "Initial release."
-      marketing_url: "https://sanescan.com"
+      marketing_url: "https://sanescan-site.pages.dev"
   review_notes: "SaneScan is a freemium iOS document scanner. Basic includes 10 scans per month. SaneScan Pro is sold through StoreKit only and unlocks unlimited scans, batch import, OCR sidecars, and PDF export. No account, external checkout, license key, or server upload is used. Camera permission is requested only when starting a scan; Photos permission is requested only when importing selected photos; export uses the system share sheet."
   iap:
-    product_id: "com.sanescan.app.pro.yearly"
+    product_id: "com.sanescan.app.pro.annual"
     display_name: "SaneScan Pro Yearly"
     type: auto_renewable_subscription
     price_usd: 29.99
@@ -72,6 +72,13 @@ appstore:
       type: non_consumable
       price_usd: 49.99
       description: "Lifetime unlock for unlimited private scanning, batch import, OCR, and PDF export."
+  screenshots:
+    ios: docs/images/screenshot-ios-*-dark.png
+    ipad: docs/images/screenshot-ipad-*-dark.png
+  contact:
+    name: "Stephan Joseph"
+    phone: "+17277589785"
+    email: "hi@saneapps.com"
 
 website: true
 website_domain: sanescan.com
