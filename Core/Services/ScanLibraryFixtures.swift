@@ -23,7 +23,13 @@ extension ScanLibrary {
             fixtureDocument(
                 title: "Contract Packet",
                 filename: "fixture-contract-packet.jpg",
-                recognizedText: "SERVICE AGREEMENT\nClient: Northstar Studio\nSigned May 17, 2026",
+                recognizedText: """
+                INDEPENDENT SERVICES AGREEMENT
+                Client: Sample Client LLC
+                Vendor: Example Studio Co.
+                Effective date: May 17, 2026
+                Total: 4,800.00
+                """,
                 style: .contract
             ),
             fixtureDocument(
@@ -48,11 +54,11 @@ extension ScanLibrary {
                 }
             }
             self.documents = documents
-            scansThisMonth = documents.count
+            scansThisMonth = 0
             try save()
         } catch {
             self.documents = documents
-            scansThisMonth = documents.count
+            scansThisMonth = 0
         }
     }
 
@@ -60,7 +66,7 @@ extension ScanLibrary {
         title: String,
         filename: String,
         recognizedText: String,
-        style: FixtureDocumentStyle
+        style _: FixtureDocumentStyle
     ) -> ScanDocument {
         ScanDocument(
             title: title,
@@ -71,7 +77,8 @@ extension ScanLibrary {
                     enhancedFilename: filename,
                     recognizedText: recognizedText
                 )
-            ]
+            ],
+            isFixture: true
         )
     }
 
@@ -89,51 +96,8 @@ extension ScanLibrary {
             UIColor(red: 0.05, green: 0.05, blue: 0.06, alpha: 1).setFill()
             context.fill(CGRect(x: 0, y: 0, width: 1200, height: 1600))
 
-            UIColor(red: 0.97, green: 0.98, blue: 0.96, alpha: 1).setFill()
-            UIBezierPath(roundedRect: CGRect(x: 150, y: 130, width: 900, height: 1300), cornerRadius: 18).fill()
-
-            UIColor(red: 0.06, green: 0.64, blue: 0.78, alpha: 1).setFill()
-            UIBezierPath(roundedRect: CGRect(x: 240, y: 245, width: 420, height: 34), cornerRadius: 17).fill()
-
-            UIColor(red: 0.08, green: 0.10, blue: 0.16, alpha: 1).setStroke()
-            for index in 0..<style.lineCount {
-                let lineY = style.firstLineY + (index * style.lineSpacing)
-                let width = style.shortLineIndexes.contains(index) ? 460 : style.lineWidth
-                let path = UIBezierPath()
-                path.lineWidth = 18
-                path.lineCapStyle = .round
-                path.move(to: CGPoint(x: 240, y: lineY))
-                path.addLine(to: CGPoint(x: 240 + width, y: lineY))
-                path.stroke()
-            }
-
-            UIColor(red: 0.06, green: 0.64, blue: 0.78, alpha: 1).setStroke()
-            let box = UIBezierPath(roundedRect: CGRect(x: 240, y: 1040, width: 220, height: 150), cornerRadius: 10)
-            box.lineWidth = 14
-            box.stroke()
-
-            let mark = UIBezierPath()
-            mark.lineWidth = 16
-            mark.lineCapStyle = .round
-            mark.move(to: CGPoint(x: 280, y: 1124))
-            mark.addLine(to: CGPoint(x: 330, y: 1168))
-            mark.addLine(to: CGPoint(x: 420, y: 1064))
-            mark.stroke()
-
-            title.uppercased().draw(
-                at: CGPoint(x: 240, y: 300),
-                withAttributes: [
-                    .font: UIFont.boldSystemFont(ofSize: 58),
-                    .foregroundColor: UIColor.black
-                ]
-            )
-            "Scanned document".draw(
-                at: CGPoint(x: 240, y: 1220),
-                withAttributes: [
-                    .font: UIFont.systemFont(ofSize: 42, weight: .medium),
-                    .foregroundColor: UIColor.darkGray
-                ]
-            )
+            drawPaperBackground()
+            drawDocument(style: style, title: title)
         }
 
         guard let data = image.jpegData(compressionQuality: 0.9) else {
@@ -142,50 +106,206 @@ extension ScanLibrary {
         try FileManager.default.createDirectory(at: imagesURL, withIntermediateDirectories: true)
         try data.write(to: imagesURL.appendingPathComponent(filename), options: [.atomic])
     }
+
+    private func drawPaperBackground() {
+        let paper = CGRect(x: 142, y: 122, width: 916, height: 1256)
+        UIColor(red: 0.98, green: 0.98, blue: 0.95, alpha: 1).setFill()
+        UIBezierPath(roundedRect: paper, cornerRadius: 14).fill()
+
+        UIColor(red: 0.87, green: 0.85, blue: 0.78, alpha: 1).setStroke()
+        let outline = UIBezierPath(roundedRect: paper.insetBy(dx: 1, dy: 1), cornerRadius: 14)
+        outline.lineWidth = 3
+        outline.stroke()
+    }
+
+    private func drawDocument(style: FixtureDocumentStyle, title: String) {
+        switch style {
+        case .contract:
+            drawContract()
+        case .receipt:
+            drawReceipt()
+        case .form:
+            drawForm(title: title)
+        }
+    }
+
+    private func drawContract() {
+        drawAccentBar(x: 222, y: 215, width: 310)
+        drawText("INDEPENDENT SERVICES AGREEMENT", x: 222, y: 270, size: 36, weight: .bold)
+        drawText("Sample Client LLC", x: 222, y: 334, size: 26, weight: .semibold)
+        drawText("Agreement No. SC-2026-0517", x: 720, y: 334, size: 22, weight: .medium)
+        drawRule(y: 390)
+
+        let rows = [
+            ("Effective date", "May 17, 2026"),
+            ("Vendor", "Example Studio Co."),
+            ("Services", "Document cleanup, OCR review, and PDF archive delivery"),
+            ("Project total", "$4,800.00")
+        ]
+        var currentY = 430
+        for row in rows {
+            drawText(row.0.uppercased(), x: 222, y: currentY, size: 18, weight: .bold, color: .darkGray)
+            drawText(row.1, x: 470, y: currentY - 2, size: 22, weight: .regular)
+            currentY += 58
+        }
+
+        drawSection(
+            "1. Scope of Work",
+            body: "Vendor will prepare, scan, and organize client records into searchable PDF files. " +
+                "Final archives will be delivered with readable names and verified page order.",
+            y: 690
+        )
+        drawSection(
+            "2. Payment Terms",
+            body: "Client will pay fifty percent on approval and the balance on delivery. " +
+                "Late invoices may pause additional archive work until account status is current.",
+            y: 840
+        )
+        drawSection(
+            "3. Confidentiality",
+            body: "Both parties will protect sample records and will not disclose private contents " +
+                "except as needed to complete the archive.",
+            y: 990
+        )
+
+        drawSignatureLine(label: "Client signature", x: 222, y: 1210)
+        drawSignatureLine(label: "Vendor signature", x: 650, y: 1210)
+        drawText("SAMPLE DOCUMENT - FICTIONAL DATA", x: 222, y: 1322, size: 18, weight: .bold, color: .gray)
+    }
+
+    private func drawReceipt() {
+        drawAccentBar(x: 222, y: 215, width: 210)
+        drawText("TAX RECEIPT", x: 222, y: 270, size: 42, weight: .bold)
+        drawText("May 17, 2026", x: 770, y: 282, size: 24, weight: .semibold)
+        drawText("Receipt #TX-4418", x: 222, y: 340, size: 24, weight: .medium)
+        drawRule(y: 405)
+
+        let rows = [
+            ("Archival folders", "$42.00"),
+            ("Scanner rental", "$55.00"),
+            ("OCR processing", "$18.50"),
+            ("Sales tax", "$12.92")
+        ]
+        var currentY = 470
+        for row in rows {
+            drawText(row.0, x: 222, y: currentY, size: 28, weight: .regular)
+            drawText(row.1, x: 820, y: currentY, size: 28, weight: .semibold)
+            drawRule(y: currentY + 48, color: UIColor(white: 0.78, alpha: 1), lineWidth: 2)
+            currentY += 90
+        }
+
+        drawText("TOTAL", x: 222, y: 880, size: 34, weight: .bold)
+        drawText("$128.42", x: 775, y: 880, size: 34, weight: .bold)
+        drawCheckbox(x: 222, y: 1045)
+        drawText("Paid by card ending 4242", x: 315, y: 1060, size: 26, weight: .medium)
+        drawText("SAMPLE RECEIPT - FICTIONAL DATA", x: 222, y: 1322, size: 18, weight: .bold, color: .gray)
+    }
+
+    private func drawForm(title: String) {
+        drawAccentBar(x: 222, y: 215, width: 260)
+        drawText(title.uppercased(), x: 222, y: 270, size: 40, weight: .bold)
+        drawText("Patient intake worksheet", x: 222, y: 332, size: 24, weight: .medium, color: .darkGray)
+        drawRule(y: 400)
+
+        let fields = ["Name", "Date of birth", "Insurance ID", "Primary contact", "Preferred pharmacy"]
+        var currentY = 470
+        for field in fields {
+            drawText(field, x: 222, y: currentY, size: 24, weight: .semibold)
+            drawRule(y: currentY + 42, color: UIColor(white: 0.35, alpha: 1), lineWidth: 3)
+            currentY += 105
+        }
+
+        drawText("Reason for visit", x: 222, y: 1035, size: 24, weight: .semibold)
+        drawBox(CGRect(x: 222, y: 1082, width: 700, height: 150))
+        drawCheckbox(x: 222, y: 1265)
+        drawText("I confirm this sample information is accurate.", x: 315, y: 1280, size: 22, weight: .medium)
+    }
+
+    private func drawSection(_ heading: String, body: String, y yPosition: Int) {
+        drawText(heading, x: 222, y: yPosition, size: 25, weight: .bold)
+        drawMultilineText(body, x: 222, y: yPosition + 40, width: 710, size: 22)
+    }
+
+    private func drawSignatureLine(label: String, x xPosition: Int, y yPosition: Int) {
+        drawRule(y: yPosition, x: xPosition, width: 310, color: UIColor(white: 0.16, alpha: 1), lineWidth: 4)
+        drawText(label, x: xPosition, y: yPosition + 18, size: 18, weight: .medium, color: .darkGray)
+    }
+
+    private func drawAccentBar(x xPosition: Int, y yPosition: Int, width: Int) {
+        UIColor(red: 0.06, green: 0.64, blue: 0.78, alpha: 1).setFill()
+        UIBezierPath(roundedRect: CGRect(x: xPosition, y: yPosition, width: width, height: 24), cornerRadius: 12).fill()
+    }
+
+    private func drawRule(
+        y yPosition: Int,
+        x xPosition: Int = 222,
+        width: Int = 710,
+        color: UIColor = .black,
+        lineWidth: CGFloat = 3
+    ) {
+        color.setStroke()
+        let path = UIBezierPath()
+        path.lineWidth = lineWidth
+        path.move(to: CGPoint(x: xPosition, y: yPosition))
+        path.addLine(to: CGPoint(x: xPosition + width, y: yPosition))
+        path.stroke()
+    }
+
+    private func drawBox(_ rect: CGRect) {
+        UIColor(white: 0.2, alpha: 1).setStroke()
+        let path = UIBezierPath(roundedRect: rect, cornerRadius: 8)
+        path.lineWidth = 3
+        path.stroke()
+    }
+
+    private func drawCheckbox(x xPosition: Int, y yPosition: Int) {
+        UIColor(red: 0.06, green: 0.64, blue: 0.78, alpha: 1).setStroke()
+        let box = UIBezierPath(roundedRect: CGRect(x: xPosition, y: yPosition, width: 68, height: 68), cornerRadius: 6)
+        box.lineWidth = 8
+        box.stroke()
+
+        let mark = UIBezierPath()
+        mark.lineWidth = 9
+        mark.lineCapStyle = .round
+        mark.move(to: CGPoint(x: xPosition + 15, y: yPosition + 38))
+        mark.addLine(to: CGPoint(x: xPosition + 31, y: yPosition + 54))
+        mark.addLine(to: CGPoint(x: xPosition + 56, y: yPosition + 17))
+        mark.stroke()
+    }
+
+    private func drawText(
+        _ text: String,
+        x xPosition: Int,
+        y yPosition: Int,
+        size: CGFloat,
+        weight: UIFont.Weight,
+        color: UIColor = .black
+    ) {
+        text.draw(
+            at: CGPoint(x: xPosition, y: yPosition),
+            withAttributes: [
+                .font: UIFont.systemFont(ofSize: size, weight: weight),
+                .foregroundColor: color
+            ]
+        )
+    }
+
+    private func drawMultilineText(_ text: String, x xPosition: Int, y yPosition: Int, width: Int, size: CGFloat) {
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.lineSpacing = 7
+        text.draw(
+            in: CGRect(x: xPosition, y: yPosition, width: width, height: 110),
+            withAttributes: [
+                .font: UIFont.systemFont(ofSize: size),
+                .foregroundColor: UIColor.black,
+                .paragraphStyle: paragraph
+            ]
+        )
+    }
 }
 
 private enum FixtureDocumentStyle {
     case contract
     case receipt
     case form
-
-    var firstLineY: Int {
-        switch self {
-        case .contract: 405
-        case .receipt: 450
-        case .form: 430
-        }
-    }
-
-    var lineSpacing: Int {
-        switch self {
-        case .contract: 96
-        case .receipt: 118
-        case .form: 132
-        }
-    }
-
-    var lineCount: Int {
-        switch self {
-        case .contract: 7
-        case .receipt: 5
-        case .form: 6
-        }
-    }
-
-    var lineWidth: Int {
-        switch self {
-        case .contract: 680
-        case .receipt: 540
-        case .form: 640
-        }
-    }
-
-    var shortLineIndexes: Set<Int> {
-        switch self {
-        case .contract: [2, 5]
-        case .receipt: [1, 3]
-        case .form: [0, 2, 4]
-        }
-    }
 }

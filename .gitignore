@@ -7,3 +7,10 @@ DerivedData/
 *.xcodeproj/xcuserdata/
 .swiftlint-cache/
 outputs/
+
+# Local agent/research artifacts
+.claude/research.md
+.claude/.gitignore
+.codex/research.md
+.mcp.json
+DOCS_AUDIT_FINDINGS.md

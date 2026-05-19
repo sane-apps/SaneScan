@@ -35,7 +35,7 @@ ssh mini 'xcrun simctl list devices available'
 - UI/runtime camera proof needs a real device because `VNDocumentCameraViewController` is not available on all simulators.
 - Simulator proof should still cover launch, Photos import UI, library display, paywall UI, PDF export code paths where possible.
 
-Latest Mini receipt, 2026-05-17 23:45 ET:
+Latest Mini receipt, 2026-05-18 02:58 ET:
 
 ```bash
 xcodebuild -project SaneScan.xcodeproj -scheme SaneScan \
@@ -43,7 +43,7 @@ xcodebuild -project SaneScan.xcodeproj -scheme SaneScan \
   -configuration Debug CODE_SIGNING_ALLOWED=NO test
 ```
 
-Result: `TEST SUCCEEDED`; 3 Swift Testing unit tests and 4 XCTest UI tests passed in `Test-SaneScan-2026.05.17_23-45-46--0400.xcresult`. `swiftlint lint --quiet` also passed, and Ruby syntax checks passed for the patched App Store helper files. Visual screenshots cover the empty library, document-seeded Photos picker, document fixture library, document detail/OCR, native share sheet, and paywall unavailable state.
+Result: `TEST SUCCEEDED`; 4 Swift Testing unit tests and 4 XCTest UI tests passed in `Test-SaneScan-2026.05.18_02-57-54--0400.xcresult`. The added unit test verifies PDF export surfaces missing page-image failures instead of silently producing blank PDF pages. `swiftlint lint --quiet` and `swiftformat --lint --trailing-commas never` passed on the Mini.
 
 ## StoreKit
 
@@ -54,14 +54,16 @@ Product IDs are defined in `PurchaseManager`:
 
 These must be created in App Store Connect before public sale.
 
-Current App Store Connect state, 2026-05-17:
+Current App Store Connect state, 2026-05-18:
 
 - Bundle ID `com.sanescan.app` exists in Apple Developer/App Store Connect as `UT3A85VYT3`.
 - App Store Connect app ID is `6770391054`.
-- App Store version `1.0` is submitted and reports `WAITING_FOR_REVIEW`; submission ID `aa25a650-7eb8-4b5f-9e71-a93ec3d856b8`.
+- App Store version `1.0` is submitted and reports `WAITING_FOR_REVIEW`; submission ID `ca47e197-7e12-477b-9de9-85387507f142`.
 - Build `100` is attached to version `1.0`.
 - The annual subscription product is `com.sanescan.app.pro.annual` and is submitted with the version.
 - App Privacy is published as `Data Not Collected`.
 - GitHub remote exists at `https://github.com/sane-apps/SaneScan`.
+- Latest Mini release proof: explicit iPhone simulator `xcodebuild` passed on 2026-05-18 after the top-right screenshot artifact fix and final asset refresh; exit code 0.
+- Latest visual proof: `outputs/visual-audit-final16-2026-05-18/contact-sheet.png`, `outputs/visual-audit-final17-2026-05-18/marketing-assets-contact-sheet.png`, and `outputs/website-audit-2026-05-18/final17/`.
 
 Known tooling issue: `./scripts/SaneMaster.rb appstore_preflight` currently runs the iOS app against `platform=macOS,arch=arm64` with signing disabled and fails install with `No code signature found`. Use the explicit iOS simulator command above as the canonical test proof until SaneMaster gets first-class iOS-only destination handling for SaneScan.

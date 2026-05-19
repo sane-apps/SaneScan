@@ -50,15 +50,15 @@ struct DocumentDetailView: View {
                 if isExporting {
                     ProgressView()
                         .controlSize(.large)
-                .tint(SaneScanTheme.accent)
-                .padding(24)
-                .background(SaneScanTheme.panelGradient, in: RoundedRectangle(cornerRadius: 8))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(SaneScanTheme.hairline, lineWidth: 1)
-                )
-        }
-    }
+                        .tint(SaneScanTheme.accent)
+                        .padding(24)
+                        .background(SaneScanTheme.panelGradient, in: RoundedRectangle(cornerRadius: 8))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(SaneScanTheme.hairline, lineWidth: 1)
+                        )
+                }
+            }
             .alert("Export failed", isPresented: errorBinding) {
                 Button("OK", role: .cancel) {}
             } message: {

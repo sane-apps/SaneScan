@@ -3,36 +3,640 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SaneScan</title>
-  <meta name="description" content="Private scanner for photos, receipts, and documents.">
+  <title>SaneScan - Private Document Scanner for iPhone and iPad</title>
+  <meta name="description" content="Scan documents, receipts, forms, and old photos privately on iPhone and iPad. Local OCR, clean PDF export, no account, and no SaneApps cloud upload.">
+  <meta name="keywords" content="document scanner, iPhone scanner, iPad scanner, OCR, PDF scanner, receipt scanner, private scanner, photo scanner">
+  <meta name="author" content="Mr. Sane">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#050913">
+  <link rel="canonical" href="https://sanescan.saneapps.com/">
+  <link rel="icon" type="image/png" href="/assets/app-icon.png?v=20260518-final17">
+  <link rel="apple-touch-icon" href="/assets/app-icon.png?v=20260518-final17">
+
+  <meta property="og:title" content="SaneScan - Private Document Scanner">
+  <meta property="og:description" content="Document scanning, OCR, and PDF export for iPhone and iPad. No account. No SaneApps cloud upload.">
+  <meta property="og:image" content="https://sanescan.saneapps.com/assets/social-card.png?v=20260518-final17">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sanescan.saneapps.com/">
+  <meta property="og:site_name" content="SaneScan">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SaneScan - Private Document Scanner">
+  <meta name="twitter:description" content="Scan documents, receipts, forms, and old photos privately on iPhone and iPad.">
+  <meta name="twitter:image" content="https://sanescan.saneapps.com/assets/social-card.png?v=20260518-final17">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SaneScan",
+    "operatingSystem": "iOS, iPadOS",
+    "applicationCategory": "ProductivityApplication",
+    "description": "Private document scanning, OCR, local image cleanup, and PDF export for iPhone and iPad.",
+    "image": "https://sanescan.saneapps.com/assets/social-card.png?v=20260518-final17",
+    "author": {
+      "@type": "Person",
+      "name": "Mr. Sane",
+      "url": "https://saneapps.com"
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Basic",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    ],
+    "featureList": [
+      "VisionKit document scanning",
+      "Photos import",
+      "Local OCR",
+      "PDF export",
+      "No account",
+      "No SaneApps cloud upload"
+    ]
+  }
+  </script>
+
   <style>
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #ffffff; background: #0a0d0d; }
-    main { max-width: 920px; margin: 0 auto; padding: 72px 24px; }
-    h1 { font-size: clamp(44px, 8vw, 84px); line-height: 1; margin: 0 0 18px; }
-    p { color: rgba(255,255,255,0.94); font-size: 20px; line-height: 1.5; max-width: 680px; }
-    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+    :root {
+      color-scheme: dark;
+      --bg: #050913;
+      --bg-2: #081426;
+      --panel: rgba(12, 25, 45, 0.78);
+      --panel-strong: rgba(17, 36, 62, 0.92);
+      --line: rgba(118, 150, 190, 0.26);
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.92);
+      --cyan: #22f0dc;
+      --blue: #2d83ff;
+      --gold: #f4c95d;
+      --green: #54e0af;
+      --shadow: 0 24px 90px rgba(0, 0, 0, 0.5);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(34, 240, 220, 0.18), transparent 26rem),
+        radial-gradient(circle at 76% 20%, rgba(45, 131, 255, 0.24), transparent 30rem),
+        radial-gradient(circle at 58% 78%, rgba(244, 201, 93, 0.10), transparent 24rem),
+        linear-gradient(150deg, var(--bg) 0%, var(--bg-2) 56%, #05070d 100%);
+      color: var(--text);
+      min-height: 100vh;
+      letter-spacing: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.72), transparent 75%);
+    }
+
     a { color: inherit; }
-    .button { background: #14b8a6; color: #031313; text-decoration: none; padding: 12px 16px; border-radius: 8px; font-weight: 700; }
-    .link { padding: 12px 0; color: #ffffff; }
-    section { margin-top: 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
-    article { border: 1px solid #334155; border-radius: 8px; padding: 18px; background: #111827; }
-    h2 { margin: 0 0 8px; font-size: 18px; }
-    article p { font-size: 15px; margin: 0; color: rgba(255,255,255,0.94); }
+    img { max-width: 100%; display: block; }
+
+    .wrap {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(22px);
+      background: rgba(5, 9, 19, 0.78);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      box-shadow: 0 0 34px rgba(34, 240, 220, 0.2);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { color: var(--text); }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: var(--radius);
+      font-weight: 800;
+      text-decoration: none;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .button.primary {
+      color: #06101e;
+      background: linear-gradient(135deg, var(--cyan), #59d6ff 48%, var(--blue));
+      box-shadow: 0 18px 48px rgba(34, 240, 220, 0.24);
+    }
+
+    .button.secondary {
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .hero {
+      min-height: 720px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.84fr);
+      gap: 48px;
+      align-items: center;
+      padding: 62px 0 72px;
+    }
+
+    .hero > div:first-child {
+      padding-top: 0;
+    }
+
+    .hero-kicker {
+      margin: 0 0 18px;
+      color: #ffffff;
+      font-weight: 850;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(56px, 7vw, 94px);
+      line-height: 0.96;
+      letter-spacing: 0;
+      max-width: 760px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(120deg, #ffffff 0%, #dffefa 34%, var(--cyan) 62%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(19px, 2vw, 24px);
+      line-height: 1.45;
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .proof-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .proof {
+      padding: 9px 11px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .device-stage {
+      position: relative;
+      min-height: 620px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(0, 1fr);
+      gap: 22px;
+      align-items: center;
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(160deg, rgba(34, 240, 220, 0.10), rgba(45, 131, 255, 0.08)),
+        rgba(255, 255, 255, 0.045);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .device-stage::before {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(34, 240, 220, 0.18), transparent 34%),
+        radial-gradient(circle at 85% 78%, rgba(244, 201, 93, 0.12), transparent 32%);
+      pointer-events: none;
+    }
+
+    .phone {
+      width: 100%;
+      max-width: 245px;
+      justify-self: center;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 34px;
+      padding: 8px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.16), rgba(255,255,255,0.035));
+      box-shadow: 0 20px 58px rgba(0, 0, 0, 0.34);
+      z-index: 2;
+      transform: none;
+    }
+
+    .phone img {
+      width: 100%;
+      height: auto;
+      border-radius: 26px;
+      aspect-ratio: 1179 / 2556;
+      object-fit: contain;
+      background: #030710;
+    }
+
+    .tablet {
+      position: relative;
+      width: 100%;
+      justify-self: center;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 22px;
+      padding: 8px;
+      background: linear-gradient(145deg, rgba(34, 240, 220, 0.13), rgba(255,255,255,0.035));
+      box-shadow: 0 20px 58px rgba(0, 0, 0, 0.36);
+      transform: none;
+      z-index: 1;
+    }
+
+    .tablet img {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      aspect-ratio: 2048 / 2732;
+      object-fit: contain;
+      background: #030710;
+    }
+
+    .stage-copy {
+      position: relative;
+      z-index: 2;
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      align-self: end;
+    }
+
+    .stage-copy span {
+      min-height: 46px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius);
+      background: rgba(2, 9, 20, 0.66);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 8px;
+    }
+
+    section {
+      padding: 84px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      scroll-margin-top: 92px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1;
+      letter-spacing: 0;
+      max-width: 840px;
+    }
+
+    .section-lead {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.5;
+      max-width: 760px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      background: linear-gradient(160deg, var(--panel-strong), rgba(10, 18, 32, 0.78));
+      box-shadow: 0 16px 44px rgba(0,0,0,0.22);
+      min-height: 208px;
+    }
+
+    .card strong {
+      display: block;
+      font-size: 21px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+      gap: 44px;
+      align-items: center;
+    }
+
+    .showcase {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.055);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .showcase img {
+      border-radius: var(--radius);
+    }
+
+    .list {
+      margin: 30px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 14px;
+      list-style: none;
+      color: #ffffff;
+      font-weight: 750;
+    }
+
+    .list li {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .check {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      color: #04111e;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .price-band {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: 32px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(34, 240, 220, 0.28);
+      background:
+        linear-gradient(135deg, rgba(34, 240, 220, 0.13), rgba(45, 131, 255, 0.11)),
+        rgba(255, 255, 255, 0.045);
+    }
+
+    .price {
+      font-size: clamp(34px, 5vw, 56px);
+      font-weight: 900;
+      line-height: 1;
+      color: #ffffff;
+    }
+
+    footer {
+      padding: 40px 0 58px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer a { color: #ffffff; }
+
+    @media (max-width: 900px) {
+      .hero,
+      .split,
+      .price-band {
+        grid-template-columns: 1fr;
+      }
+
+      .hero { padding-top: 48px; }
+      .hero > div:first-child { padding-top: 0; }
+      .device-stage {
+        min-height: auto;
+        grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr);
+      }
+      .stage-copy { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 28px, 1180px); }
+      nav { gap: 12px; }
+      .nav-links {
+        gap: 14px;
+        font-size: 13px;
+      }
+      .nav-links .button { display: none; }
+      .hero {
+        min-height: auto;
+        padding: 34px 0 54px;
+        gap: 28px;
+      }
+      h1 { font-size: 46px; }
+      .lead {
+        margin-top: 18px;
+        font-size: 18px;
+        line-height: 1.42;
+      }
+      .hero-actions { margin-top: 24px; }
+      .hero-actions .button { width: 100%; }
+      .proof-row { display: none; }
+      .device-stage {
+        grid-template-columns: 1fr;
+        padding: 18px;
+      }
+      .phone {
+        width: min(230px, 78%);
+        justify-self: center;
+      }
+      .tablet {
+        display: none;
+      }
+      .stage-copy { grid-template-columns: 1fr; }
+      section { padding: 64px 0; }
+      .card { min-height: auto; }
+      footer .wrap { display: grid; }
+    }
   </style>
 </head>
 <body>
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="brand" href="/">
+        <img src="/assets/app-icon.png?v=20260518-final17" alt="" width="38" height="38">
+        <span>SaneScan</span>
+      </a>
+      <div class="nav-links">
+        <a href="#privacy">Privacy</a>
+        <a href="#pro">Pro</a>
+        <a class="button secondary" href="mailto:hi@saneapps.com?subject=SaneScan">Contact</a>
+      </div>
+    </nav>
+  </header>
+
   <main>
-    <h1>SaneScan</h1>
-    <p>Private scanner for photos, receipts, and documents. Clean up pages, recognize text, and export PDFs without accounts or cloud upload.</p>
-    <div class="actions">
-      <a class="button" href="mailto:hi@saneapps.com?subject=SaneScan%20launch%20updates">Get launch updates</a>
-      <a class="link" href="privacy.html">Privacy Policy</a>
-    </div>
-    <section>
-      <article><h2>Photo Archive</h2><p>Import old photos, clean them up locally, and keep searchable copies.</p></article>
-      <article><h2>Documents</h2><p>Scan papers and receipts with Apple's VisionKit scanner.</p></article>
-      <article><h2>Export</h2><p>Create PDFs with enhanced images and recognized text through the system share sheet.</p></article>
+    <section class="hero wrap">
+      <div>
+        <p class="hero-kicker">Private document scanning for iPhone and iPad.</p>
+        <h1>Private scans. <span class="gradient-text">Clean PDFs.</span></h1>
+        <p class="lead">SaneScan turns documents, receipts, forms, and old photos into clean scans with local OCR text and shareable PDFs without an account or SaneApps server upload.</p>
+        <div class="hero-actions">
+        <a class="button primary" href="mailto:hi@saneapps.com?subject=SaneScan" data-appstore-ios-link>Contact SaneApps</a>
+          <a class="button secondary" href="#screens">See the app</a>
+        </div>
+        <div class="proof-row" aria-label="Product highlights">
+          <span class="proof">Local OCR</span>
+          <span class="proof">PDF export</span>
+          <span class="proof">No account</span>
+          <span class="proof">No SaneApps cloud upload</span>
+        </div>
+      </div>
+
+      <div class="device-stage" aria-label="SaneScan app screenshots">
+        <div class="phone">
+          <img src="/assets/iphone-home.png?v=20260518-final17" alt="SaneScan start screen with scan and import actions" width="1179" height="2556">
+        </div>
+        <div class="tablet">
+          <img src="/assets/ipad-library.png?v=20260518-final17" alt="SaneScan document library on iPad" width="2048" height="2732">
+        </div>
+        <div class="stage-copy" aria-label="SaneScan workflow">
+          <span>Scan paper</span>
+          <span>Read text</span>
+          <span>Export PDF</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" id="screens">
+      <div class="split">
+        <div>
+          <h2>Built for the paper people actually keep.</h2>
+          <p class="section-lead">Receipts, intake forms, signed packets, tax papers, and family archive photos all fit in the same private local library.</p>
+          <ul class="list">
+            <li><span class="check">✓</span><span>Scan new paper with Apple's system document scanner.</span></li>
+            <li><span class="check">✓</span><span>Import older photos from the Photos picker.</span></li>
+            <li><span class="check">✓</span><span>Clean pages, recognize text, and export PDFs from the device.</span></li>
+          </ul>
+        </div>
+        <div class="showcase">
+          <img src="/assets/iphone-detail.png?v=20260518-final17" alt="SaneScan document detail showing recognized text and PDF export" width="1179" height="2556">
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" id="privacy">
+      <h2>Privacy is the product shape.</h2>
+          <p class="section-lead">The SaneScan app does not need an account, does not track users, and does not upload scan contents to SaneApps servers. If you email for updates or support, SaneApps receives the email address and message you choose to send.</p>
+      <div class="grid">
+        <article class="card">
+          <strong>No account wall</strong>
+          <p>Open the app, scan or import, and keep working. There is no login system between you and your documents.</p>
+        </article>
+        <article class="card">
+          <strong>Local document work</strong>
+          <p>Image cleanup, OCR, and PDF creation are designed around local device workflows and Apple's system surfaces.</p>
+        </article>
+        <article class="card">
+          <strong>System sharing</strong>
+          <p>Exports use the iOS share sheet, so you choose where a PDF goes instead of sending it through a SaneApps account.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap" id="pro">
+      <div class="price-band">
+        <div>
+          <h2>SaneScan Pro</h2>
+          <p class="section-lead">Basic includes 10 scans per month and smaller imports. Pro unlocks unlimited scans and batch import up to 50 images through StoreKit.</p>
+        </div>
+        <div class="price">In-app Pro</div>
+      </div>
     </section>
   </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 SaneApps. Built by Mr. Sane.</span>
+      <span><a href="/privacy/">Privacy Policy</a> · <a href="https://saneapps.com">SaneApps</a> · <a href="mailto:hi@saneapps.com">Contact</a></span>
+    </div>
+  </footer>
 </body>
 </html>

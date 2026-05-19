@@ -10,25 +10,51 @@ final class PurchaseManager: ObservableObject {
     @Published private(set) var isPro = false
     @Published var purchaseError: String?
 
+    private var transactionListener: Task<Void, Never>?
+
+    deinit {
+        transactionListener?.cancel()
+    }
+
+    func startTransactionListener() {
+        guard transactionListener == nil else { return }
+        transactionListener = Task { [weak self] in
+            for await update in Transaction.updates {
+                guard let self else { return }
+                if let transaction = try? checkVerified(update) {
+                    await transaction.finish()
+                }
+                await updateEntitlements()
+            }
+        }
+    }
+
     func refresh() async {
         await loadProducts()
         await updateEntitlements()
     }
 
+    func refreshProductsIfNeeded() async {
+        guard products.isEmpty else { return }
+        await loadProducts()
+    }
+
     func purchasePro(_ product: Product) async {
+        purchaseError = nil
         do {
             let result = try await product.purchase()
             switch result {
-            case .success(let verification):
+            case let .success(verification):
                 _ = try checkVerified(verification)
                 await updateEntitlements()
+                purchaseError = nil
             case .userCancelled, .pending:
                 break
             @unknown default:
                 break
             }
         } catch {
-            purchaseError = error.localizedDescription
+            purchaseError = Self.purchaseFailedMessage
         }
     }
 
@@ -37,20 +63,35 @@ final class PurchaseManager: ObservableObject {
     }
 
     func restore() async {
+        purchaseError = nil
         do {
             try await AppStore.sync()
             await updateEntitlements()
+            await refreshProductsIfNeeded()
+            purchaseError = nil
         } catch {
-            purchaseError = error.localizedDescription
+            purchaseError = Self.purchaseFailedMessage
         }
     }
 
     private func loadProducts() async {
         do {
             products = try await Product.products(for: [Self.yearlyID, Self.lifetimeID])
-                .sorted { $0.displayPrice < $1.displayPrice }
+                .sorted { productRank($0.id) < productRank($1.id) }
+            purchaseError = nil
         } catch {
-            purchaseError = error.localizedDescription
+            purchaseError = Self.temporarilyUnavailableMessage
+        }
+    }
+
+    private func productRank(_ productID: String) -> Int {
+        switch productID {
+        case Self.yearlyID:
+            0
+        case Self.lifetimeID:
+            1
+        default:
+            2
         }
     }
 
@@ -69,8 +110,12 @@ final class PurchaseManager: ObservableObject {
         switch result {
         case .unverified:
             throw StoreKitError.unknown
-        case .verified(let safe):
+        case let .verified(safe):
             return safe
         }
     }
+
+    nonisolated static let temporarilyUnavailableMessage =
+        "Purchases are temporarily unavailable. Please try again in a moment."
+    nonisolated static let purchaseFailedMessage = "Purchase could not be completed. Please try again in a moment."
 }

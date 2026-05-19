@@ -5,9 +5,10 @@ import VisionKit
 struct DocumentCameraView: UIViewControllerRepresentable {
     let onComplete: ([UIImage]) -> Void
     let onCancel: () -> Void
+    let onError: (Error) -> Void
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(onComplete: onComplete, onCancel: onCancel)
+        Coordinator(onComplete: onComplete, onCancel: onCancel, onError: onError)
     }
 
     func makeUIViewController(context: Context) -> VNDocumentCameraViewController {
@@ -21,17 +22,23 @@ struct DocumentCameraView: UIViewControllerRepresentable {
     final class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
         let onComplete: ([UIImage]) -> Void
         let onCancel: () -> Void
+        let onError: (Error) -> Void
 
-        init(onComplete: @escaping ([UIImage]) -> Void, onCancel: @escaping () -> Void) {
+        init(
+            onComplete: @escaping ([UIImage]) -> Void,
+            onCancel: @escaping () -> Void,
+            onError: @escaping (Error) -> Void
+        ) {
             self.onComplete = onComplete
             self.onCancel = onCancel
+            self.onError = onError
         }
 
         func documentCameraViewController(
             _: VNDocumentCameraViewController,
             didFinishWith scan: VNDocumentCameraScan
         ) {
-            let images = (0..<scan.pageCount).map { scan.imageOfPage(at: $0) }
+            let images = (0 ..< scan.pageCount).map { scan.imageOfPage(at: $0) }
             onComplete(images)
         }
 
@@ -41,9 +48,9 @@ struct DocumentCameraView: UIViewControllerRepresentable {
 
         func documentCameraViewController(
             _: VNDocumentCameraViewController,
-            didFailWithError _: Error
+            didFailWithError error: Error
         ) {
-            onCancel()
+            onError(error)
         }
     }
 }

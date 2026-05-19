@@ -4,6 +4,8 @@ SaneScan is a private iPhone and iPad scanner for photos, receipts, and document
 
 It uses Apple's VisionKit scanner, Vision OCR, local image cleanup, and PDF export. Scans stay on the device unless the user explicitly shares or exports them.
 
+Public site: https://sanescan.saneapps.com
+
 ## Features
 
 - Scan documents with the system VisionKit scanner.
@@ -17,17 +19,21 @@ It uses Apple's VisionKit scanner, Vision OCR, local image cleanup, and PDF expo
 
 SaneScan does not require an account, does not track users, and does not upload scan content. Camera and Photos access are requested only when the user starts a scan or import.
 
-Public privacy page: `https://sanescan-site.pages.dev/privacy`
+Details:
+
+- [Privacy policy](PRIVACY.md)
+- [Security policy](SECURITY.md)
+- Public privacy page: https://sanescan.saneapps.com/privacy/
 
 ## License
 
-SaneScan is released under the PolyForm Shield License. See [LICENSE](LICENSE).
+SaneScan is public, auditable code under the PolyForm Shield License. Personal use and experimentation are allowed; commercial use has restrictions. See [LICENSE](LICENSE).
 
 ## Build
 
 ```bash
-xcodegen generate
-xcodebuild -project SaneScan.xcodeproj -scheme SaneScan -destination 'platform=iOS Simulator,name=iPhone 17 Pro' test
+./scripts/SaneMaster.rb verify
+./scripts/SaneMaster.rb lint
 ```
 
-For SaneApps work, run builds and tests on the Mac Mini when available.
+For targeted iOS simulator debugging, use the explicit Mini simulator command documented in `DEVELOPMENT.md` until SaneMaster has first-class SaneScan destination handling.

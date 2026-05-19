@@ -11,6 +11,7 @@ struct ScanSheets: ViewModifier {
     let maxPhotoSelection: Int
     let createDocument: ([UIImage], ScanMode) async -> Void
     let importPhotos: ([PhotosPickerItem]) async -> Void
+    let reportError: (String) -> Void
 
     func body(content: Content) -> some View {
         content
@@ -20,6 +21,9 @@ struct ScanSheets: ViewModifier {
                     Task { await createDocument(images, .document) }
                 } onCancel: {
                     showDocumentCamera = false
+                } onError: { error in
+                    showDocumentCamera = false
+                    reportError(error.localizedDescription)
                 }
                 .preferredColorScheme(.dark)
             }

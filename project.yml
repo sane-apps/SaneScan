@@ -63,11 +63,6 @@ targets:
           - Info.plist
           - PrivacyInfo.xcprivacy
           - "*.entitlements"
-    entitlements:
-      path: iOS/SaneScan.entitlements
-      properties:
-        keychain-access-groups:
-          - "$(AppIdentifierPrefix)com.sanescan.app"
     info:
       path: iOS/Info.plist
       properties:

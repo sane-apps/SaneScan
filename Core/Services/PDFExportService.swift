@@ -3,10 +3,12 @@ import UIKit
 
 enum PDFExportError: LocalizedError {
     case missingImage
+    case invalidImage
 
     var errorDescription: String? {
         switch self {
         case .missingImage: "A scan page image could not be loaded."
+        case .invalidImage: "A scan page image is invalid."
         }
     }
 }
@@ -15,19 +17,34 @@ actor PDFExportService {
     func render(document: ScanDocument, imageLoader: @Sendable (ScanPage) throws -> UIImage) throws -> Data {
         let pageBounds = CGRect(x: 0, y: 0, width: 612, height: 792)
         let renderer = UIGraphicsPDFRenderer(bounds: pageBounds)
+        var renderError: Error?
 
-        return renderer.pdfData { context in
+        let data = renderer.pdfData { context in
             for page in document.pages {
+                let image: UIImage
+                do {
+                    image = try imageLoader(page)
+                } catch {
+                    renderError = error
+                    return
+                }
+                guard image.size.width > 0, image.size.height > 0 else {
+                    renderError = PDFExportError.invalidImage
+                    return
+                }
                 context.beginPage()
-                let image = (try? imageLoader(page)) ?? UIImage()
                 draw(image: image, title: document.title, in: pageBounds)
             }
 
             if !document.recognizedText.isEmpty {
-                context.beginPage()
-                drawText(document.recognizedText, title: "Recognized Text", in: pageBounds)
+                drawTextPages(document.recognizedText, title: "Recognized Text", in: pageBounds, context: context)
             }
         }
+
+        if let renderError {
+            throw renderError
+        }
+        return data
     }
 
     private func draw(image: UIImage, title: String, in pageBounds: CGRect) {
@@ -40,7 +57,6 @@ actor PDFExportService {
 
         let available = pageBounds.insetBy(dx: margin, dy: 70)
         let size = image.size
-        guard size.width > 0, size.height > 0 else { return }
 
         let scale = min(available.width / size.width, available.height / size.height)
         let drawSize = CGSize(width: size.width * scale, height: size.height * scale)
@@ -51,13 +67,17 @@ actor PDFExportService {
         image.draw(in: CGRect(origin: origin, size: drawSize))
     }
 
-    private func drawText(_ text: String, title: String, in pageBounds: CGRect) {
+    private func drawTextPages(
+        _ text: String,
+        title: String,
+        in pageBounds: CGRect,
+        context: UIGraphicsPDFRendererContext
+    ) {
         let margin: CGFloat = 42
         let titleAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.boldSystemFont(ofSize: 18),
             .foregroundColor: UIColor.black
         ]
-        title.draw(at: CGPoint(x: margin, y: 32), withAttributes: titleAttributes)
 
         let bodyRect = CGRect(
             x: margin,
@@ -72,6 +92,28 @@ actor PDFExportService {
                 .foregroundColor: UIColor.black
             ]
         )
-        body.draw(in: bodyRect)
+
+        var characterIndex = 0
+        while characterIndex < body.length {
+            context.beginPage()
+            title.draw(at: CGPoint(x: margin, y: 32), withAttributes: titleAttributes)
+
+            let remaining = body.attributedSubstring(
+                from: NSRange(location: characterIndex, length: body.length - characterIndex)
+            )
+            let storage = NSTextStorage(attributedString: remaining)
+            let layoutManager = NSLayoutManager()
+            let container = NSTextContainer(size: bodyRect.size)
+            container.lineFragmentPadding = 0
+            layoutManager.addTextContainer(container)
+            storage.addLayoutManager(layoutManager)
+
+            let glyphRange = layoutManager.glyphRange(for: container)
+            layoutManager.drawGlyphs(forGlyphRange: glyphRange, at: bodyRect.origin)
+
+            let characterRange = layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
+            guard characterRange.length > 0 else { break }
+            characterIndex += characterRange.length
+        }
     }
 }

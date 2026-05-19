@@ -1,0 +1,132 @@
+# SaneScan Outreach Configuration
+
+project:
+  name: "SaneScan"
+  url: "https://sanescan.saneapps.com"
+  github: "sane-apps/SaneScan"
+  tagline: "Private document scanning, OCR, and PDF export on iPhone and iPad."
+
+positioning:
+  one_liner: "Private iPhone/iPad document scanner with local OCR and PDF export."
+  pricing: "Basic includes 10 scans per month. Pro is a StoreKit yearly subscription for unlimited scans and batch import up to 50 images."
+  privacy_claim: "Scans, OCR text, and exported PDFs stay on device unless the user explicitly shares or saves them elsewhere."
+  avoid_claims:
+    - "No data collection"
+    - "Free unlimited scanning"
+    - "Open source"
+
+known_facts:
+  - "SaneScan is App Store / StoreKit only; there is no external checkout, license key, or direct-download build."
+  - "App Store Connect version 1.0 is WAITING_FOR_REVIEW as of 2026-05-18."
+  - "Simulator QA is green, but real-device VisionKit camera proof is blocked until a physical iPhone/iPad is connected and trusted on the Mini."
+  - "App Store preflight is blocked only on review contact metadata; do not submit or launch publicly until that is resolved."
+
+search_keywords:
+  - "private document scanner iPhone"
+  - "iPhone OCR PDF scanner"
+  - "document scanner no cloud"
+  - "receipt scanner local OCR"
+  - "CamScanner privacy alternative"
+
+x_search_keywords:
+  - "\"document scanner\" (privacy OR private OR \"no cloud\" OR local) iPhone lang:en -is:retweet"
+  - "\"OCR\" \"PDF\" scanner iPhone lang:en -is:retweet"
+  - "\"receipt scanner\" (privacy OR local OR iPhone) lang:en -is:retweet"
+  - "\"CamScanner\" (alternative OR privacy) lang:en -is:retweet"
+
+launches:
+  - name: "SaneScan App Store 1.0"
+    url: "https://apps.apple.com/app/id6770391054"
+    status: "waiting_for_review"
+    starts: "2026-05-18"
+    notes: "ASC version lane and subscription are WAITING_FOR_REVIEW; launch depends on App Store approval plus real-device VisionKit proof."
+
+launch_calendar:
+  timezone: "America/New_York"
+  classification: "prelaunch_app_store_review"
+  rule: "No public launch, Product Hunt, Hacker News, Indie Hackers, directory submission, or broad social push until App Store approval, real-device VisionKit proof, and review contact metadata are complete."
+  current_release_state:
+    version: "1.0"
+    build: "100"
+    status: "waiting_for_review"
+    evidence: "Mini appstore_preflight on 2026-05-18 verified ASC version lane and IAP are WAITING_FOR_REVIEW, nested tests pass, and iOS signing/profile checks pass."
+  required_before_meaningful_launch:
+    - "Add required App Store review contact name and phone in .saneprocess."
+    - "Capture real-device VisionKit scan proof on a trusted iPhone or iPad connected to the Mini."
+    - "Confirm App Store approval/live URL before scheduling broad launch activity."
+    - "Run fresh Mini launch_readiness after App Store approval and QA proof are complete."
+  scheduled:
+    - date: "2026-05-19"
+      time: "10:00"
+      channel: "App Store review follow-up"
+      status: "scheduled_manual_check"
+      action: "Check App Store Connect version and subscription state; if approved, prepare launch proof and ask for exact public-copy approval."
+      gate: "Do not post publicly while the app is WAITING_FOR_REVIEW."
+      success_metric: "ASC state, QA proof status, and launch go/no-go recorded in .outreach.yml or SESSION_HANDOFF.md."
+    - date: "2026-05-20"
+      time: "10:00"
+      channel: "Real-device VisionKit proof"
+      status: "blocked_pending_device"
+      action: "Connect and trust a physical iPhone/iPad on the Mini, run a real scan/import/export smoke test, and record screenshot/video proof."
+      gate: "Physical device must be visible to `xcrun devicectl list devices`; simulator proof is not enough."
+      success_metric: "Clean proof paths and device UDID recorded in outputs/qa_status.json."
+  last_launch_readiness:
+    date: "2026-05-18"
+    status: "no_go"
+    launch_readiness_exit: 1
+    blocker_summary:
+      - "App Store version is still WAITING_FOR_REVIEW."
+      - "App Store preflight is blocked on missing review contact name and phone."
+      - "Real-device VisionKit proof is blocked because the Mini currently has no physical iOS device attached."
+      - "Worktree remains dirty while launch/setup changes are in progress."
+    next_date: "2026-05-19"
+
+public_posting_policy:
+  approval_required: true
+  disclosure_required: "Always say 'I built SaneScan' when recommending it publicly."
+
+launch_package:
+  status: "blocked_until_app_store_approval_and_device_proof"
+  audience: "iPhone and iPad users who scan documents, receipts, forms, and old photos and care about privacy."
+  problem: "Mobile scanner apps often push accounts, subscriptions, or cloud workflows for sensitive documents."
+  solution: "SaneScan uses Apple's document scanner, local OCR, local cleanup, and PDF export without a SaneApps account or document upload."
+  primary_story: "A private scanner for sensitive paper: local OCR, local PDFs, and no account."
+  pricing_proof: "App Store metadata states Basic includes 10 scans per month and Pro unlocks unlimited scans plus batch import up to 50 images through StoreKit."
+  privacy_proof: "Website privacy page and App Store review notes state scan contents are not uploaded to SaneApps servers."
+  proof_assets:
+    - type: "website_hero"
+      status: "current"
+      path: "website/index.html"
+    - type: "privacy_policy"
+      status: "current"
+      path: "website/privacy/index.html"
+    - type: "product_screenshot"
+      status: "current"
+      path: "docs/images/screenshot-ios-01-dark.png"
+    - type: "product_screenshot"
+      status: "current"
+      path: "docs/images/screenshot-ios-02-dark.png"
+    - type: "product_screenshot"
+      status: "current"
+      path: "docs/images/screenshot-ipad-01-dark.png"
+    - type: "real_device_visionkit_proof"
+      status: "blocked_pending_physical_device"
+      path: "outputs/qa_status.json"
+  channel_plan:
+    product_hunt: "no_go_until_app_store_live_real_device_proof_and_exact_copy_approval"
+    hacker_news: "no_go_until_app_store_live_and_privacy_story_is_proven"
+    indie_hackers: "feedback_story_after_app_store_approval_only"
+    directories: "app_store_directories_after_approval"
+    x_replies: "targeted_only_when_user_asks_for_private_scanner_or_local_OCR"
+  go_no_go:
+    rule: "No public launch until App Store approval, real-device scan proof, review contact metadata, and fresh Mini launch_readiness are green."
+  weak_launch_blockers:
+    - "App Store version is WAITING_FOR_REVIEW."
+    - "Review contact metadata is incomplete."
+    - "Real-device VisionKit proof is blocked without a physical device on the Mini."
+    - "No public launch package should be scheduled until the App Store URL is live."
+
+competitor_responses: []
+influencer_outreach:
+  sent: []
+  considering: []

@@ -13,6 +13,7 @@ struct SaneScanApp: App {
                 .task {
                     library.load()
                     library.installUITestFixtureIfNeeded()
+                    purchases.startTransactionListener()
                     await purchases.refresh()
                 }
                 .preferredColorScheme(.dark)

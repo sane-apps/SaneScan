@@ -24,7 +24,6 @@ struct ContentView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbarBackground(SaneScanTheme.background.opacity(0.92), for: .navigationBar)
-            .toolbar { scanToolbar }
             .overlay { workingOverlay }
             .modifier(ScanSheets(
                 showDocumentCamera: $showDocumentCamera,
@@ -35,7 +34,8 @@ struct ContentView: View {
                 showPaywall: $showPaywall,
                 maxPhotoSelection: purchases.isPro ? 50 : 6,
                 createDocument: createDocument,
-                importPhotos: importPhotos
+                importPhotos: importPhotos,
+                reportError: { errorMessage = $0 }
             ))
             .alert("SaneScan", isPresented: errorBinding, actions: {
                 Button("OK", role: .cancel) {}
@@ -60,28 +60,11 @@ struct ContentView: View {
                 quota: library.quota(hasPro: purchases.isPro),
                 isPro: purchases.isPro,
                 onUpgrade: { showPaywall = true },
+                onScan: startDocumentScan,
+                onImport: startPhotoImport,
                 onSelect: { selectedDocument = $0 },
                 onDelete: { library.delete($0) }
             )
-        }
-    }
-
-    @ToolbarContentBuilder
-    private var scanToolbar: some ToolbarContent {
-        ToolbarItemGroup(placement: .topBarTrailing) {
-            Button {
-                startDocumentScan()
-            } label: {
-                Label("Scan", systemImage: "doc.viewfinder")
-            }
-            .accessibilityIdentifier("toolbar-scan")
-
-            Button {
-                startPhotoImport()
-            } label: {
-                Label("Import", systemImage: "photo.on.rectangle")
-            }
-            .accessibilityIdentifier("toolbar-import")
         }
     }
 
@@ -133,11 +116,11 @@ struct ContentView: View {
         do {
             var images: [UIImage] = []
             for item in items {
-                if let data = try await item.loadTransferable(type: Data.self),
-                   let image = UIImage(data: data) {
+                if let data = try await item.loadTransferable(type: Data.self), let image = UIImage(data: data) {
                     images.append(image)
                 }
             }
+            guard !images.isEmpty else { throw ScanLibraryError.imageLoadFailed }
             await createDocument(from: images, mode: .photo)
         } catch {
             errorMessage = error.localizedDescription
@@ -194,6 +177,8 @@ private struct LibraryView: View {
     let quota: ScanQuota
     let isPro: Bool
     let onUpgrade: () -> Void
+    let onScan: () -> Void
+    let onImport: () -> Void
     let onSelect: (ScanDocument) -> Void
     let onDelete: (ScanDocument) -> Void
 
@@ -201,6 +186,15 @@ private struct LibraryView: View {
         ScrollView {
             LazyVStack(spacing: 14) {
                 QuotaCard(quota: quota, isPro: isPro, onUpgrade: onUpgrade)
+
+                HStack(spacing: 14) {
+                    PrimaryActionButton(title: "Scan", systemImage: "camera.viewfinder", action: onScan)
+                        .accessibilityIdentifier("scan-button")
+
+                    SecondaryActionButton(title: "Import", systemImage: "photo", action: onImport)
+                        .accessibilityIdentifier("import-button")
+                }
+                .frame(maxWidth: .infinity)
 
                 ForEach(documents) { document in
                     ScanRow(document: document)
@@ -252,11 +246,31 @@ private struct QuotaCard: View {
 
             Spacer()
 
-            GradientActionPill(title: isPro ? "Manage" : "Upgrade", action: onUpgrade)
-                .accessibilityIdentifier("upgrade-button")
+            if isPro {
+                ProStatusPill()
+            } else {
+                GradientActionPill(title: "Upgrade", action: onUpgrade)
+                    .accessibilityIdentifier("upgrade-button")
+            }
         }
         .padding(16)
         .premiumPanel()
+    }
+}
+
+private struct ProStatusPill: View {
+    var body: some View {
+        Text("Active")
+            .font(.system(size: 16, weight: .bold))
+            .foregroundStyle(SaneScanTheme.primaryText)
+            .padding(.horizontal, 18)
+            .frame(height: 44)
+            .background(SaneScanTheme.panelGradient, in: RoundedRectangle(cornerRadius: 8))
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(SaneScanTheme.green.opacity(0.5), lineWidth: 1)
+            )
+            .accessibilityIdentifier("pro-active-pill")
     }
 }
 

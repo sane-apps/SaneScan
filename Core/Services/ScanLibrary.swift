@@ -60,7 +60,7 @@ final class ScanLibrary: ObservableObject {
 
         documents = decoded.sorted { $0.createdAt > $1.createdAt }
         scansThisMonth = documents.filter {
-            Calendar.current.isDate($0.createdAt, equalTo: Date(), toGranularity: .month)
+            !$0.isFixture && Calendar.current.isDate($0.createdAt, equalTo: Date(), toGranularity: .month)
         }.count
     }
 
@@ -69,6 +69,8 @@ final class ScanLibrary: ObservableObject {
     }
 
     func createDocument(from images: [UIImage], mode: ScanMode) async throws -> ScanDocument {
+        guard !images.isEmpty else { throw ScanLibraryError.imageLoadFailed }
+
         let documentID = UUID()
         var pages: [ScanPage] = []
 

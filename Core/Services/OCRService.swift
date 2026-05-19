@@ -2,7 +2,7 @@ import CoreGraphics
 import Foundation
 import Vision
 
-struct RecognizedLine: Sendable {
+struct RecognizedLine {
     let text: String
     let bounds: CGRect
 }
