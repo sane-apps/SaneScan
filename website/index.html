@@ -35,7 +35,9 @@
     "operatingSystem": "iOS, iPadOS",
     "applicationCategory": "ProductivityApplication",
     "description": "Private document scanning, OCR, local image cleanup, and PDF export for iPhone and iPad.",
+    "url": "https://sanescan.saneapps.com/",
     "image": "https://sanescan.saneapps.com/assets/social-card.png?v=20260518-final17",
+    "termsOfService": "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/",
     "author": {
       "@type": "Person",
       "name": "Mr. Sane",
@@ -465,6 +467,54 @@
       color: #ffffff;
     }
 
+    .guide-grid,
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    .guide-card,
+    .app-card {
+      min-height: 180px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(16, 34, 59, 0.9), rgba(8, 17, 29, 0.86));
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
+    }
+
+    .guide-card strong,
+    .app-card strong {
+      display: block;
+      font-size: 19px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .guide-card p,
+    .app-card p {
+      color: var(--muted);
+      margin: 0 0 18px;
+      line-height: 1.55;
+    }
+
+    .guide-card span,
+    .app-card span {
+      color: var(--cyan);
+      font-weight: 850;
+    }
+
+    .app-card {
+      min-height: 150px;
+    }
+
     footer {
       padding: 40px 0 58px;
       color: var(--muted);
@@ -495,6 +545,8 @@
       }
       .stage-copy { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .grid { grid-template-columns: 1fr; }
+      .guide-grid,
+      .apps-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
@@ -545,7 +597,9 @@
         <span>SaneScan</span>
       </a>
       <div class="nav-links">
-        <a href="#privacy">Privacy</a>
+        <a href="/guides">Guides</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
         <a href="#pro">Pro</a>
         <a class="button secondary" href="mailto:hi@saneapps.com?subject=SaneScan">Contact</a>
       </div>
@@ -559,7 +613,7 @@
         <h1>Private scans. <span class="gradient-text">Clean PDFs.</span></h1>
         <p class="lead">SaneScan turns documents, receipts, forms, and old photos into clean scans with local OCR text and shareable PDFs without an account or SaneApps server upload.</p>
         <div class="hero-actions">
-        <a class="button primary" href="mailto:hi@saneapps.com?subject=SaneScan" data-appstore-ios-link>Contact SaneApps</a>
+        <a class="button primary" href="mailto:hi@saneapps.com?subject=SaneScan" data-appstore-ios-link>Get launch notice</a>
           <a class="button secondary" href="#screens">See the app</a>
         </div>
         <div class="proof-row" aria-label="Product highlights">
@@ -630,12 +684,89 @@
         <div class="price">In-app Pro</div>
       </div>
     </section>
+
+    <section class="wrap" id="guides">
+      <h2>Scanning guides</h2>
+      <p class="section-lead">Practical guides for private document scanning, searchable PDFs, receipt cleanup, and photo archive work on iPhone and iPad.</p>
+      <div class="guide-grid">
+        <a class="guide-card" href="/guides">
+          <div>
+            <strong>All SaneScan guides</strong>
+            <p>Start here for every SaneScan tutorial and document-scanning walkthrough.</p>
+          </div>
+          <span>Browse guides -&gt;</span>
+        </a>
+        <a class="guide-card" href="/how-to-scan-documents-iphone">
+          <div>
+            <strong>Scan documents on iPhone</strong>
+            <p>Turn paper pages into clean private scans without uploading them to a cloud service.</p>
+          </div>
+          <span>Read guide -&gt;</span>
+        </a>
+        <a class="guide-card" href="/how-to-make-searchable-pdf-iphone">
+          <div>
+            <strong>Make searchable PDFs</strong>
+            <p>Use local OCR so documents are easier to find, copy, and archive.</p>
+          </div>
+          <span>Read guide -&gt;</span>
+        </a>
+        <a class="guide-card" href="/how-to-scan-receipts-iphone">
+          <div>
+            <strong>Scan receipts on iPhone</strong>
+            <p>Save expense, warranty, and tax records while keeping cleanup local.</p>
+          </div>
+          <span>Read guide -&gt;</span>
+        </a>
+        <a class="guide-card" href="/how-to-scan-old-photos-iphone">
+          <div>
+            <strong>Scan old photos privately</strong>
+            <p>Digitize family archive images without forcing them into a SaneApps account.</p>
+          </div>
+          <span>Read guide -&gt;</span>
+        </a>
+        <a class="guide-card" href="/best-private-document-scanner-iphone">
+          <div>
+            <strong>Choose a private scanner</strong>
+            <p>Know what to look for: local OCR, PDF export, and clear data handling.</p>
+          </div>
+          <span>Read guide -&gt;</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="wrap" id="more-apps">
+      <h2>More SaneApps</h2>
+      <p class="section-lead">SaneScan fits with the rest of the SaneApps family: local-first tools for keeping device workflows private and readable.</p>
+      <div class="apps-grid">
+        <a class="app-card" href="https://saneclip.com">
+          <div>
+            <strong>SaneClip</strong>
+            <p>Clipboard history, snippets, and text tools for Mac and iPhone.</p>
+          </div>
+          <span>Learn more -&gt;</span>
+        </a>
+        <a class="app-card" href="https://sanebar.com">
+          <div>
+            <strong>SaneBar</strong>
+            <p>Menu bar organization for Mac, built for privacy and daily use.</p>
+          </div>
+          <span>Learn more -&gt;</span>
+        </a>
+        <a class="app-card" href="https://sanesales.com">
+          <div>
+            <strong>SaneSales</strong>
+            <p>Private sales tracking for indie app and digital product sellers.</p>
+          </div>
+          <span>Learn more -&gt;</span>
+        </a>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="wrap">
       <span>© 2026 SaneApps. Built by Mr. Sane.</span>
-      <span><a href="/privacy/">Privacy Policy</a> · <a href="https://saneapps.com">SaneApps</a> · <a href="mailto:hi@saneapps.com">Contact</a></span>
+      <span><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · <a href="/guides">Guides</a> · <a href="https://saneapps.com">SaneApps</a> · <a href="mailto:hi@saneapps.com">Contact</a></span>
     </div>
   </footer>
 </body>

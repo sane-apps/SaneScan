@@ -49,7 +49,7 @@ Result: `TEST SUCCEEDED`; 4 Swift Testing unit tests and 4 XCTest UI tests passe
 
 Product IDs are defined in `PurchaseManager`:
 
-- `com.sanescan.app.pro.annual`
+- `com.sanescan.app.pro.yearly3`
 - `com.sanescan.app.pro.lifetime`
 
 These must be created in App Store Connect before public sale.
@@ -60,7 +60,7 @@ Current App Store Connect state, 2026-05-18:
 - App Store Connect app ID is `6770391054`.
 - App Store version `1.0` is submitted and reports `WAITING_FOR_REVIEW`; submission ID `ca47e197-7e12-477b-9de9-85387507f142`.
 - Build `100` is attached to version `1.0`.
-- The annual subscription product is `com.sanescan.app.pro.annual` and is submitted with the version.
+- The annual subscription product is `com.sanescan.app.pro.yearly3` and is submitted with the version.
 - App Privacy is published as `Data Not Collected`.
 - GitHub remote exists at `https://github.com/sane-apps/SaneScan`.
 - Latest Mini release proof: explicit iPhone simulator `xcodebuild` passed on 2026-05-18 after the top-right screenshot artifact fix and final asset refresh; exit code 0.

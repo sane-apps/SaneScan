@@ -35,13 +35,41 @@ mcps:
 appstore:
   enabled: true
   app_id: "6770391054"
-  product_id: "com.sanescan.app.pro.annual"
+  product_id: "com.sanescan.app.pro.yearly3"
   scheme: SaneScan
   configuration: Release-AppStore
   platforms: [ios]
   ios_scheme: SaneScan
   category: public.app-category.productivity
   age_rating: "4+"
+  copyright: "2026 SaneApps"
+  content_rights_declaration: DOES_NOT_USE_THIRD_PARTY_CONTENT
+  export_compliance:
+    uses_non_exempt_encryption: false
+    exemption_reason: "SaneScan does not use non-exempt encryption. It relies on Apple platform security and local-only document processing."
+  accessibility_declarations:
+    publish: true
+    families:
+      iphone:
+        supports_dark_interface: true
+        supports_sufficient_contrast: true
+        supports_larger_text: true
+        supports_voiceover: true
+        supports_voice_control: true
+        supports_differentiate_without_color_alone: true
+        supports_reduced_motion: true
+        supports_captions: false
+        supports_audio_descriptions: false
+      ipad:
+        supports_dark_interface: true
+        supports_sufficient_contrast: true
+        supports_larger_text: true
+        supports_voiceover: true
+        supports_voice_control: true
+        supports_differentiate_without_color_alone: true
+        supports_reduced_motion: true
+        supports_captions: false
+        supports_audio_descriptions: false
   privacy_policy_url: "https://sanescan.saneapps.com/privacy/"
   support_url: "https://saneapps.com"
   marketing_url: "https://sanescan.saneapps.com"
@@ -55,17 +83,18 @@ appstore:
         clean up images locally, recognize text on device, and export PDFs.
         SaneScan does not require an account and does not upload scan contents
         to SaneApps servers.
+        Terms of Use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
       keywords: "scanner,document,receipt,ocr,pdf,form,private,archive,photo scan"
       whats_new: "Initial release."
       marketing_url: "https://sanescan.saneapps.com"
-  review_notes: "SaneScan is a freemium iOS document scanner. Basic includes 10 scans per month and smaller imports. SaneScan Pro is sold through StoreKit only and unlocks unlimited scans and batch import up to 50 images. OCR and PDF export are handled locally. No account, external checkout, license key, or server upload is used. Camera permission is requested only when starting a scan; Photos permission is requested only when importing selected photos; export uses the system share sheet."
+  review_notes: "SaneScan is a freemium iOS document scanner. Basic includes 10 scans per month and smaller imports. SaneScan Pro is sold through StoreKit only and unlocks unlimited scans and batch import up to 50 images. OCR and PDF export are handled locally. No account, external checkout, license key, or server upload is used. SaneScan uses Apple's standard Terms of Use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. Camera permission is requested only when starting a scan; Photos permission is requested only when importing selected photos; export uses the system share sheet."
   iap:
-    product_id: "com.sanescan.app.pro.annual"
-    display_name: "SaneScan Pro Yearly"
+    product_id: "com.sanescan.app.pro.yearly3"
+    display_name: "SaneScan Pro Annual"
     type: auto_renewable_subscription
     price_usd: 29.99
     description: "Unlimited private scanning and batch import up to 50 images."
-    review_note: "SaneScan Pro Yearly is an auto-renewable StoreKit subscription for unlimited private scanning and batch import up to 50 images. OCR and PDF export are handled locally. No external checkout links or license keys are used."
+    review_note: "SaneScan Pro Annual is an auto-renewable StoreKit subscription for unlimited private scanning and batch import up to 50 images. OCR and PDF export are handled locally. No external checkout links or license keys are used."
   planned_iap:
     - product_id: "com.sanescan.app.pro.lifetime"
       display_name: "SaneScan Pro Lifetime"
@@ -76,6 +105,8 @@ appstore:
     ios: docs/images/screenshot-ios-*-dark.png
     ipad: docs/images/screenshot-ipad-*-dark.png
   contact:
+    name: "Stephan Joseph"
+    phone: "+17277589785"
     email: "hi@saneapps.com"
 
 website: true

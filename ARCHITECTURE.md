@@ -59,7 +59,7 @@ SaneScan follows SaneClip's iOS target shape and OCR sorting approach, and SaneV
 - Bundle ID: `com.sanescan.app` / Apple Developer ID `UT3A85VYT3`.
 - iOS version `1.0` is submitted and reports `WAITING_FOR_REVIEW`; submission ID `ca47e197-7e12-477b-9de9-85387507f142`.
 - Build `100` is attached to the version.
-- Annual subscription `com.sanescan.app.pro.annual` is created, priced, attached, and submitted with the version.
+- Annual subscription `com.sanescan.app.pro.yearly3` is the current yearly StoreKit product. It uses a replacement subscription group after Apple rejected the original group/product localization and ASC refused edits to the rejected localization.
 - App Privacy is published as `Data Not Collected`.
 - Privacy policy URL: `https://sanescan.saneapps.com/privacy/`.
 

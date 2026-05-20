@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>AppStoreProductID</key>
-	<string>com.sanescan.app.pro.annual</string>
+	<string>com.sanescan.app.pro.yearly3</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

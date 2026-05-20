@@ -50,6 +50,9 @@ final class SaneScanUITests: XCTestCase {
         XCTAssertTrue(anyElement(id: "paywall").waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["App Store options loading"].exists)
         XCTAssertTrue(app.buttons["retry-purchases"].exists)
+        XCTAssertTrue(anyElement(id: "subscription-disclosure").exists)
+        XCTAssertTrue(anyElement(id: "terms-of-use-link").exists)
+        XCTAssertTrue(anyElement(id: "privacy-policy-link").exists)
         XCTAssertTrue(app.buttons["restore-purchases"].exists)
         XCTAssertTrue(app.buttons["paywall-done"].exists)
     }
@@ -81,6 +84,9 @@ final class SaneScanUITests: XCTestCase {
         XCTAssertTrue(anyElement(id: "library-view").waitForExistence(timeout: 8))
         app.buttons["Upgrade"].tap()
         XCTAssertTrue(anyElement(id: "paywall").waitForExistence(timeout: 5))
+        XCTAssertTrue(anyElement(id: "subscription-disclosure").exists)
+        XCTAssertTrue(anyElement(id: "terms-of-use-link").exists)
+        XCTAssertTrue(anyElement(id: "privacy-policy-link").exists)
         captureVisualState("06-paywall")
     }
 

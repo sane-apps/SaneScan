@@ -1,0 +1,147 @@
+---
+version: 1
+app: SaneScan
+actions:
+- id: empty-library-scan-import-actions
+  title: Empty library scan and import actions are reachable
+  surfaces:
+  - Empty library
+  - System document scanner
+  - Photos picker
+  steps:
+  - Launch a clean install with the reset-library argument.
+  - Verify the empty library shows Scan and Import as the primary customer actions.
+  - Open the Scan action and verify the system document-scanner path is requested when camera hardware is available.
+  - Open the Import action and verify the Photos picker appears.
+  assertions:
+  - The empty library is readable in dark mode and exposes both primary actions.
+  - Scan routes to the VisionKit document scanner instead of a dead button.
+  - Import routes to the native Photos picker without requiring full photo-library access up front.
+  evidence:
+  - Mini iOS simulator screenshot for the empty library.
+  - Mini iOS simulator screenshot or receipt for the Photos picker.
+  required_proof_level: full_runtime_completion
+  required_evidence_types:
+  - mini_click
+  - screenshot
+  - log
+  historical_failure_classes:
+  - hardware_or_tcc_runtime
+  - permission_recovery_dead_end
+  - layout_visual_regression
+  - activation_noop
+  functional_state:
+    description: Clean first-run SaneScan install with no saved documents.
+    setup_steps:
+    - Launch with --sanescan-reset-library.
+  user_inputs:
+  - Tap Scan.
+  - Tap Import.
+  expected_outputs:
+  - Scan opens or requests the native document-scanner flow.
+  - Import opens the native Photos picker.
+- id: fixture-library-detail-export-actions
+  title: Fixture documents open, OCR is visible, and PDF export reaches the share sheet
+  surfaces:
+  - Fixture library
+  - Document detail
+  - Share sheet
+  steps:
+  - Launch with fixture documents enabled.
+  - Open Contract Packet.
+  - Verify the scanned page image, recognized text, and export action are visible.
+  - Tap Export and verify the native share sheet appears.
+  assertions:
+  - Realistic sample documents are present and not placeholder bars.
+  - Detail view shows the selected document content without distortion or clipping.
+  - Export reaches the native share sheet with a generated PDF.
+  evidence:
+  - Mini iOS simulator screenshots for library, detail, and share sheet.
+  - Test log proving the fixture document did not consume public scan quota.
+  required_proof_level: full_runtime_completion
+  required_evidence_types:
+  - mini_click
+  - screenshot
+  - fixture
+  - log
+  historical_failure_classes:
+  - data_loss_or_unexpected_mutation
+  - layout_visual_regression
+  - docs_promise_drift
+  - activation_noop
+  functional_state:
+    description: Seeded local fixture library with contract, receipt, and clinic form documents.
+    setup_steps:
+    - Launch with --sanescan-reset-library and --sanescan-ui-fixtures.
+  user_inputs:
+  - Tap Contract Packet.
+  - Tap Export.
+  expected_outputs:
+  - Document detail opens with OCR text.
+  - Export opens the native share sheet.
+- id: paywall-subscription-disclosure-actions
+  title: Paywall subscription purchase flow includes legal links and restore
+  surfaces:
+  - Upgrade button
+  - SaneScan Pro paywall
+  steps:
+  - Launch with fixture documents and paywall preview enabled.
+  - Tap Upgrade.
+  - Verify product option copy, subscription details, Terms of Use, Privacy Policy, Restore Purchases, and Done are visible.
+  - Verify Terms and Privacy are functional links.
+  assertions:
+  - The paywall clearly states the auto-renewable yearly subscription period and cancellation path.
+  - The purchase flow includes functional Terms of Use and Privacy Policy links inside the app.
+  - Restore Purchases remains available without buying.
+  evidence:
+  - Mini iOS simulator paywall screenshot.
+  - UI test assertions for subscription-disclosure, terms-of-use-link, privacy-policy-link, and restore-purchases.
+  required_proof_level: full_runtime_completion
+  required_evidence_types:
+  - mini_click
+  - screenshot
+  - log
+  historical_failure_classes:
+  - pro_basic_gate_drift
+  - layout_visual_regression
+  - docs_promise_drift
+  - activation_noop
+  functional_state:
+    description: Fixture library with paywall preview products enabled.
+    setup_steps:
+    - Launch with --sanescan-reset-library, --sanescan-ui-fixtures, and --sanescan-paywall-preview.
+  user_inputs:
+  - Tap Upgrade.
+  expected_outputs:
+  - Paywall displays subscription details, legal links, restore purchases, and purchase option copy.
+- id: app-store-metadata-screenshot-actions
+  title: App Store screenshots represent customer-facing iPhone and iPad surfaces
+  surfaces:
+  - App Store screenshot set
+  - Website product imagery
+  steps:
+  - Generate iPhone and iPad dark-mode screenshot sets from the same customer-facing app states.
+  - Inspect every screenshot for stretched documents, distorted logos, status-bar artifacts, clipping, overlap, and unreadable text.
+  - Upload the approved screenshot set to App Store Connect.
+  assertions:
+  - iPhone screenshots show real scan/import/library/detail/paywall surfaces.
+  - iPad screenshots are native iPad compositions, not stretched iPhone images.
+  - Marketing website screenshots and App Store screenshots use the same approved icon and document-scan brand language.
+  evidence:
+  - Contact sheet of all submitted iPhone and iPad screenshots.
+  - Visual audit receipt paths in outputs.
+  required_proof_level: runtime_visual
+  required_evidence_types:
+  - screenshot
+  - fixture
+  historical_failure_classes:
+  - layout_visual_regression
+  - docs_promise_drift
+  functional_state:
+    description: Current release screenshot bundle in docs/images plus visual-audit receipts.
+    setup_steps:
+    - Use the standard visual audit screenshot runner on the Mini.
+  user_inputs:
+  - Review every customer-facing App Store screenshot.
+  expected_outputs:
+  - Screenshot bundle is visually balanced, clear, dark-mode only, and accurately represents the app.

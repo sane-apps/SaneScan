@@ -87,6 +87,8 @@ struct PaywallView: View {
             }
         }
 
+        subscriptionDisclosure
+
         if !showsPreviewProducts {
             restorePurchasesButton
         }
@@ -171,6 +173,38 @@ struct PaywallView: View {
         )
         .accessibilityIdentifier("restore-purchases")
     }
+
+    private var subscriptionDisclosure: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Subscription details")
+                .font(.headline)
+                .foregroundStyle(SaneScanTheme.primaryText)
+            Text("SaneScan Pro Yearly is an auto-renewable subscription billed once per year. The App Store shows the current price, confirms renewal terms before purchase, and lets you cancel anytime in subscription settings.")
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(SaneScanTheme.primaryText)
+            HStack(spacing: 12) {
+                Link("Terms of Use", destination: Self.termsURL)
+                    .accessibilityIdentifier("terms-of-use-link")
+                Text("•")
+                    .foregroundStyle(SaneScanTheme.primaryText)
+                Link("Privacy Policy", destination: Self.privacyURL)
+                    .accessibilityIdentifier("privacy-policy-link")
+            }
+            .font(.subheadline.weight(.bold))
+            .foregroundStyle(SaneScanTheme.accentSoft)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(16)
+        .background(SaneScanTheme.panelGradient, in: RoundedRectangle(cornerRadius: 8))
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(SaneScanTheme.warmHairline, lineWidth: 1)
+        )
+        .accessibilityIdentifier("subscription-disclosure")
+    }
+
+    private static let termsURL = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
+    private static let privacyURL = URL(string: "https://sanescan.saneapps.com/privacy/")!
 }
 
 private struct PaywallHero: View {
