@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0757231580BFA37ACBA81E13 /* SaneScanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1DBCD4ECEAF38A464377BE /* SaneScanApp.swift */; };
 		2B1DD4CCD49C9833BE770326 /* SaneScanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A20CBBA33C2659D362B233 /* SaneScanUITests.swift */; };
+		2D87458614860CD20E58EED9 /* CustomerUIActions.yml in Resources */ = {isa = PBXBuildFile; fileRef = 6E83BFA42D664DECD1E3A0F6 /* CustomerUIActions.yml */; };
 		330F889E323452FF93502FBD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D18D43B1F35A956767B436 /* ContentView.swift */; };
 		365882973BFF7160141D2779 /* ScanDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3486432AB83D36F8142B20C /* ScanDocument.swift */; };
 		418602D1A7D352BC77C832B8 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C318CC0480992CC23DA8F1A /* PurchaseManager.swift */; };
@@ -19,6 +20,7 @@
 		AC0149AA8E8C85E4E9F5033C /* ScanSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F703F3B74274C60B694F35 /* ScanSheets.swift */; };
 		ACD65725C8E973B44F8C0179 /* ScanQuotaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAE3AC4E5CFE3BF49BA8949 /* ScanQuotaTests.swift */; };
 		B3310EAB7F587112F1BC48F4 /* ImageEnhancementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5DF8519D232D4399D8A002 /* ImageEnhancementService.swift */; };
+		C6351562BED41C7C9BE442D6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D37CAF77276396513563778A /* PrivacyInfo.xcprivacy */; };
 		CA2B9034E855F0632AA66EA7 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22DD51C44AFD496B3843639 /* ShareSheet.swift */; };
 		D08673466D39B7FB6008DA63 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6F39D5FE31171E70F0D6E /* PaywallView.swift */; };
 		E3591DFBD75DB673CE92709E /* ScanLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02217A25CAC4CA54B71DEB33 /* ScanLibrary.swift */; };
@@ -55,6 +57,7 @@
 		55A20CBBA33C2659D362B233 /* SaneScanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaneScanUITests.swift; sourceTree = "<group>"; };
 		5C318CC0480992CC23DA8F1A /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		6D753FEE6938F00578C83E62 /* ScanLibraryFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanLibraryFixtures.swift; sourceTree = "<group>"; };
+		6E83BFA42D664DECD1E3A0F6 /* CustomerUIActions.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = CustomerUIActions.yml; sourceTree = "<group>"; };
 		708CDF61E4C0BE14B248A640 /* OCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRService.swift; sourceTree = "<group>"; };
 		70E8ECD8D0F33A9E968BF8E5 /* SaneScan.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SaneScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E1A80F7A7DAF8B2908F6BB /* SaneScanVisualComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaneScanVisualComponents.swift; sourceTree = "<group>"; };
@@ -63,6 +66,7 @@
 		AEB2AFCF8B764CBAB9766F84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3486432AB83D36F8142B20C /* ScanDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocument.swift; sourceTree = "<group>"; };
 		B4D18D43B1F35A956767B436 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D37CAF77276396513563778A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		E446F20873B7C7CF7E0C7C03 /* SaneScanUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SaneScanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDC39EFD1660F14A5CDC5BF3 /* SaneScanTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SaneScanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F22DD51C44AFD496B3843639 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
@@ -81,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				AEB2AFCF8B764CBAB9766F84 /* Assets.xcassets */,
+				D37CAF77276396513563778A /* PrivacyInfo.xcprivacy */,
 				C7D8EF4353E29CF5DA52AC09 /* Views */,
 			);
 			path = iOS;
@@ -163,6 +168,7 @@
 		EAA1CEFDABB7522422EFFE6A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				6E83BFA42D664DECD1E3A0F6 /* CustomerUIActions.yml */,
 				2DAE3AC4E5CFE3BF49BA8949 /* ScanQuotaTests.swift */,
 			);
 			path = Tests;
@@ -176,6 +182,7 @@
 			buildConfigurationList = FDC706C008E26DE021C7A937 /* Build configuration list for PBXNativeTarget "SaneScanTests" */;
 			buildPhases = (
 				C418C120CB65EDB564AEF76A /* Sources */,
+				6B6E4D7831F1FCC8502CA3C0 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -270,11 +277,20 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6B6E4D7831F1FCC8502CA3C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D87458614860CD20E58EED9 /* CustomerUIActions.yml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C09A938F0C455ADAAE160DEA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A9569151A9551E61C47F98AF /* Assets.xcassets in Resources */,
+				C6351562BED41C7C9BE442D6 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +357,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 1000;
 				DEVELOPMENT_TEAM = M78L6FXD48;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -365,7 +381,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 1000;
 				DEVELOPMENT_TEAM = M78L6FXD48;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -570,7 +586,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 1000;
 				DEVELOPMENT_TEAM = M78L6FXD48;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;

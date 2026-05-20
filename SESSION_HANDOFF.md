@@ -78,9 +78,16 @@
 
 - App Store go-live watch, 2026-05-20: checked ASC state for app ID `6770391054` version `1.0` and public URL `https://apps.apple.com/us/app/id6770391054`. Current state remains `WAITING_FOR_REVIEW` (launch package line still `SaneScan App Store 1.0=waiting_for_review`); public URL still returns HTTP `404`. No website redeploy was performed because the listing is not live yet.
 - App Store go-live watch, 2026-05-20 04:09 ET: rechecked ASC state for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json` and the public URL `https://apps.apple.com/us/app/id6770391054`. Current state is still `WAITING_FOR_REVIEW`; public URL still returns HTTP `404`. No website redeploy was performed because the listing is not live yet.
+- App Store resubmission, 2026-05-20 11:42 ET:
+  - Rebuilt and uploaded SaneScan iOS `1.0` build `1000` after the paywall Terms/Privacy fix. Apple validation passed with `VERIFY SUCCEEDED with no errors`; ASC processed build `1000` as `VALID` with build ID `b958f718-8667-494c-aa59-7a73cdbdd2fd`.
+  - Guarded submit refreshed screenshots, metadata, review contact, accessibility declarations, and subscription readiness, then submitted review submission `e975c41c-37aa-434f-8e6b-4d220831c51a`. ASC now reports iOS version `1.0` state `WAITING_FOR_REVIEW`.
+  - Official Apple checklist/preflight hardening is now in SaneProcess: required metadata declarations, privacy manifest inclusion, screenshot counts, subscription purchase-flow links/disclosures, subscription localization/price/availability/review screenshot, fresh customer-UI visual receipts, explicit export compliance, IAP attachment receipt, and Game Center entitlement/ASC relationship matching.
+  - New blocker found and fixed before final submit: ASC had Game Center enabled for the version while the binary has no `com.apple.developer.game-center` entitlement. Patched ASC `gameCenterAppVersions/bfc44311-0d75-4292-b06c-8ddaf118594e` to `enabled=false` and added a SaneMaster preflight guard so future submissions fail before upload if this mismatch recurs.
+  - Verification: Mini GUI archive succeeded with Apple Distribution identity and `SaneScan iOS App Store` profile; export succeeded; customer UI sweep passed for source fingerprint `d279251f8014f3c66ba05bc1e46182cb699267ee7fd3234279340b07b912dbdc`; refreshed App Store preflight passed with warnings only; SaneProcess release guardrail tests passed `76/76`; App Store submit guardrail tests passed `16/16`.
+  - Current public App Store URL `https://apps.apple.com/us/app/id6770391054` still returns HTTP `404` until Apple approves and publishes the app.
 ## Open Follow-Up
 
-- Monitor App Store review for SaneScan iOS `1.0` submission `f0af0523-4da6-4570-b0d6-d51b900d063f`.
+- Monitor App Store review for SaneScan iOS `1.0` submission `e975c41c-37aa-434f-8e6b-4d220831c51a`.
 - When Apple publishes the public App Store listing, redeploy the website so the `data-appstore-ios-link` CTA is replaced with the live App Store URL. Current public App Store URL returns `404` because the app is not live yet.
 - Add real-device VisionKit document camera proof when an iPhone connection is available; simulator coverage remains valid for launch, Photos import, fixtures, PDF export/share sheet, and paywall surfaces.
 - Run/refresh SaneScan release or App Store preflight receipts after review state changes or physical-device proof becomes available.
