@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PaywallView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.openURL) private var openURL
     @EnvironmentObject private var purchases: PurchaseManager
 
     var body: some View {
@@ -183,12 +184,22 @@ struct PaywallView: View {
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(SaneScanTheme.primaryText)
             HStack(spacing: 12) {
-                Link("Terms of Use", destination: Self.termsURL)
-                    .accessibilityIdentifier("terms-of-use-link")
+                Button {
+                    openURL(Self.termsURL)
+                } label: {
+                    Text("Terms of Use")
+                }
+                .buttonStyle(.plain)
+                .accessibilityIdentifier("terms-of-use-link")
                 Text("•")
                     .foregroundStyle(SaneScanTheme.primaryText)
-                Link("Privacy Policy", destination: Self.privacyURL)
-                    .accessibilityIdentifier("privacy-policy-link")
+                Button {
+                    openURL(Self.privacyURL)
+                } label: {
+                    Text("Privacy Policy")
+                }
+                .buttonStyle(.plain)
+                .accessibilityIdentifier("privacy-policy-link")
             }
             .font(.subheadline.weight(.bold))
             .foregroundStyle(SaneScanTheme.accentSoft)
@@ -200,6 +211,7 @@ struct PaywallView: View {
             RoundedRectangle(cornerRadius: 8)
                 .stroke(SaneScanTheme.warmHairline, lineWidth: 1)
         )
+        .accessibilityElement(children: .contain)
         .accessibilityIdentifier("subscription-disclosure")
     }
 

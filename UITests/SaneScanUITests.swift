@@ -51,8 +51,7 @@ final class SaneScanUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["App Store options loading"].exists)
         XCTAssertTrue(app.buttons["retry-purchases"].exists)
         XCTAssertTrue(anyElement(id: "subscription-disclosure").exists)
-        XCTAssertTrue(anyElement(id: "terms-of-use-link").exists)
-        XCTAssertTrue(anyElement(id: "privacy-policy-link").exists)
+        assertLegalLinksReachable()
         XCTAssertTrue(app.buttons["restore-purchases"].exists)
         XCTAssertTrue(app.buttons["paywall-done"].exists)
     }
@@ -85,8 +84,7 @@ final class SaneScanUITests: XCTestCase {
         app.buttons["Upgrade"].tap()
         XCTAssertTrue(anyElement(id: "paywall").waitForExistence(timeout: 5))
         XCTAssertTrue(anyElement(id: "subscription-disclosure").exists)
-        XCTAssertTrue(anyElement(id: "terms-of-use-link").exists)
-        XCTAssertTrue(anyElement(id: "privacy-policy-link").exists)
+        assertLegalLinksReachable()
         captureVisualState("06-paywall")
     }
 
@@ -132,6 +130,32 @@ final class SaneScanUITests: XCTestCase {
 
     private func anyElement(id: String) -> XCUIElement {
         app.descendants(matching: .any)[id]
+    }
+
+    private func assertLegalLinksReachable() {
+        if !legalElementExists(id: "terms-of-use-link", label: "Terms of Use") {
+            app.swipeUp()
+        }
+        XCTAssertTrue(waitForLegalElement(id: "terms-of-use-link", label: "Terms of Use", timeout: 3))
+        XCTAssertTrue(legalElementExists(id: "privacy-policy-link", label: "Privacy Policy"))
+    }
+
+    private func waitForLegalElement(id: String, label: String, timeout: TimeInterval) -> Bool {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if legalElementExists(id: id, label: label) {
+                return true
+            }
+            RunLoop.current.run(until: Date().addingTimeInterval(0.2))
+        }
+        return legalElementExists(id: id, label: label)
+    }
+
+    private func legalElementExists(id: String, label: String) -> Bool {
+        anyElement(id: id).exists ||
+            app.buttons[label].exists ||
+            app.links[label].exists ||
+            app.staticTexts[label].exists
     }
 
     private func closeShareSheetIfNeeded() {

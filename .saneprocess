@@ -13,6 +13,10 @@ tests:
   unit_target: SaneScanTests
   unit_scheme: SaneScan
   unit_destination: "platform=iOS Simulator,name=iPhone 17 Pro"
+  ui_dir: UITests
+  ui_target: SaneScanUITests
+  ui_scheme: SaneScan
+  ui_destination: "platform=iOS Simulator,name=iPhone 17 Pro"
 
 commands:
   verify: ./scripts/SaneMaster.rb verify

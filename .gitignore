@@ -6,6 +6,7 @@ DerivedData/
 *.xcworkspace/xcuserdata/
 *.xcodeproj/xcuserdata/
 .swiftlint-cache/
+test_output.txt
 outputs/
 
 # Local agent/research artifacts
