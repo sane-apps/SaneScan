@@ -41,10 +41,12 @@ schemes:
       targets:
         - SaneScanTests
         - SaneScanUITests
+      storeKitConfiguration: iOS/SaneScan.storekit
     profile:
       config: Release
     run:
       config: Debug
+      storeKitConfiguration: iOS/SaneScan.storekit
     archive:
       config: Release-AppStore
 
@@ -68,7 +70,7 @@ targets:
         CFBundleDisplayName: SaneScan
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
-        AppStoreProductID: com.sanescan.app.pro.yearly3
+        AppStoreProductID: com.sanescan.app.pro.yearly6
         LSApplicationCategoryType: "public.app-category.productivity"
         ITSAppUsesNonExemptEncryption: false
         NSCameraUsageDescription: "SaneScan uses the camera only when you choose to scan a photo or document."

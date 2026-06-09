@@ -1,6 +1,163 @@
 ---
 version: 1
 app: SaneScan
+require_product_quality_checklist: true
+product_quality_checklist:
+- id: problem-fit-01
+  category: product_fit
+  question: Does the first screen make it obvious that SaneScan scans documents into private searchable PDFs?
+  surfaces: [Website hero, App Store first screenshots, Empty library]
+  required_evidence_types: [screenshot, copy]
+- id: problem-fit-02
+  category: product_fit
+  question: Is the promised job concrete enough that a new user knows when to use SaneScan instead of Files, Notes, or Adobe Scan?
+  surfaces: [Website, App Store description, Empty library]
+  required_evidence_types: [copy, competitive_context]
+- id: first-run-01
+  category: first_run
+  question: Can a first-time user start scanning or importing without reading instructions or entering unnecessary data?
+  surfaces: [Empty library, Scan action, Import action]
+  required_evidence_types: [runtime, screenshot]
+- id: first-run-02
+  category: first_run
+  question: Does the empty state show primary actions in a clear visual hierarchy with no dead or disabled-looking controls?
+  surfaces: [Empty library]
+  required_evidence_types: [screenshot]
+- id: core-scan-01
+  category: core_workflow
+  question: Does tapping Scan open the real VisionKit scanner or clearly explain the hardware/simulator limitation?
+  surfaces: [Scan action, Document scanner]
+  required_evidence_types: [runtime, log]
+- id: core-import-01
+  category: core_workflow
+  question: Does tapping Import open the native Photos picker without asking for broader permissions than needed?
+  surfaces: [Import action, Photos picker]
+  required_evidence_types: [runtime, screenshot]
+- id: core-library-01
+  category: core_workflow
+  question: Are saved documents easy to identify by title, thumbnail, page count, and date without visual clutter?
+  surfaces: [Document library]
+  required_evidence_types: [screenshot, fixture]
+- id: core-detail-01
+  category: core_workflow
+  question: Does the detail view show a real document image and recognized OCR text without distortion, clipping, or placeholder bars?
+  surfaces: [Document detail]
+  required_evidence_types: [screenshot, fixture]
+- id: core-export-01
+  category: core_workflow
+  question: Does Export create a PDF and reach the native share sheet in a customer-completable path?
+  surfaces: [Document detail, Share sheet]
+  required_evidence_types: [runtime, actual_output]
+- id: core-quota-01
+  category: core_workflow
+  question: Are Basic limits and Pro gates clear before the user hits a quota wall?
+  surfaces: [Library, Paywall, Pro gate]
+  required_evidence_types: [copy, test]
+- id: visual-proof-01
+  category: visual_evidence
+  question: Does every marketing/App Store screenshot show the real app working, not artificial UI, blank panels, placeholder content, or static mockups?
+  surfaces: [App Store screenshots, Website screenshots]
+  required_evidence_types: [screenshot, source_capture]
+- id: visual-proof-02
+  category: visual_evidence
+  question: Is every screenshot cleanly cropped with no simulator artifacts, clipped controls, helper windows, permission prompts, or unreadable text?
+  surfaces: [App Store screenshots, Website screenshots]
+  required_evidence_types: [screenshot, visual_review]
+- id: visual-proof-03
+  category: visual_evidence
+  question: Do iPad screenshots show native iPad compositions rather than stretched iPhone layouts?
+  surfaces: [iPad App Store screenshots]
+  required_evidence_types: [screenshot, visual_review]
+- id: visual-proof-04
+  category: visual_evidence
+  question: Does the first App Store screenshot communicate the main customer job before decorative branding?
+  surfaces: [App Store first screenshot]
+  required_evidence_types: [screenshot, copy]
+- id: marketing-01
+  category: marketing_parity
+  question: Does website copy avoid claims not backed by current app behavior, screenshots, tests, or App Store metadata?
+  surfaces: [Website, App Store description]
+  required_evidence_types: [copy, source_guard]
+- id: marketing-02
+  category: marketing_parity
+  question: Are screenshot captions and alt text specific enough to describe the visible working state accurately?
+  surfaces: [Website images, App Store screenshot storyboard]
+  required_evidence_types: [copy, screenshot]
+- id: marketing-03
+  category: marketing_parity
+  question: Is the public CTA aligned with the actual live App Store state and not still saying coming soon after READY_FOR_SALE?
+  surfaces: [Website CTA, App Store URL]
+  required_evidence_types: [api_response, url_check]
+- id: monetization-01
+  category: monetization
+  question: Does the paywall show the real subscription period, price, renewal behavior, cancellation path, and value proposition before purchase?
+  surfaces: [Paywall]
+  required_evidence_types: [screenshot, StoreKit]
+- id: monetization-02
+  category: monetization
+  question: Are Terms, Privacy, and Restore Purchases visible and functional inside the paywall flow?
+  surfaces: [Paywall]
+  required_evidence_types: [runtime, link_check]
+- id: monetization-03
+  category: monetization
+  question: Can a sandbox purchase or purchase-failure path be completed without trapping the user in loading or unavailable state?
+  surfaces: [Paywall, StoreKit]
+  required_evidence_types: [sandbox_purchase, runtime]
+- id: accessibility-01
+  category: accessibility
+  question: Are primary controls labeled for VoiceOver and reachable in a sensible order?
+  surfaces: [Empty library, Detail, Paywall]
+  required_evidence_types: [accessibility_snapshot]
+- id: accessibility-02
+  category: accessibility
+  question: Does the interface remain usable with larger Dynamic Type or accessibility text sizes?
+  surfaces: [Empty library, Detail, Paywall]
+  required_evidence_types: [screenshot, accessibility_snapshot]
+- id: accessibility-03
+  category: accessibility
+  question: Is contrast high enough in dark mode, with no low-opacity gray text on dark backgrounds?
+  surfaces: [All customer-facing app screens]
+  required_evidence_types: [screenshot, static_scan]
+- id: privacy-01
+  category: privacy_trust
+  question: Are local-first/privacy claims consistent with app permissions, privacy policy, App Privacy, and website copy?
+  surfaces: [App, Privacy policy, App Store privacy]
+  required_evidence_types: [copy, metadata]
+- id: privacy-02
+  category: privacy_trust
+  question: Does the app avoid exposing real personal documents or sensitive sample data in screenshots, fixtures, logs, or marketing?
+  surfaces: [Screenshots, Fixtures, Logs]
+  required_evidence_types: [screenshot, fixture, log]
+- id: recovery-01
+  category: error_recovery
+  question: If camera, Photos, OCR, export, or StoreKit fails, does the user see a plain-English explanation and next action?
+  surfaces: [Scanner, Photos picker, OCR, Export, Paywall]
+  required_evidence_types: [runtime, test]
+- id: recovery-02
+  category: error_recovery
+  question: Can users cancel native sheets, back out of detail/paywall, and recover without losing saved scans?
+  surfaces: [Native sheets, Detail, Paywall]
+  required_evidence_types: [runtime, test]
+- id: performance-01
+  category: performance
+  question: Does the app launch quickly enough and avoid heavy background work before the first scan/import choice?
+  surfaces: [Cold launch, Empty library]
+  required_evidence_types: [performance_log]
+- id: appstore-01
+  category: app_store
+  question: Is the App Store version state live or submitted exactly as intended, with no pending developer release, rejected IAP, or hidden availability blocker?
+  surfaces: [App Store Connect, Public App Store URL]
+  required_evidence_types: [api_response, url_check]
+- id: appstore-02
+  category: app_store
+  question: Are screenshots, description, support URL, privacy URL, age rating, category, and IAP metadata internally consistent?
+  surfaces: [App Store metadata]
+  required_evidence_types: [metadata, screenshot]
+- id: funnel-01
+  category: funnel
+  question: Can analytics distinguish App Store installs, paywall shown, products loaded, purchase tapped, cancelled, failed, completed, and restored?
+  surfaces: [Telemetry, Paywall, Purchase flow]
+  required_evidence_types: [event_schema, runtime]
 actions:
 - id: empty-library-scan-import-actions
   title: Empty library scan and import actions are reachable

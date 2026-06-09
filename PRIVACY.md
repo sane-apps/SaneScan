@@ -11,10 +11,13 @@ SaneScan does not collect:
 - OCR text
 - Photos or documents
 - Advertising identifiers
-- Analytics events
 - Accounts or profile information
 
-App Store privacy is configured as **Data Not Collected**.
+SaneScan may send limited aggregate purchase-flow diagnostics, such as
+paywall shown, product loaded, purchase cancelled, purchase failed, purchase
+completed, and restore completed. These events do not include scan contents,
+OCR text, photos, email addresses, account identifiers, device identifiers, or
+session identifiers.
 
 ## Local Data
 

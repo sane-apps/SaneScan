@@ -31,6 +31,32 @@ flowchart LR
 
 ## 4. Verified Research
 
+## Product Quality Checklist Research | Updated: 2026-06-07 | Status: verified | TTL: 90d
+
+SaneScan release proof now treats UI/UX, marketing, screenshot provenance, App
+Store state, accessibility, monetization, recovery, performance, and funnel
+telemetry as first-class customer-reality surfaces. The professional review
+baseline combines Apple App Store product-page guidance, Apple HIG guidance for
+feedback/onboarding/accessibility, and heuristic-evaluation practice. Durable
+checklist questions live in `Tests/CustomerUIActions.yml` under
+`product_quality_checklist`, and release receipts must answer every item through
+`product_quality_review`.
+
+Practical implications:
+
+- App Store and website screenshots must show real app UI doing the promised
+  work, not blank states, artificial composites, stale paywalls, or cropped
+  helper-window captures.
+- The first screenshot should communicate the main job-to-be-done; for
+  SaneScan, the current local App Store asset order leads with the document
+  detail/OCR/PDF proof instead of the empty library.
+- Product-quality review items marked `failed` or `unknown` block release until
+  the missing evidence is captured or the claim is removed.
+
+Sources: Apple "Creating your product page", Apple App Store screenshot/app
+preview guidance, Apple HIG Feedback/Onboarding/Accessibility, Nielsen Norman
+Group usability heuristics.
+
 ## VisionKit Document Scanning | Updated: 2026-05-17 | Status: verified | TTL: 90d
 
 Apple documents `VNDocumentCameraViewController` as the system UI for scanning physical documents. It returns scanned page images through `VNDocumentCameraScan`, and Apple describes exporting those scanned images to PDF as an intended use. SaneScan uses a fresh scanner instance for each scan and bridges it into SwiftUI through `UIViewControllerRepresentable`.
@@ -51,19 +77,34 @@ SaneScan follows SaneClip's iOS target shape and OCR sorting approach, and SaneV
 
 - `NSCameraUsageDescription`: camera access is tied to explicit scanning.
 - `NSPhotoLibraryUsageDescription`: photo access is tied to explicit import.
-- Privacy manifest declares no collected data and no tracking.
+- Privacy manifest declares no tracking. Public policy copy says SaneScan does
+  not upload scan contents, OCR text, photos, documents, accounts, device IDs,
+  or session IDs, and may send limited aggregate purchase-flow diagnostics.
 
 ## 6. App Store State
 
 - App Store Connect app ID: `6770391054`.
 - Bundle ID: `com.sanescan.app` / Apple Developer ID `UT3A85VYT3`.
-- iOS version `1.0` is submitted and reports `WAITING_FOR_REVIEW`; submission ID `ca47e197-7e12-477b-9de9-85387507f142`.
-- Build `100` is attached to the version.
-- Annual subscription `com.sanescan.app.pro.yearly3` is the current yearly StoreKit product. It uses a replacement subscription group after Apple rejected the original group/product localization and ASC refused edits to the rejected localization.
-- App Privacy is published as `Data Not Collected`.
+- iOS version `1.0` reports `READY_FOR_SALE`; submission ID
+  `528b035a-b097-445f-834b-257d4e059720`.
+- The public US App Store URL returns HTTP 200 at
+  `https://apps.apple.com/us/app/sanescan/id6770391054`.
+- Annual subscription `com.sanescan.app.pro.yearly6` is the current yearly StoreKit product. It uses a replacement subscription group after Apple rejected earlier group/product localizations and ASC refused edits to rejected localizations.
+- Local and public privacy policy copy has been updated for aggregate
+  purchase-flow diagnostics; App Store Connect App Privacy metadata still needs
+  review before the next editable submission if those diagnostics remain active.
 - Privacy policy URL: `https://sanescan.saneapps.com/privacy/`.
+- Current local screenshot assets are corrected, but Apple blocks modifying
+  screenshots on the live `READY_FOR_SALE` 1.0 version. Public App Store
+  screenshot changes require a new editable App Store version.
 
 ## 7. Follow-Up
 
-- Add real-device VisionKit document camera proof when an iPhone connection is available.
-- Fix SaneMaster's SaneScan/iOS-only test destination handling so App Store preflight uses an iOS simulator instead of a macOS install attempt.
+- Add real-device VisionKit document camera proof when an iPhone connection is
+  available.
+- Prove the StoreKit transaction outcomes in an active Xcode StoreKit,
+  sandbox/TestFlight, or attached-device environment. The local annual product
+  catalog and paywall copy are verified, but Mini headless transaction proof is
+  not reliable.
+- Create a new editable App Store version before attempting to update public
+  screenshots or submitting the next App Privacy metadata correction.

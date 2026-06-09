@@ -10,6 +10,7 @@ struct SaneScanApp: App {
             ContentView()
                 .environmentObject(library)
                 .environmentObject(purchases)
+                .modifier(UITestDynamicTypeModifier())
                 .task {
                     library.load()
                     library.installUITestFixtureIfNeeded()
@@ -17,6 +18,16 @@ struct SaneScanApp: App {
                     await purchases.refresh()
                 }
                 .preferredColorScheme(.dark)
+        }
+    }
+}
+
+private struct UITestDynamicTypeModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        if ProcessInfo.processInfo.arguments.contains("--sanescan-large-text-preview") {
+            content.dynamicTypeSize(.accessibility2)
+        } else {
+            content
         }
     }
 }

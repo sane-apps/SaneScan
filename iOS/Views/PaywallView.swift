@@ -36,6 +36,7 @@ struct PaywallView: View {
         .tint(SaneScanTheme.accent)
         .accessibilityIdentifier("paywall")
         .task {
+            purchases.recordPaywallShown()
             await purchases.refreshProductsIfNeeded()
         }
     }
@@ -60,8 +61,11 @@ struct PaywallView: View {
     @ViewBuilder
     private var productSection: some View {
         if showsPreviewProducts {
-            previewProductButton(title: "Annual Pro", detail: "Unlimited scans for a full year")
-            previewProductButton(title: "Lifetime Pro", detail: "One unlock for every archive")
+            previewProductButton(
+                title: "SaneScan Pro Annual",
+                detail: "Unlimited scans and batch import up to 50 images",
+                price: "$29.99/year"
+            )
         } else if purchases.products.isEmpty {
             productsUnavailableView
             retryPurchasesButton
@@ -90,16 +94,14 @@ struct PaywallView: View {
 
         subscriptionDisclosure
 
-        if !showsPreviewProducts {
-            restorePurchasesButton
-        }
+        restorePurchasesButton
     }
 
     private var showsPreviewProducts: Bool {
         ProcessInfo.processInfo.arguments.contains("--sanescan-paywall-preview")
     }
 
-    private func previewProductButton(title: String, detail: String) -> some View {
+    private func previewProductButton(title: String, detail: String, price: String) -> some View {
         Button {} label: {
             HStack(spacing: 14) {
                 VStack(alignment: .leading, spacing: 4) {
@@ -110,7 +112,7 @@ struct PaywallView: View {
                         .foregroundStyle(SaneScanTheme.primaryText.opacity(0.9))
                 }
                 Spacer(minLength: 8)
-                Text("Pro option")
+                Text(price)
                     .font(.footnote.weight(.bold))
                     .multilineTextAlignment(.trailing)
                     .foregroundStyle(SaneScanTheme.primaryText)

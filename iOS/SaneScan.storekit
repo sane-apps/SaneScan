@@ -1,0 +1,51 @@
+{
+  "identifier" : "SaneScan",
+  "nonRenewingSubscriptions" : [
+  ],
+  "products" : [
+  ],
+  "settings" : {
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "SaneScanPro",
+      "localizations" : [
+        {
+          "description" : "SaneScan Pro subscription group",
+          "displayName" : "SaneScan Pro",
+          "locale" : "en_US"
+        }
+      ],
+      "name" : "SaneScan Pro",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+          ],
+          "codeOffers" : [
+          ],
+          "displayPrice" : "29.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "SANESCAN-YEARLY6",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Unlimited private scanning and batch import up to 50 images.",
+              "displayName" : "SaneScan Pro Annual",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.sanescan.app.pro.yearly6",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "SaneScan Pro Annual",
+          "subscriptionGroupID" : "SaneScanPro",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}
