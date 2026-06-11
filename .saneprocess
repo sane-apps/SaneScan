@@ -39,7 +39,7 @@ mcps:
 appstore:
   enabled: true
   app_id: "6770391054"
-  product_id: "com.sanescan.app.pro.yearly3"
+  product_id: "com.sanescan.app.pro.yearly6"
   scheme: SaneScan
   configuration: Release-AppStore
   platforms: [ios]
@@ -93,7 +93,7 @@ appstore:
       marketing_url: "https://sanescan.saneapps.com"
   review_notes: "SaneScan is a freemium iOS document scanner. Basic includes 10 scans per month and smaller imports. SaneScan Pro is sold through StoreKit only and unlocks unlimited scans and batch import up to 50 images. OCR and PDF export are handled locally. No account, external checkout, license key, or server upload is used. SaneScan uses Apple's standard Terms of Use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. Camera permission is requested only when starting a scan; Photos permission is requested only when importing selected photos; export uses the system share sheet."
   iap:
-    product_id: "com.sanescan.app.pro.yearly3"
+    product_id: "com.sanescan.app.pro.yearly6"
     display_name: "SaneScan Pro Annual"
     type: auto_renewable_subscription
     price_usd: 29.99

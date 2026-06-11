@@ -2,6 +2,73 @@
 
 ## Current State
 
+- 2026-06-07 website polish pass: researched common AI-generic website markers
+  and tightened the SaneScan homepage so it feels more deliberate and less
+  template-like. Changes remove the glow/grid background treatment, reduce
+  generic badge styling, keep the navy/teal palette dominant, sharpen the hero
+  copy to `Private scans. Searchable PDFs.`, and keep the real iPhone/iPad app
+  screenshots as the primary proof. Deployed via SaneProcess website-only
+  release to Cloudflare Pages preview `https://11686208.sanescan-site.pages.dev`;
+  production `https://sanescan.saneapps.com/` contains the updated copy and
+  assets return HTTP 200. Visual proof saved under
+  `/Users/stephansmac/SaneApps/outputs/website-polish-20260607/`.
+- 2026-06-07 SaneScan remediation status: SaneScan iOS `1.0` is
+  `READY_FOR_SALE` in App Store Connect, public US URL
+  `https://apps.apple.com/us/app/sanescan/id6770391054` returns HTTP 200, and
+  annual IAP `com.sanescan.app.pro.yearly6` is approved. The website was
+  redeployed to Cloudflare Pages with live App Store CTA, annual-only Pro copy,
+  and updated privacy language for limited aggregate purchase-flow diagnostics.
+  Local screenshot assets were corrected so the first iPhone image shows a real
+  document detail/OCR/PDF workflow and the paywall image shows the approved
+  annual product only. Apple blocks editing screenshots on the live submitted
+  `READY_FOR_SALE` 1.0 version, so public App Store screenshot replacement now
+  requires a new editable version.
+- 2026-06-07 product-quality gate/audit: SaneScan now opts into a shared
+  professional product-quality checklist through `Tests/CustomerUIActions.yml`
+  (`require_product_quality_checklist: true`). The checklist has 30+ questions
+  covering product fit, first run, core workflow, screenshot proof, marketing
+  parity, monetization, accessibility, privacy/trust, error recovery,
+  performance, App Store readiness, and funnel telemetry. The app sweep writes
+  `product_quality_review` into `.sane/customer_ui_action_receipt.json` and
+  `outputs/customer_ui_action_receipt.json`; shared SaneProcess
+  `customer_ui_contract` now blocks release when any product-quality item is
+  `failed` or `unknown`.
+- Latest SaneScan sweep generated product-quality reports under
+  `outputs/product-quality/`. The current canonical contract is intentionally
+  red only for proof gaps: real-device VisionKit scanner proof is still blocked
+  by no attached iPhone, and StoreKit transaction proof still needs an active
+  Xcode StoreKit, sandbox/TestFlight, or attached-device purchase/cancel/
+  failure/restore run. The local product catalog, paywall copy, screenshot
+  assets, accessibility/Dynamic Type checks, failure-recovery checks,
+  launch/performance checks, and funnel event schema checks have receipts.
+- Shared SaneProcess guardrails were updated and verified:
+  `ruby infra/SaneProcess/scripts/appstore_submit_guardrail_test.rb` passed
+  `31/31`. `appstore_submit.rb` now returns a nonzero failure when App Store
+  screenshot deletion/reservation/upload is rejected instead of silently
+  reporting completion. `appstore_public_screenshot_audit.rb` still passes and
+  writes `outputs/appstore-public-audit`.
+- 2026-06-07 live App Store/site correction: SaneScan iOS `1.0` was already
+  `READY_FOR_SALE`, but the public listing was not reachable because App Store
+  Availability V2 had no app availability resource for app `6770391054`.
+  Created the App Availability V2 resource with all 175 territories enabled.
+  USA territory status progressed to `AVAILABLE`; direct public storefront URL
+  now returns HTTP 200 at `https://apps.apple.com/us/app/sanescan/id6770391054`.
+  Apple iTunes Lookup still returns `resultCount=0`, so search/lookup indexing
+  may lag the live storefront URL. Website CTA now points to the live App Store
+  URL and was deployed to Cloudflare Pages `sanescan-site`; production
+  `https://sanescan.saneapps.com/` returns HTTP 200 and contains
+  `Download on the App Store` with no stale "Coming soon" CTA.
+- 2026-06-05 App Store repair/resubmission: SaneScan iOS `1.0` now reports
+  `WAITING_FOR_REVIEW` in App Store Connect with review submission
+  `528b035a-b097-445f-834b-257d4e059720`. The actionable rejection family was
+  first-subscription readiness/attachment. The app was rotated from rejected
+  subscription `com.sanescan.app.pro.yearly3` to fresh subscription
+  `com.sanescan.app.pro.yearly6`; `yearly6` is `READY_TO_SUBMIT` and verified
+  attached under iOS `1.0` Included Assets. Build `1001` was attached to version
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, customer UI sweep passed, App Store
+  preflight passed with warnings only, and `appstore_submit.rb --skip-upload
+  --skip-screenshots --build-number 1001` submitted the version.
+  Release-pending sweep found no `PENDING_DEVELOPER_RELEASE` versions.
 - New iOS app scaffold created at `/Users/sj/SaneApps/apps/SaneScan`.
 - Core MVP includes VisionKit document scanning, Photos import, local image cleanup, Vision OCR, local library persistence, PDF export, and StoreKit Pro hooks.
 - XcodeGen project spec is in `project.yml`.
@@ -47,7 +114,10 @@
 - Completed: App Store screenshots uploaded for iPhone 6.7-inch and iPad Pro 12.9-inch.
 - Completed: App Store build `100` for version `1.0` was archived, exported, uploaded, processed, and attached to the iOS version.
 - Active: annual subscription `com.sanescan.app.pro.yearly3` replaced the rejected original subscription group/product metadata. It still needs final ASC review metadata proof before resubmission.
-- Completed: App Privacy was published as `Data Not Collected`.
+- Superseded: App Privacy was originally published as `Data Not Collected`.
+  Local/public privacy policy copy now allows limited aggregate purchase-flow
+  diagnostics, so App Store Connect App Privacy metadata needs review before the
+  next editable submission if that telemetry remains active.
 - Completed: SaneScan iOS `1.0` is submitted to Apple and App Store Connect reports `WAITING_FOR_REVIEW` with submission ID `ca47e197-7e12-477b-9de9-85387507f142`.
 - Latest release verification, 2026-05-17 23:45 ET: explicit Mini simulator `xcodebuild` test passed in `Test-SaneScan-2026.05.17_23-45-46--0400.xcresult`; 3 Swift Testing unit tests and 4 XCTest UI tests passed. `swiftlint lint --quiet` and Ruby syntax checks for the patched App Store helper files also passed.
 - Latest App Store preflight status: ASC lane, screenshots, privacy URL, review contact, version lane, subscription, StoreKit routing, signing profile, debug audit, review notes, category, age rating, and listing copy all pass. The remaining red is a known SaneMaster test-runner false failure: it targets `platform=macOS,arch=arm64` with signing disabled for this iOS app, causing an install error (`No code signature found`) despite the explicit simulator test run being green.
@@ -104,3 +174,34 @@
 - App Store go-live watch, 2026-05-20 19:29 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json`; state remains `WAITING_FOR_REVIEW` (prelaunch/not approved). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response remains HTTP `404` (verified at 2026-05-20T23:29:46Z). No website redeploy was performed because the listing is not live.
 - App Store go-live watch, 2026-05-20 23:34 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json` plus `./scripts/SaneMaster.rb status --json`; state remains `WAITING_FOR_REVIEW` (explicit status line: `SaneScan App Store 1.0=waiting_for_review`). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response remains HTTP `404` (verified at `2026-05-21T03:34:57Z`). No website redeploy was performed because the listing is not live.
 - App Store go-live watch, 2026-05-21 01:37 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json`; state remains `WAITING_FOR_REVIEW` (prelaunch/not approved). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response is HTTP `404` (verified at 2026-05-21T05:37:57Z). No website redeploy was performed because the listing is not live.
+
+- App Store go-live watch, 2026-05-21 02:40 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json` (and `status --json` cross-check); state remains `WAITING_FOR_REVIEW` (prelaunch/not approved). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response remains HTTP `404` (verified at 2026-05-21T06:40:27Z). No website redeploy was performed because the listing is not live.
+- App Store go-live watch, 2026-05-21 03:40 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json` (cross-reference also shows `SaneScan App Store 1.0=waiting_for_review`); state remains `WAITING_FOR_REVIEW` (prelaunch/not approved). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response remains HTTP `404` (verified at 2026-05-21T07:40:05Z). No website redeploy was performed because the listing is not live.
+
+- App Store go-live watch, 2026-05-21 04:43 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json`; state remains `WAITING_FOR_REVIEW` (prelaunch/not approved). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response is HTTP `404` (verified at 2026-05-21T08:43:30Z). No website redeploy was performed because the listing is not live.
+- App Store go-live watch, 2026-05-21 05:42 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json` (cross-reference still shows `SaneScan App Store 1.0=waiting_for_review`); state remains `WAITING_FOR_REVIEW` (prelaunch/not approved). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response is HTTP `429` (verified at 2026-05-21T09:42:49Z). No website redeploy was performed because the listing is not live.
+
+- App Store go-live watch, 2026-05-21 10:49 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json`; state remains `WAITING_FOR_REVIEW` (prelaunch/not approved). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response is HTTP `404` (verified at 2026-05-21T14:49:53Z). No website redeploy was performed because the listing is not live.
+- App Store go-live watch, 2026-05-21 11:52 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json` (status cross-reference still shows `SaneScan App Store 1.0=waiting_for_review`); state remains `WAITING_FOR_REVIEW` (prelaunch/not approved). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response is HTTP `404` (verified at 2026-05-21T15:52:03Z). No website redeploy was performed because the listing is not live.
+- App Store go-live watch, 2026-05-22 13:00 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json`; state remains `WAITING_FOR_REVIEW` (prelaunch/not approved). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response is HTTP `404` (verified at 2026-05-22T17:00:54Z). No website redeploy was performed because the listing is not live.
+- App Store go-live watch, 2026-05-22 19:02 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json`; state remains `WAITING_FOR_REVIEW` (prelaunch/not approved). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response remains HTTP `404` (verified at 2026-05-22T23:02:45Z). No website redeploy was performed because the listing is not live.
+- App Store go-live watch, 2026-05-24 07:09 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json`; state remains `WAITING_FOR_REVIEW` (prelaunch/not approved). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response remains HTTP `404` (verified at 2026-05-24T11:09:39Z). No website redeploy was performed because the listing is not live.
+
+- App Store go-live watch, 2026-05-24 19:13 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json`; state remains `WAITING_FOR_REVIEW` (prelaunch/not approved). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response remains HTTP `404` (verified at 2026-05-24T23:12:09Z). No website redeploy was performed because the listing is not live.
+- App Store go-live watch, 2026-05-25 01:14 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json`; state remains `WAITING_FOR_REVIEW` (prelaunch/not approved). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response is HTTP `429` rate-limited (verified at 2026-05-25T05:13:37Z). No website redeploy was performed because the listing is not live.
+- App Store resubmission repair, 2026-05-25 08:30 ET:
+  - Apple rejection package for submission `e975c41c-37aa-434f-8e6b-4d220831c51a` was downloaded to `outputs/appreview-ios-1.0-e975c41c-37aa-434f-8e6b-4d220831c51a-20260525-074730/`; reviewer screenshot showed the paywall stuck at "App Store options loading" with no subscription price/button.
+  - Root cause was submission-process, not app code: first subscription `com.sanescan.app.pro.yearly3` was `READY_TO_SUBMIT` but not attached under iOS 1.0 Included Assets. Attached it in ASC and verified with `appstore_submit.rb --iap-only`.
+  - App Store preflight then passed with warnings only after refreshing customer UI QA, creating the missing Mini `iPhone 17 Pro` simulator, and disabling ASC Game Center for the version.
+  - Cleared 2 stale ASC Draft Submissions and resubmitted via `appstore_submit.rb --skip-upload --skip-screenshots`; ASC now reports iOS 1.0 `WAITING_FOR_REVIEW` with submission ID `351cb54c-f374-4efd-a222-e1dba80d2f9e`.
+  - Evidence screenshots copied locally: `/Users/sj/Desktop/Screenshots/sanescan-apple-review-subscription-failed.png`, `/Users/sj/Desktop/Screenshots/sanescan-asc-subscription-modal-closed-20260525-081152.png`, `/Users/sj/Desktop/Screenshots/sanescan-asc-after-update-review-click-20260525-082717.png`.
+- Website repair, 2026-05-25: homepage was audited and patched locally after customer-facing copy/visual issues were reported. Changes in `website/index.html`: removed the launch-notice email CTA, made the first viewport and Pro section lead with SaneScan Pro value, removed Basic-only structured data, replaced homepage hero assets with existing Pro screenshots, fixed iPhone image dimensions to `1242x2688`, and rewrote privacy copy to avoid email-update wording. Also updated `website/privacy/index.html` so support email is described as support-only, not updates/notifications, and corrected the document-guide image dimensions. Public App Store URL still returns HTTP `404`, so the CTA remains prelaunch-safe (`Coming soon on the App Store` linking to `#pro`) until approval/public listing is confirmed. Local visual proof: `/tmp/sanescan-site-qa/home-desktop-final.png` and `/tmp/sanescan-site-qa/home-mobile-final.png`; audit receipt: `/tmp/website_audit_outputs/summary.md`.
+- Website deployment, 2026-05-25: deployed the SaneScan website repair via `TEAM_ID=M78L6FXD48 bash /Users/sj/SaneApps/infra/SaneProcess/scripts/release.sh --project /Users/sj/SaneApps/apps/SaneScan --website-only`. Wrangler preview URL was `https://8cc077d4.sanescan-site.pages.dev`; production `https://sanescan.saneapps.com/`, `/privacy/`, and `/guides` returned HTTP `200`. Live visual proof: `/tmp/sanescan-site-qa/live-home-desktop-final.png` and `/tmp/sanescan-site-qa/live-home-mobile-final.png`.
+- Website follow-up repair, 2026-05-25: user flagged that the homepage images still showed the paywall/upgrade screen and therefore were not Pro-mode functional app screenshots. Replaced homepage hero assets again so they show only working app surfaces: scan/import start screen and document detail with recognized OCR/PDF export. Removed remaining `Pro option`/upgrade wording from homepage image metadata/copy. Local proof before redeploy: `/tmp/sanescan-site-qa/home-desktop-functional.png` and `/tmp/sanescan-site-qa/home-mobile-functional.png`.
+- Website follow-up deployment, 2026-05-25: redeployed corrected functional screenshots through `release.sh --website-only`; Wrangler preview URL was `https://0a35666b.sanescan-site.pages.dev`. Production `https://sanescan.saneapps.com/` now references `?v=20260525-functional` hero images and no longer includes upgrade/paywall strings in homepage source. Live proof: `/tmp/sanescan-site-qa/live-home-desktop-functional.png` and `/tmp/sanescan-site-qa/live-home-mobile-functional.png`.
+- App Store go-live watch, 2026-05-26 19:23 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json`; state remains `WAITING_FOR_REVIEW` (prelaunch/not approved). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response is HTTP `404` (verified at 2026-05-26T23:22:49Z). No website redeploy was performed because the listing is not live.
+- App Store go-live watch, 2026-05-27 07:25 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json` and `./scripts/SaneMaster.rb status --json`; state remains `WAITING_FOR_REVIEW` (cross-reference line: `SaneScan App Store 1.0=waiting_for_review`). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response is HTTP `404` (verified at 2026-05-27T11:25:47Z). No website redeploy was performed because the listing is not live.
+- App Store go-live watch, 2026-06-01 07:31 ET: rechecked ASC for app ID `6770391054` version `1.0` via `./scripts/SaneMaster.rb launch_readiness --json`; state remains `WAITING_FOR_REVIEW` (prelaunch/not approved, with weak-launch blocker explicitly reporting App Store version waiting for review). Rechecked public URL `https://apps.apple.com/us/app/id6770391054`; response is HTTP `404` (verified at 2026-06-01T11:30:00Z). No website redeploy was performed because the listing is not live.
+- App Store go-live watch correction, 2026-06-01 08:08 ET: direct Mini ASC diagnostic via `appstore_submit.rb --list-versions` supersedes the earlier `launch_readiness` summary. App ID `6770391054` iOS `1.0` is `REJECTED`; linked review submission `351cb54c-f374-4efd-a222-e1dba80d2f9e` is `UNRESOLVED_ISSUES`; version id is `2898846c-163e-4d53-8cdc-e4788b7ec9fa`. Public App Store URL still returns HTTP `404`, and iTunes Lookup returns `resultCount: 0`, so no website redeploy was performed. Attempted `--fetch-review-message` and `--fetch-review-package`, but Safari automation on the Mini did not open the expected App Review page; App Review message/package still needs a signed-in Safari/App Store Connect session with JavaScript from Apple Events enabled.
+- App Store go-live watch, 2026-06-03 14:30 ET: direct ASC API diagnostic using the SaneApps App Store key confirmed app ID `6770391054` iOS `1.0` is still `REJECTED`; version id remains `2898846c-163e-4d53-8cdc-e4788b7ec9fa`. The current linked review submission is now `dc139aed-e07d-419f-b9fd-04ab99365af2` in `UNRESOLVED_ISSUES`, submitted `2026-06-01T13:15:28.579Z`. Public URL `https://apps.apple.com/us/app/id6770391054` still returns HTTP `404`, and iTunes Lookup still returns `resultCount: 0`, so no website redeploy was performed. Fresh `--fetch-review-message` / `--fetch-review-package` attempts on this host failed because Safari is not running; the latest saved reviewer evidence is still `outputs/appreview-2026-05-20-subscription-links/` and shows the subscription paywall blocker requiring in-app functional Terms/EULA and privacy links.
+- App Store go-live watch, 2026-06-07 00:48 ET: direct ASC diagnostic via `appstore_submit.rb --app-id 6770391054 --fail-on-pending-release --list-versions` now reports iOS `1.0` as `READY_FOR_SALE`, `submission=COMPLETE`, `release_type=AFTER_APPROVAL`, submission ID `528b035a-b097-445f-834b-257d4e059720`. No pending developer-release state was reported. App Store preflight also reports IAP `com.sanescan.app.pro.yearly6` as `APPROVED`. However the public US storefront is still not live: iTunes Lookup returned `resultCount: 0` and `https://apps.apple.com/us/app/id6770391054` returned HTTP `404`. Treat this as an ASC/public storefront availability discrepancy until the public URL returns 200; do not switch website CTAs to the App Store URL yet.

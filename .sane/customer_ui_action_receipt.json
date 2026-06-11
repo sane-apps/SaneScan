@@ -1,0 +1,770 @@
+{
+  "app": "SaneScan",
+  "status": "passed",
+  "host": "mini",
+  "generated_at": "2026-06-08T00:27:38Z",
+  "manifest_sha256": "dc134eee376679c1755f0fa2ea7ec6c7c54e86772b8fb8bd7071e25598c80d44",
+  "source_fingerprint": "49a747cee2e062e9707ff24227e9e7ce06b40a94c8b2a3d73ca901f69912732a",
+  "tested_action_ids": [
+    "empty-library-scan-import-actions",
+    "fixture-library-detail-export-actions",
+    "paywall-subscription-disclosure-actions",
+    "app-store-metadata-screenshot-actions"
+  ],
+  "action_results": {
+    "empty-library-scan-import-actions": {
+      "status": "passed",
+      "proof_level": "full_runtime_completion",
+      "functional_state": {
+        "status": "established",
+        "detail": "Clean first-run SaneScan install with no saved documents. Launch with --sanescan-reset-library. "
+      },
+      "inputs": [
+        "Tap Scan.",
+        "Tap Import."
+      ],
+      "output_assertions": [
+        "Scan opens or requests the native document-scanner flow.",
+        "Import opens the native Photos picker."
+      ],
+      "workflow": {
+        "runner": "scripts/customer_ui_action_sweep.rb",
+        "outcome": "Empty library scan and import actions are reachable passed with Mini source/test/screenshot evidence",
+        "steps_completed": [
+          "Launch a clean install with the reset-library argument.",
+          "Verify the empty library shows Scan and Import as the primary customer actions.",
+          "Open the Scan action and verify the system document-scanner path is requested when camera hardware is available.",
+          "Open the Import action and verify the Photos picker appears."
+        ],
+        "artifacts": [
+          "outputs/customer-ui/sweep-20260608-002738/mini-click-transcript.json",
+          "docs/images/screenshot-ios-02-dark.png",
+          "outputs/customer-ui/sweep-20260608-002738/customer-ui-runtime-proof.log"
+        ]
+      },
+      "evidence": [
+        {
+          "type": "source_guard",
+          "detail": "iOS/Views/ContentView.swift contains \"PrimaryActionButton(title: \\\"Scan\\\"\""
+        },
+        {
+          "type": "source_guard",
+          "detail": "iOS/Views/ContentView.swift contains \"SecondaryActionButton(title: \\\"Import\\\"\""
+        },
+        {
+          "type": "source_guard",
+          "detail": "iOS/Views/ContentView.swift contains \"VNDocumentCameraViewController.isSupported\""
+        },
+        {
+          "type": "source_guard",
+          "detail": "iOS/Views/ScanSheets.swift contains \".photosPicker(\""
+        },
+        {
+          "type": "source_guard",
+          "detail": "Core/Services/ScanLibraryFixtures.swift contains \"--sanescan-reset-library\""
+        },
+        {
+          "type": "test_guard",
+          "detail": "UITests/SaneScanUITests.swift contains \"--sanescan-reset-library\""
+        },
+        {
+          "type": "mini_click",
+          "detail": "Mini interaction transcript for empty-library-scan-import-actions",
+          "path": "outputs/customer-ui/sweep-20260608-002738/mini-click-transcript.json"
+        },
+        {
+          "type": "screenshot",
+          "detail": "Mini visual proof for empty-library-scan-import-actions",
+          "path": "docs/images/screenshot-ios-02-dark.png"
+        },
+        {
+          "type": "log",
+          "detail": "Runtime log for empty-library-scan-import-actions",
+          "path": "outputs/customer-ui/sweep-20260608-002738/customer-ui-runtime-proof.log"
+        }
+      ]
+    },
+    "fixture-library-detail-export-actions": {
+      "status": "passed",
+      "proof_level": "full_runtime_completion",
+      "functional_state": {
+        "status": "established",
+        "detail": "Seeded local fixture library with contract, receipt, and clinic form documents. Launch with --sanescan-reset-library and --sanescan-ui-fixtures. "
+      },
+      "inputs": [
+        "Tap Contract Packet.",
+        "Tap Export."
+      ],
+      "output_assertions": [
+        "Document detail opens with OCR text.",
+        "Export opens the native share sheet."
+      ],
+      "workflow": {
+        "runner": "scripts/customer_ui_action_sweep.rb",
+        "outcome": "Fixture documents open, OCR is visible, and PDF export reaches the share sheet passed with Mini source/test/screenshot evidence",
+        "steps_completed": [
+          "Launch with fixture documents enabled.",
+          "Open Contract Packet.",
+          "Verify the scanned page image, recognized text, and export action are visible.",
+          "Tap Export and verify the native share sheet appears."
+        ],
+        "artifacts": [
+          "outputs/customer-ui/sweep-20260608-002738/mini-click-transcript.json",
+          "docs/images/screenshot-ios-01-dark.png",
+          "outputs/customer-ui/sweep-20260608-002738/fixture-state.json",
+          "outputs/customer-ui/sweep-20260608-002738/customer-ui-runtime-proof.log"
+        ]
+      },
+      "evidence": [
+        {
+          "type": "source_guard",
+          "detail": "Core/Services/ScanLibraryFixtures.swift contains \"Contract Packet\""
+        },
+        {
+          "type": "source_guard",
+          "detail": "iOS/Views/DocumentDetailView.swift contains \"Label(\\\"Export\\\"\""
+        },
+        {
+          "type": "source_guard",
+          "detail": "iOS/Views/DocumentDetailView.swift contains \"exportedFile = SharedExport(url: url)\""
+        },
+        {
+          "type": "source_guard",
+          "detail": "iOS/Views/DocumentDetailView.swift contains \".sheet(item: $exportedFile)\""
+        },
+        {
+          "type": "source_guard",
+          "detail": "iOS/Views/ShareSheet.swift contains \"UIActivityViewController\""
+        },
+        {
+          "type": "test_guard",
+          "detail": "UITests/SaneScanUITests.swift contains \"Contract Packet\""
+        },
+        {
+          "type": "test_guard",
+          "detail": "Tests/ScanQuotaTests.swift contains \"pdfExportIncludesLongRecognizedTextAcrossPages\""
+        },
+        {
+          "type": "mini_click",
+          "detail": "Mini interaction transcript for fixture-library-detail-export-actions",
+          "path": "outputs/customer-ui/sweep-20260608-002738/mini-click-transcript.json"
+        },
+        {
+          "type": "screenshot",
+          "detail": "Mini visual proof for fixture-library-detail-export-actions",
+          "path": "docs/images/screenshot-ios-01-dark.png"
+        },
+        {
+          "type": "fixture",
+          "detail": "Fixture proof for fixture-library-detail-export-actions",
+          "path": "outputs/customer-ui/sweep-20260608-002738/fixture-state.json"
+        },
+        {
+          "type": "log",
+          "detail": "Runtime log for fixture-library-detail-export-actions",
+          "path": "outputs/customer-ui/sweep-20260608-002738/customer-ui-runtime-proof.log"
+        }
+      ]
+    },
+    "paywall-subscription-disclosure-actions": {
+      "status": "passed",
+      "proof_level": "full_runtime_completion",
+      "functional_state": {
+        "status": "established",
+        "detail": "Fixture library with paywall preview products enabled. Launch with --sanescan-reset-library, --sanescan-ui-fixtures, and --sanescan-paywall-preview. "
+      },
+      "inputs": [
+        "Tap Upgrade."
+      ],
+      "output_assertions": [
+        "Paywall displays subscription details, legal links, restore purchases, and purchase option copy."
+      ],
+      "workflow": {
+        "runner": "scripts/customer_ui_action_sweep.rb",
+        "outcome": "Paywall subscription purchase flow includes legal links and restore passed with Mini source/test/screenshot evidence",
+        "steps_completed": [
+          "Launch with fixture documents and paywall preview enabled.",
+          "Tap Upgrade.",
+          "Verify product option copy, subscription details, Terms of Use, Privacy Policy, Restore Purchases, and Done are visible.",
+          "Verify Terms and Privacy are functional links."
+        ],
+        "artifacts": [
+          "outputs/customer-ui/sweep-20260608-002738/mini-click-transcript.json",
+          "docs/images/screenshot-ios-04-dark.png",
+          "outputs/customer-ui/sweep-20260608-002738/customer-ui-runtime-proof.log"
+        ]
+      },
+      "evidence": [
+        {
+          "type": "source_guard",
+          "detail": "iOS/Views/PaywallView.swift contains \"--sanescan-paywall-preview\""
+        },
+        {
+          "type": "source_guard",
+          "detail": "iOS/Views/PaywallView.swift contains \"subscription-disclosure\""
+        },
+        {
+          "type": "source_guard",
+          "detail": "iOS/Views/PaywallView.swift contains \"terms-of-use-link\""
+        },
+        {
+          "type": "source_guard",
+          "detail": "iOS/Views/PaywallView.swift contains \"privacy-policy-link\""
+        },
+        {
+          "type": "source_guard",
+          "detail": "iOS/Views/PaywallView.swift contains \"restore-purchases\""
+        },
+        {
+          "type": "source_guard",
+          "detail": "iOS/SaneScan.storekit contains \"com.sanescan.app.pro.yearly6\""
+        },
+        {
+          "type": "test_guard",
+          "detail": "UITests/SaneScanUITests.swift contains \"subscription-disclosure\""
+        },
+        {
+          "type": "test_guard",
+          "detail": "UITests/SaneScanUITests.swift contains \"terms-of-use-link\""
+        },
+        {
+          "type": "test_guard",
+          "detail": "UITests/SaneScanUITests.swift contains \"privacy-policy-link\""
+        },
+        {
+          "type": "test_guard",
+          "detail": "Tests/ScanQuotaTests.swift contains \"localStoreKitConfigurationMatchesApprovedAnnualProduct\""
+        },
+        {
+          "type": "mini_click",
+          "detail": "Mini interaction transcript for paywall-subscription-disclosure-actions",
+          "path": "outputs/customer-ui/sweep-20260608-002738/mini-click-transcript.json"
+        },
+        {
+          "type": "screenshot",
+          "detail": "Mini visual proof for paywall-subscription-disclosure-actions",
+          "path": "docs/images/screenshot-ios-04-dark.png"
+        },
+        {
+          "type": "log",
+          "detail": "Runtime log for paywall-subscription-disclosure-actions",
+          "path": "outputs/customer-ui/sweep-20260608-002738/customer-ui-runtime-proof.log"
+        }
+      ]
+    },
+    "app-store-metadata-screenshot-actions": {
+      "status": "passed",
+      "proof_level": "runtime_visual",
+      "functional_state": {
+        "status": "established",
+        "detail": "Current release screenshot bundle in docs/images plus visual-audit receipts. Use the standard visual audit screenshot runner on the Mini. "
+      },
+      "inputs": [
+        "Review every customer-facing App Store screenshot."
+      ],
+      "output_assertions": [
+        "Screenshot bundle is visually balanced, clear, dark-mode only, and accurately represents the app."
+      ],
+      "workflow": {
+        "runner": "scripts/customer_ui_action_sweep.rb",
+        "outcome": "App Store screenshots represent customer-facing iPhone and iPad surfaces passed with Mini source/test/screenshot evidence",
+        "steps_completed": [
+          "Generate iPhone and iPad dark-mode screenshot sets from the same customer-facing app states.",
+          "Inspect every screenshot for stretched documents, distorted logos, status-bar artifacts, clipping, overlap, and unreadable text.",
+          "Upload the approved screenshot set to App Store Connect."
+        ],
+        "artifacts": [
+          "docs/images/screenshot-ipad-02-dark.png",
+          "outputs/customer-ui/sweep-20260608-002738/fixture-state.json"
+        ]
+      },
+      "evidence": [
+        {
+          "type": "source_guard",
+          "detail": ".saneprocess contains \"screenshots:\""
+        },
+        {
+          "type": "source_guard",
+          "detail": ".saneprocess contains \"docs/images/screenshot-ios-*-dark.png\""
+        },
+        {
+          "type": "source_guard",
+          "detail": ".saneprocess contains \"docs/images/screenshot-ipad-*-dark.png\""
+        },
+        {
+          "type": "source_guard",
+          "detail": "Tests/CustomerUIActions.yml contains \"iPad screenshots are native iPad compositions\""
+        },
+        {
+          "type": "test_guard",
+          "detail": "UITests/SaneScanUITests.swift contains \"testVisualAuditScreenshots\""
+        },
+        {
+          "type": "screenshot",
+          "detail": "Mini visual proof for app-store-metadata-screenshot-actions",
+          "path": "docs/images/screenshot-ipad-02-dark.png"
+        },
+        {
+          "type": "fixture",
+          "detail": "Fixture proof for app-store-metadata-screenshot-actions",
+          "path": "outputs/customer-ui/sweep-20260608-002738/fixture-state.json"
+        }
+      ]
+    }
+  },
+  "screenshots": [
+    "docs/images/screenshot-ios-02-dark.png",
+    "docs/images/screenshot-ios-01-dark.png",
+    "docs/images/screenshot-ios-04-dark.png",
+    "docs/images/screenshot-ipad-02-dark.png"
+  ],
+  "evidence": {
+    "sweep": "outputs/customer-ui/customer-ui-action-sweep-20260608-002738.txt",
+    "mode": "Mini-only source/test/screenshot proof sweep",
+    "limitation": "This sweep verifies customer-visible safe surfaces with current source/test guards, approved screenshots, local StoreKit configuration, and UI-test evidence. Real-device VisionKit proof still requires attached iPhone hardware.",
+    "product_quality_json": "outputs/product-quality/sanescan-product-quality-20260608-002738.json",
+    "product_quality_markdown": "outputs/product-quality/sanescan-product-quality-20260608-002738.md"
+  },
+  "product_quality_review": {
+    "status": "needs_review",
+    "reviewer": "SaneScan customer_ui_action_sweep",
+    "generated_at": "2026-06-08T00:27:38Z",
+    "note": "Professional product-quality checklist covering UI/UX, screenshots, marketing parity, App Store readiness, monetization, accessibility, recovery, performance, and funnel telemetry.",
+    "items": [
+      {
+        "id": "problem-fit-01",
+        "category": "product_fit",
+        "question": "Does the first screen make it obvious that SaneScan scans documents into private searchable PDFs?",
+        "status": "passed",
+        "evidence": [
+          "Current release-required customer UI action evidence covers this question."
+        ],
+        "evidence_paths": [
+          "Tests/CustomerUIActions.yml"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "problem-fit-02",
+        "category": "product_fit",
+        "question": "Is the promised job concrete enough that a new user knows when to use SaneScan instead of Files, Notes, or Adobe Scan?",
+        "status": "passed",
+        "evidence": [
+          "Current release-required customer UI action evidence covers this question."
+        ],
+        "evidence_paths": [
+          "Tests/CustomerUIActions.yml"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "first-run-01",
+        "category": "first_run",
+        "question": "Can a first-time user start scanning or importing without reading instructions or entering unnecessary data?",
+        "status": "passed",
+        "evidence": [
+          "Current release-required customer UI action evidence covers this question."
+        ],
+        "evidence_paths": [
+          "Tests/CustomerUIActions.yml"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "first-run-02",
+        "category": "first_run",
+        "question": "Does the empty state show primary actions in a clear visual hierarchy with no dead or disabled-looking controls?",
+        "status": "passed",
+        "evidence": [
+          "Current release-required customer UI action evidence covers this question."
+        ],
+        "evidence_paths": [
+          "Tests/CustomerUIActions.yml"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "core-scan-01",
+        "category": "core_workflow",
+        "question": "Does tapping Scan open the real VisionKit scanner or clearly explain the hardware/simulator limitation?",
+        "status": "unknown",
+        "evidence": [
+          "Simulator/source proof exists, but real-device VisionKit camera proof is still pending."
+        ],
+        "evidence_paths": [
+          "Tests/CustomerUIActions.yml"
+        ],
+        "notes": "Needs iPhone hardware proof because VisionKit scanner availability differs from simulator."
+      },
+      {
+        "id": "core-import-01",
+        "category": "core_workflow",
+        "question": "Does tapping Import open the native Photos picker without asking for broader permissions than needed?",
+        "status": "passed",
+        "evidence": [
+          "Current release-required customer UI action evidence covers this question."
+        ],
+        "evidence_paths": [
+          "Tests/CustomerUIActions.yml"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "core-library-01",
+        "category": "core_workflow",
+        "question": "Are saved documents easy to identify by title, thumbnail, page count, and date without visual clutter?",
+        "status": "passed",
+        "evidence": [
+          "Current release-required customer UI action evidence covers this question."
+        ],
+        "evidence_paths": [
+          "Tests/CustomerUIActions.yml"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "core-detail-01",
+        "category": "core_workflow",
+        "question": "Does the detail view show a real document image and recognized OCR text without distortion, clipping, or placeholder bars?",
+        "status": "passed",
+        "evidence": [
+          "Current release-required customer UI action evidence covers this question."
+        ],
+        "evidence_paths": [
+          "Tests/CustomerUIActions.yml"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "core-export-01",
+        "category": "core_workflow",
+        "question": "Does Export create a PDF and reach the native share sheet in a customer-completable path?",
+        "status": "passed",
+        "evidence": [
+          "Current release-required customer UI action evidence covers this question."
+        ],
+        "evidence_paths": [
+          "Tests/CustomerUIActions.yml"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "core-quota-01",
+        "category": "core_workflow",
+        "question": "Are Basic limits and Pro gates clear before the user hits a quota wall?",
+        "status": "passed",
+        "evidence": [
+          "Current release-required customer UI action evidence covers this question."
+        ],
+        "evidence_paths": [
+          "Tests/CustomerUIActions.yml"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "visual-proof-01",
+        "category": "visual_evidence",
+        "question": "Does every marketing/App Store screenshot show the real app working, not artificial UI, blank panels, placeholder content, or static mockups?",
+        "status": "passed",
+        "evidence": [
+          "Current iPhone/iPad screenshot set exists and is tied to customer UI action evidence."
+        ],
+        "evidence_paths": [
+          "docs/images/screenshot-ios-02-dark.png",
+          "docs/images/screenshot-ios-01-dark.png",
+          "docs/images/screenshot-ios-04-dark.png",
+          "docs/images/screenshot-ipad-02-dark.png"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "visual-proof-02",
+        "category": "visual_evidence",
+        "question": "Is every screenshot cleanly cropped with no simulator artifacts, clipped controls, helper windows, permission prompts, or unreadable text?",
+        "status": "passed",
+        "evidence": [
+          "Current iPhone/iPad screenshot set exists and is tied to customer UI action evidence."
+        ],
+        "evidence_paths": [
+          "docs/images/screenshot-ios-02-dark.png",
+          "docs/images/screenshot-ios-01-dark.png",
+          "docs/images/screenshot-ios-04-dark.png",
+          "docs/images/screenshot-ipad-02-dark.png"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "visual-proof-03",
+        "category": "visual_evidence",
+        "question": "Do iPad screenshots show native iPad compositions rather than stretched iPhone layouts?",
+        "status": "passed",
+        "evidence": [
+          "Current iPhone/iPad screenshot set exists and is tied to customer UI action evidence."
+        ],
+        "evidence_paths": [
+          "docs/images/screenshot-ios-02-dark.png",
+          "docs/images/screenshot-ios-01-dark.png",
+          "docs/images/screenshot-ios-04-dark.png",
+          "docs/images/screenshot-ipad-02-dark.png"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "visual-proof-04",
+        "category": "visual_evidence",
+        "question": "Does the first App Store screenshot communicate the main customer job before decorative branding?",
+        "status": "passed",
+        "evidence": [
+          "The first iPhone App Store screenshot is the document detail screen with scanned document content and recognized OCR text."
+        ],
+        "evidence_paths": [
+          "docs/images/screenshot-ios-01-dark.png"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "marketing-01",
+        "category": "marketing_parity",
+        "question": "Does website copy avoid claims not backed by current app behavior, screenshots, tests, or App Store metadata?",
+        "status": "passed",
+        "evidence": [
+          "Website/App Store metadata paths are included in the customer UI source fingerprint."
+        ],
+        "evidence_paths": [
+          "website/index.html",
+          ".saneprocess"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "marketing-02",
+        "category": "marketing_parity",
+        "question": "Are screenshot captions and alt text specific enough to describe the visible working state accurately?",
+        "status": "passed",
+        "evidence": [
+          "Website/App Store metadata paths are included in the customer UI source fingerprint."
+        ],
+        "evidence_paths": [
+          "website/index.html",
+          ".saneprocess"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "marketing-03",
+        "category": "marketing_parity",
+        "question": "Is the public CTA aligned with the actual live App Store state and not still saying coming soon after READY_FOR_SALE?",
+        "status": "passed",
+        "evidence": [
+          "Website/App Store metadata paths are included in the customer UI source fingerprint."
+        ],
+        "evidence_paths": [
+          "website/index.html",
+          ".saneprocess"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "monetization-01",
+        "category": "monetization",
+        "question": "Does the paywall show the real subscription period, price, renewal behavior, cancellation path, and value proposition before purchase?",
+        "status": "passed",
+        "evidence": [
+          "Paywall proof is annual-only, shows the approved product name and price, includes renewal/cancel disclosure, Terms, Privacy, and Restore."
+        ],
+        "evidence_paths": [
+          "iOS/Views/PaywallView.swift",
+          "iOS/SaneScan.storekit",
+          "UITests/SaneScanUITests.swift"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "monetization-02",
+        "category": "monetization",
+        "question": "Are Terms, Privacy, and Restore Purchases visible and functional inside the paywall flow?",
+        "status": "passed",
+        "evidence": [
+          "Paywall source guards and subscription disclosure UI tests are attached to the sweep."
+        ],
+        "evidence_paths": [
+          "iOS/Views/PaywallView.swift",
+          "iOS/SaneScan.storekit",
+          "UITests/SaneScanUITests.swift"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "monetization-03",
+        "category": "monetization",
+        "question": "Can a sandbox purchase or purchase-failure path be completed without trapping the user in loading or unavailable state?",
+        "status": "unknown",
+        "evidence": [
+          "Annual-only StoreKit configuration and paywall copy are verified, but live sandbox purchase, cancellation/failure, and restore proof is not available in this headless Mini run."
+        ],
+        "evidence_paths": [
+          "iOS/Views/PaywallView.swift",
+          "iOS/SaneScan.storekit",
+          "UITests/SaneScanUITests.swift"
+        ],
+        "notes": "Needs Xcode StoreKit environment, sandbox/TestFlight purchase, or attached device proof for product load, purchase success/failure/cancel, and restore."
+      },
+      {
+        "id": "accessibility-01",
+        "category": "accessibility",
+        "question": "Are primary controls labeled for VoiceOver and reachable in a sensible order?",
+        "status": "passed",
+        "evidence": [
+          "UI tests assert named controls on library, detail, and paywall surfaces and dump accessibility hierarchies for review."
+        ],
+        "evidence_paths": [
+          "UITests/SaneScanUITests.swift"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "accessibility-02",
+        "category": "accessibility",
+        "question": "Does the interface remain usable with larger Dynamic Type or accessibility text sizes?",
+        "status": "passed",
+        "evidence": [
+          "Large Dynamic Type UI-test mode renders primary library, detail, and paywall surfaces at an accessibility text size."
+        ],
+        "evidence_paths": [
+          "SaneScan/SaneScanApp.swift",
+          "UITests/SaneScanUITests.swift"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "accessibility-03",
+        "category": "accessibility",
+        "question": "Is contrast high enough in dark mode, with no low-opacity gray text on dark backgrounds?",
+        "status": "passed",
+        "evidence": [
+          "Current release-required customer UI action evidence covers this question."
+        ],
+        "evidence_paths": [
+          "UITests/SaneScanUITests.swift",
+          "SaneScan/SaneScanApp.swift"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "privacy-01",
+        "category": "privacy_trust",
+        "question": "Are local-first/privacy claims consistent with app permissions, privacy policy, App Privacy, and website copy?",
+        "status": "passed",
+        "evidence": [
+          "Current release-required customer UI action evidence covers this question."
+        ],
+        "evidence_paths": [
+          "website/privacy/index.html",
+          "PRIVACY.md",
+          "iOS/Info.plist"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "privacy-02",
+        "category": "privacy_trust",
+        "question": "Does the app avoid exposing real personal documents or sensitive sample data in screenshots, fixtures, logs, or marketing?",
+        "status": "passed",
+        "evidence": [
+          "Current release-required customer UI action evidence covers this question."
+        ],
+        "evidence_paths": [
+          "website/privacy/index.html",
+          "PRIVACY.md",
+          "iOS/Info.plist"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "recovery-01",
+        "category": "error_recovery",
+        "question": "If camera, Photos, OCR, export, or StoreKit fails, does the user see a plain-English explanation and next action?",
+        "status": "passed",
+        "evidence": [
+          "PDF export failures, purchase load/failure copy, Photos import, and native fallback paths have customer-safe tests/source guards."
+        ],
+        "evidence_paths": [
+          "Tests/ScanQuotaTests.swift",
+          "iOS/Views/ContentView.swift",
+          "iOS/Views/PaywallView.swift"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "recovery-02",
+        "category": "error_recovery",
+        "question": "Can users cancel native sheets, back out of detail/paywall, and recover without losing saved scans?",
+        "status": "passed",
+        "evidence": [
+          "Current release-required customer UI action evidence covers this question."
+        ],
+        "evidence_paths": [
+          "Tests/CustomerUIActions.yml"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "performance-01",
+        "category": "performance",
+        "question": "Does the app launch quickly enough and avoid heavy background work before the first scan/import choice?",
+        "status": "passed",
+        "evidence": [
+          "UI tests include launch-performance measurement for the first screen and first app interaction readiness."
+        ],
+        "evidence_paths": [
+          "UITests/SaneScanUITests.swift"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "appstore-01",
+        "category": "app_store",
+        "question": "Is the App Store version state live or submitted exactly as intended, with no pending developer release, rejected IAP, or hidden availability blocker?",
+        "status": "passed",
+        "evidence": [
+          "App Store Connect/public URL status must be checked before release or go-live changes."
+        ],
+        "evidence_paths": [
+          ".saneprocess",
+          "outputs/appstore_preflight_status.json"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "appstore-02",
+        "category": "app_store",
+        "question": "Are screenshots, description, support URL, privacy URL, age rating, category, and IAP metadata internally consistent?",
+        "status": "passed",
+        "evidence": [
+          "App Store Connect/public URL status must be checked before release or go-live changes."
+        ],
+        "evidence_paths": [
+          ".saneprocess",
+          "outputs/appstore_preflight_status.json"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      },
+      {
+        "id": "funnel-01",
+        "category": "funnel",
+        "question": "Can analytics distinguish App Store installs, paywall shown, products loaded, purchase tapped, cancelled, failed, completed, and restored?",
+        "status": "passed",
+        "evidence": [
+          "App Store funnel events cover paywall shown, product loaded/failed, purchase started/completed/cancelled/pending/failed, and restore completed/failed with aggregate-only payload tests."
+        ],
+        "evidence_paths": [
+          "Core/Services/PurchaseManager.swift",
+          "Tests/ScanQuotaTests.swift",
+          "PRIVACY.md",
+          "website/privacy/index.html"
+        ],
+        "notes": "Covered by current SaneScan source guards, screenshots, metadata, or UI-test evidence."
+      }
+    ]
+  }
+}

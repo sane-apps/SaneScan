@@ -42,18 +42,55 @@ final class SaneScanUITests: XCTestCase {
     }
 
     func testFixtureLibraryPaywall() {
-        launch(reset: true, fixtures: true)
+        launch(reset: true, fixtures: true, paywallPreview: true)
 
         XCTAssertTrue(anyElement(id: "library-view").waitForExistence(timeout: 8))
         XCTAssertTrue(app.buttons["Upgrade"].waitForExistence(timeout: 5))
         app.buttons["Upgrade"].tap()
         XCTAssertTrue(anyElement(id: "paywall").waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["App Store options loading"].exists)
-        XCTAssertTrue(app.buttons["retry-purchases"].exists)
+        XCTAssertTrue(app.staticTexts["SaneScan Pro Annual"].exists)
+        XCTAssertTrue(app.staticTexts["$29.99/year"].exists)
         XCTAssertTrue(anyElement(id: "subscription-disclosure").exists)
         assertLegalLinksReachable()
         XCTAssertTrue(app.buttons["restore-purchases"].exists)
         XCTAssertTrue(app.buttons["paywall-done"].exists)
+    }
+
+    func testLargeTextAccessibilityPrimarySurfaces() {
+        launch(reset: true, fixtures: true, paywallPreview: true, largeText: true)
+
+        XCTAssertTrue(anyElement(id: "library-view").waitForExistence(timeout: 8))
+        XCTAssertTrue(app.buttons["scan-button"].exists)
+        XCTAssertTrue(app.buttons["import-button"].exists)
+        XCTAssertTrue(app.buttons["Upgrade"].exists)
+        XCTAssertTrue(app.buttons["Contract Packet"].exists)
+        captureAccessibilityHierarchy("01-large-text-library")
+
+        app.buttons["Contract Packet"].tap()
+        XCTAssertTrue(anyElement(id: "scan-page-image").waitForExistence(timeout: 8))
+        XCTAssertTrue(anyElement(id: "recognized-text").exists)
+        XCTAssertTrue(app.buttons["export-button"].exists)
+        XCTAssertTrue(app.buttons["detail-done"].exists)
+        captureAccessibilityHierarchy("02-large-text-detail")
+
+        app.buttons["detail-done"].tap()
+        XCTAssertTrue(app.buttons["Upgrade"].waitForExistence(timeout: 5))
+        app.buttons["Upgrade"].tap()
+        XCTAssertTrue(anyElement(id: "paywall").waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["$29.99/year"].exists)
+        XCTAssertTrue(anyElement(id: "subscription-disclosure").exists)
+        assertLegalLinksReachable()
+        XCTAssertTrue(app.buttons["restore-purchases"].exists)
+        captureAccessibilityHierarchy("03-large-text-paywall")
+        captureVisualState("07-large-text-paywall")
+    }
+
+    func testLaunchPerformance() {
+        measure(metrics: [XCTApplicationLaunchMetric()]) {
+            launch(reset: true)
+            XCTAssertTrue(app.staticTexts["SaneScan"].waitForExistence(timeout: 8))
+            app.terminate()
+        }
     }
 
     func testVisualAuditScreenshots() {
@@ -88,7 +125,12 @@ final class SaneScanUITests: XCTestCase {
         captureVisualState("06-paywall")
     }
 
-    private func launch(reset: Bool = false, fixtures: Bool = false, paywallPreview: Bool = false) {
+    private func launch(
+        reset: Bool = false,
+        fixtures: Bool = false,
+        paywallPreview: Bool = false,
+        largeText: Bool = false
+    ) {
         app.launchArguments = []
         if reset {
             app.launchArguments.append("--sanescan-reset-library")
@@ -98,6 +140,9 @@ final class SaneScanUITests: XCTestCase {
         }
         if paywallPreview {
             app.launchArguments.append("--sanescan-paywall-preview")
+        }
+        if largeText {
+            app.launchArguments.append("--sanescan-large-text-preview")
         }
         app.launch()
     }
@@ -186,6 +231,23 @@ final class SaneScanUITests: XCTestCase {
             try XCUIScreen.main.screenshot().pngRepresentation.write(to: url)
         } catch {
             XCTFail("Could not write visual audit screenshot \(name): \(error)")
+        }
+    }
+
+    private func captureAccessibilityHierarchy(_ name: String) {
+        let directory = ProcessInfo.processInfo.environment["SANESCAN_ACCESSIBILITY_DIR"].flatMap { value in
+            value.isEmpty ? nil : value
+        } ?? "/tmp/sanescan-accessibility-audit"
+
+        do {
+            try FileManager.default.createDirectory(
+                atPath: directory,
+                withIntermediateDirectories: true
+            )
+            let url = URL(fileURLWithPath: directory).appendingPathComponent("\(name).txt")
+            try app.debugDescription.write(to: url, atomically: true, encoding: .utf8)
+        } catch {
+            XCTFail("Could not write accessibility hierarchy \(name): \(error)")
         }
     }
 }
