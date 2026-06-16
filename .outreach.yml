@@ -71,15 +71,17 @@ launch_calendar:
       gate: "Physical device must be visible to `xcrun devicectl list devices`; simulator proof is not enough."
       success_metric: "Clean proof paths and device UDID recorded in outputs/qa_status.json."
   last_launch_readiness:
-    date: "2026-05-18"
+    date: "2026-06-16"
     status: "no_go"
     launch_readiness_exit: 1
     blocker_summary:
+      - "Canonical Mini `launch_readiness --json` reran on 2026-06-16 and exited nonzero."
       - "App Store version is still WAITING_FOR_REVIEW."
-      - "App Store preflight is blocked on missing review contact name and phone."
-      - "Real-device VisionKit proof is blocked because the Mini currently has no physical iOS device attached."
-      - "Worktree remains dirty while launch/setup changes are in progress."
-    next_date: "2026-05-19"
+      - "Review contact name and phone are still missing in `.saneprocess`."
+      - "Real-device VisionKit proof is still blocked until a trusted iPhone or iPad is attached to the Mini."
+      - "A fresh public-launch check is still blocked until the App Store URL is live and a new Mini `launch_readiness` rerun passes after approval."
+      - "Canonical `release_preflight` proof is still missing in this repo; run `./scripts/SaneMaster.rb release_preflight` after the App Store/device blockers are cleared."
+    next_date: "2026-06-23"
 
 public_posting_policy:
   approval_required: true
