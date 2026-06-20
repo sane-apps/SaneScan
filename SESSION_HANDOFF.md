@@ -2,6 +2,287 @@
 
 ## Current State
 
+- 2026-06-20 05:53 EDT App Store go-live watch: fresh Mini ASC check via
+  `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
+  confirms SaneScan iOS `1.0` remains `READY_FOR_SALE`; version id
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, linked submission
+  `528b035a-b097-445f-834b-257d4e059720`, submission state `COMPLETE`. Public
+  App Store checks at 2026-06-20 05:53 EDT show both
+  `https://apps.apple.com/us/app/id6770391054` and
+  `https://apps.apple.com/us/app/sanescan/id6770391054` resolving with final
+  HTTP `200`, and Apple iTunes Lookup returns `resultCount: 1`,
+  `trackName: SaneScan`, version `1.0`, current release date
+  `2026-06-06T17:17:06Z`, and track URL
+  `https://apps.apple.com/us/app/sanescan/id6770391054?uo=4`. Re-ran the
+  required website-only deploy on the Mini with `TEAM_ID=M78L6FXD48`; the
+  wrapper confirmed the App Store iOS link marker was already current in
+  `website/index.html`, social-card and SEO audits passed for 10 pages, latest
+  Cloudflare Pages preview is `https://20d0709c.sanescan-site.pages.dev`, and
+  production `https://sanescan.saneapps.com/` returns HTTP `200` while serving
+  the live App Store URL `https://apps.apple.com/us/app/sanescan/id6770391054`.
+  Shared validation report was run at 2026-06-20 05:53 EDT and remains
+  `NOT READY FOR RELEASE` due to broader SaneApps customer-reality/release
+  blockers, not this App Store go-live watch.
+- 2026-06-19 23:51 EDT App Store go-live watch: fresh Mini ASC check via
+  `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
+  confirms SaneScan iOS `1.0` is still `READY_FOR_SALE`; version id
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, linked submission
+  `528b035a-b097-445f-834b-257d4e059720`, submission state `COMPLETE`. Public
+  App Store checks at 2026-06-19 23:51 EDT show both
+  `https://apps.apple.com/us/app/id6770391054` and
+  `https://apps.apple.com/us/app/sanescan/id6770391054` resolving with final
+  HTTP `200`, and Apple iTunes Lookup returns `resultCount: 1`,
+  `trackName: SaneScan`, version `1.0`, current release date
+  `2026-06-06T17:17:06Z`, and track URL
+  `https://apps.apple.com/us/app/sanescan/id6770391054?uo=4`. Re-ran the
+  required website-only deploy on the Mini with `TEAM_ID=M78L6FXD48`; the
+  wrapper confirmed the App Store iOS link marker was already current in
+  `website/index.html`, social-card and SEO audits passed for 10 pages, latest
+  Cloudflare Pages preview is `https://070308be.sanescan-site.pages.dev`, and
+  production `https://sanescan.saneapps.com/` returns HTTP `200` while serving
+  the live App Store URL `https://apps.apple.com/us/app/sanescan/id6770391054`.
+  Shared validation report was run at 2026-06-19 23:52 EDT and remains
+  `NOT READY FOR RELEASE` due to broader SaneApps customer-reality/release
+  blockers, not this App Store go-live watch.
+- 2026-06-19 17:52 EDT App Store go-live watch: fresh Mini ASC check via
+  `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
+  confirms SaneScan iOS `1.0` is still `READY_FOR_SALE`; version id
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, linked submission
+  `528b035a-b097-445f-834b-257d4e059720`, submission state `COMPLETE`. Public
+  App Store checks at 2026-06-19 17:52 EDT show both
+  `https://apps.apple.com/us/app/id6770391054` and
+  `https://apps.apple.com/us/app/sanescan/id6770391054` resolving with final
+  HTTP `200`, and Apple iTunes Lookup returns `resultCount: 1`,
+  `trackName: SaneScan`, version `1.0`, current release date
+  `2026-06-06T17:17:06Z`, and track URL
+  `https://apps.apple.com/us/app/sanescan/id6770391054?uo=4`. Re-ran the
+  required website-only deploy on the Mini with `TEAM_ID=M78L6FXD48`; the
+  wrapper confirmed the App Store iOS link marker was already current in
+  `website/index.html`, social-card and SEO audits passed for 10 pages, latest
+  Cloudflare Pages preview is `https://b6cd85ed.sanescan-site.pages.dev`, and
+  both preview and production `https://sanescan.saneapps.com/` return HTTP
+  `200` while serving the live App Store URL
+  `https://apps.apple.com/us/app/sanescan/id6770391054`.
+- 2026-06-19 11:52 EDT App Store go-live watch: fresh Mini ASC check via
+  `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
+  confirms SaneScan iOS `1.0` is still `READY_FOR_SALE`; version id
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, linked submission
+  `528b035a-b097-445f-834b-257d4e059720`, submission state `COMPLETE`. Public
+  App Store checks at 2026-06-19 11:52 EDT show both
+  `https://apps.apple.com/us/app/id6770391054` and
+  `https://apps.apple.com/us/app/sanescan/id6770391054` resolving with final
+  HTTP `200`, and Apple iTunes Lookup returns `resultCount: 1`,
+  `trackName: SaneScan`, version `1.0`, current release date
+  `2026-06-06T17:17:06Z`, and track URL
+  `https://apps.apple.com/us/app/sanescan/id6770391054?uo=4`. Re-ran the
+  required website-only deploy on the Mini with `TEAM_ID=M78L6FXD48`; the
+  wrapper confirmed the App Store iOS link marker was already current in
+  `website/index.html`, latest Cloudflare Pages preview is
+  `https://b187bc73.sanescan-site.pages.dev`, and both preview and production
+  `https://sanescan.saneapps.com/` return HTTP `200` while serving the live
+  App Store URL `https://apps.apple.com/us/app/sanescan/id6770391054`.
+- 2026-06-19 05:49 EDT App Store go-live watch: fresh Mini ASC check via
+  `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
+  confirms SaneScan iOS `1.0` is still `READY_FOR_SALE`; version id
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, linked submission
+  `528b035a-b097-445f-834b-257d4e059720`, submission state `COMPLETE`. Public
+  App Store checks at 2026-06-19 05:49 EDT show both
+  `https://apps.apple.com/us/app/id6770391054` and
+  `https://apps.apple.com/us/app/sanescan/id6770391054` resolving with final
+  HTTP `200`, and Apple iTunes Lookup returns `resultCount: 1`. Re-ran the
+  required website-only deploy on the Mini with `TEAM_ID=M78L6FXD48`; the
+  wrapper confirmed the App Store iOS link marker was already current in
+  `website/index.html`, latest Cloudflare Pages preview is
+  `https://ccf12d44.sanescan-site.pages.dev`, and both preview and production
+  `https://sanescan.saneapps.com/` return HTTP `200` while serving
+  `data-appstore-ios-link` and
+  `data-appstore-ios-url="https://apps.apple.com/us/app/sanescan/id6770391054"`.
+- 2026-06-18 23:47 EDT App Store go-live watch: fresh Mini ASC check via
+  `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
+  confirms SaneScan iOS `1.0` is still `READY_FOR_SALE`; version id
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, linked submission
+  `528b035a-b097-445f-834b-257d4e059720`, submission state `COMPLETE`. Public
+  App Store checks at 2026-06-18 23:47 EDT show both
+  `https://apps.apple.com/us/app/id6770391054` and
+  `https://apps.apple.com/us/app/sanescan/id6770391054` resolving with final
+  HTTP `200`, and Apple iTunes Lookup returns `resultCount: 1`,
+  `trackName: SaneScan`, version `1.0`, current release date
+  `2026-06-06T17:17:06Z`, and track URL
+  `https://apps.apple.com/us/app/sanescan/id6770391054?uo=4`. Re-ran the
+  required website-only deploy on the Mini with `TEAM_ID=M78L6FXD48`; the
+  wrapper confirmed the App Store iOS link marker was already current in
+  `website/index.html`, latest Cloudflare Pages preview is
+  `https://6f321cd6.sanescan-site.pages.dev`, and both preview and production
+  `https://sanescan.saneapps.com/` return HTTP `200` while serving
+  `data-appstore-ios-link` and
+  `data-appstore-ios-url="https://apps.apple.com/us/app/sanescan/id6770391054"`.
+- 2026-06-18 18:50 EDT App Store monetization remediation: direct-download
+  SaneApps revenue remains the working channel, but SaneScan App Store
+  conversion needed a lower first test price. Updated local SaneScan StoreKit,
+  paywall preview, UI tests, customer UI sweep guard, and project docs from
+  `$29.99/year` to `$9.99/year` for annual Pro. App Store Connect subscription
+  `com.sanescan.app.pro.yearly6` / subscription id `6777086678` was verified
+  `APPROVED`; Apple rejected same-day pricing because subscription changes must
+  start on or after `2026-06-20`, so a global `$9.99/year` equivalent price
+  schedule was created for `2026-06-20`. Paginated ASC verification confirmed
+  `175/175` territories have the correct scheduled equalized price row, with
+  `0` missing and `0` wrong territories. Setapp public pages for SaneClip and
+  SaneBar both return HTTP `200`, but the Setapp developer status helper cannot
+  read sales/portal state until Mini Safari is signed in to developer.setapp.com
+  or `SETAPP_PORTAL_TOKEN` is available. Verification: `./scripts/SaneMaster.rb
+  verify` passed on the Mini with 15 Swift tests; `ssh mini 'cd
+  ~/SaneApps/apps/SaneScan && ruby scripts/customer_ui_action_sweep.rb'` passed
+  and wrote `.sane/customer_ui_action_receipt.json`; explicit Mini simulator
+  `xcodegen generate && xcodebuild -project SaneScan.xcodeproj -scheme SaneScan
+  -destination "platform=iOS Simulator,name=iPhone 17 Pro" test` succeeded with
+  15 Swift tests and 6 UI tests, including paywall assertions for
+  `$9.99/year`, in `Test-SaneScan-2026.06.18_18-47-49--0400.xcresult`.
+- 2026-06-18 17:47 EDT App Store go-live watch: fresh Mini ASC check via
+  `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
+  confirms SaneScan iOS `1.0` is still `READY_FOR_SALE`; version id
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, linked submission
+  `528b035a-b097-445f-834b-257d4e059720`, submission state `COMPLETE`. Public
+  App Store checks at 2026-06-18 17:47 EDT show both
+  `https://apps.apple.com/us/app/id6770391054` and
+  `https://apps.apple.com/us/app/sanescan/id6770391054` resolving with final
+  HTTP `200`, and Apple iTunes Lookup returns `resultCount: 1`,
+  `trackName: SaneScan`, version `1.0`, current release date
+  `2026-06-06T17:17:06Z`, and track URL
+  `https://apps.apple.com/us/app/sanescan/id6770391054?uo=4`. Re-ran the
+  required website-only deploy on the Mini with `TEAM_ID=M78L6FXD48`; the
+  wrapper confirmed the App Store iOS link marker was already current in
+  `website/index.html`, latest Cloudflare Pages preview is
+  `https://fb621205.sanescan-site.pages.dev`, and both preview and production
+  `https://sanescan.saneapps.com/` return HTTP `200` while serving
+  `data-appstore-ios-link` and
+  `data-appstore-ios-url="https://apps.apple.com/us/app/sanescan/id6770391054"`.
+- 2026-06-18 11:46 EDT App Store go-live watch: fresh Mini ASC check via
+  `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
+  confirms SaneScan iOS `1.0` is still `READY_FOR_SALE`; version id
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, linked submission
+  `528b035a-b097-445f-834b-257d4e059720`, submission state `COMPLETE`. Public
+  App Store checks at 2026-06-18 11:46 EDT show both
+  `https://apps.apple.com/us/app/id6770391054` and
+  `https://apps.apple.com/us/app/sanescan/id6770391054` resolving with final
+  HTTP `200`, and Apple iTunes Lookup returns `resultCount: 1`,
+  `trackName: SaneScan`, version `1.0`, current release date
+  `2026-06-06T17:17:06Z`, and track URL
+  `https://apps.apple.com/us/app/sanescan/id6770391054?uo=4`. Re-ran the
+  required website-only deploy on the Mini with `TEAM_ID=M78L6FXD48`; the
+  wrapper confirmed the App Store iOS link marker was already current in
+  `website/index.html`, latest Cloudflare Pages preview is
+  `https://56057539.sanescan-site.pages.dev`, and both preview and production
+  `https://sanescan.saneapps.com/` return HTTP `200` while serving
+  `data-appstore-ios-link` and
+  `data-appstore-ios-url="https://apps.apple.com/us/app/sanescan/id6770391054"`.
+- 2026-06-18 05:45 EDT App Store go-live watch: fresh Mini ASC check via
+  `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
+  confirms SaneScan iOS `1.0` is still `READY_FOR_SALE`; version id
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, linked submission
+  `528b035a-b097-445f-834b-257d4e059720`, submission state `COMPLETE`. Public
+  App Store checks at 2026-06-18 05:45 EDT show both
+  `https://apps.apple.com/us/app/id6770391054` and
+  `https://apps.apple.com/us/app/sanescan/id6770391054` resolving with final
+  HTTP `200`, and Apple iTunes Lookup returns `resultCount: 1`,
+  `trackName: SaneScan`, version `1.0`, current release date
+  `2026-06-06T17:17:06Z`, and track URL
+  `https://apps.apple.com/us/app/sanescan/id6770391054?uo=4`. Re-ran the
+  required website-only deploy on the Mini with `TEAM_ID=M78L6FXD48`; the
+  wrapper confirmed the App Store iOS link marker was already current in
+  `website/index.html`, latest Cloudflare Pages preview is
+  `https://1d93c031.sanescan-site.pages.dev`, and both preview and production
+  `https://sanescan.saneapps.com/` return HTTP `200` while serving
+  `data-appstore-ios-link` and
+  `data-appstore-ios-url="https://apps.apple.com/us/app/sanescan/id6770391054"`.
+- 2026-06-17 23:45 EDT App Store go-live watch: fresh Mini ASC check via
+  `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
+  confirms SaneScan iOS `1.0` is still `READY_FOR_SALE`; version id
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, linked submission
+  `528b035a-b097-445f-834b-257d4e059720`, submission state `COMPLETE`. Public
+  App Store checks at 2026-06-17 23:45 EDT show both
+  `https://apps.apple.com/us/app/id6770391054` and
+  `https://apps.apple.com/us/app/sanescan/id6770391054` resolving with final
+  HTTP `200`, and Apple iTunes Lookup returns `resultCount: 1`,
+  `trackName: SaneScan`, version `1.0`, current release date
+  `2026-06-06T17:17:06Z`, and track URL
+  `https://apps.apple.com/us/app/sanescan/id6770391054?uo=4`. Re-ran the
+  required website-only deploy on the Mini with `TEAM_ID=M78L6FXD48`; the
+  wrapper confirmed the App Store iOS link marker was already current in
+  `website/index.html`, latest Cloudflare Pages preview is
+  `https://7f658e7c.sanescan-site.pages.dev`, and both preview and production
+  `https://sanescan.saneapps.com/` return HTTP `200` while serving
+  `data-appstore-ios-link` and
+  `data-appstore-ios-url="https://apps.apple.com/us/app/sanescan/id6770391054"`.
+- 2026-06-17 17:46 EDT App Store go-live watch: fresh Mini ASC check via
+  `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
+  confirms SaneScan iOS `1.0` is still `READY_FOR_SALE`; version id
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, linked submission
+  `528b035a-b097-445f-834b-257d4e059720`, submission state `COMPLETE`. Public
+  App Store checks at 2026-06-17 17:46 EDT show both
+  `https://apps.apple.com/us/app/id6770391054` and
+  `https://apps.apple.com/us/app/sanescan/id6770391054` resolving with final
+  HTTP `200`, and Apple iTunes Lookup returns `resultCount: 1`,
+  `trackName: SaneScan`, version `1.0`, current release date
+  `2026-06-06T17:17:06Z`, and track URL
+  `https://apps.apple.com/us/app/sanescan/id6770391054?uo=4`. Re-ran the
+  required website-only deploy on the Mini with `TEAM_ID=M78L6FXD48`; the
+  wrapper confirmed the App Store iOS link marker was already current in
+  `website/index.html`, latest Cloudflare Pages preview is
+  `https://020bb17c.sanescan-site.pages.dev`, and both preview and production
+  `https://sanescan.saneapps.com/` return HTTP `200` while serving
+  `data-appstore-ios-link` and
+  `data-appstore-ios-url="https://apps.apple.com/us/app/sanescan/id6770391054"`.
+- 2026-06-17 11:45 EDT App Store go-live watch: fresh Mini ASC check via
+  `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
+  confirms SaneScan iOS `1.0` is still `READY_FOR_SALE`; version id
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, linked submission
+  `528b035a-b097-445f-834b-257d4e059720`, submission state `COMPLETE`. Public
+  App Store checks at 2026-06-17 11:45 EDT show both
+  `https://apps.apple.com/us/app/id6770391054` and
+  `https://apps.apple.com/us/app/sanescan/id6770391054` resolving with final
+  HTTP `200`, and Apple iTunes Lookup returns `resultCount: 1`,
+  `trackName: SaneScan`, version `1.0`, and current release date
+  `2026-06-06T17:17:06Z`. Re-ran the required website-only deploy on the Mini
+  with `TEAM_ID=M78L6FXD48`; the wrapper confirmed the App Store iOS link
+  marker was already current in `website/index.html`, latest Cloudflare Pages
+  preview is `https://1ade52d5.sanescan-site.pages.dev`, and both preview and
+  production `https://sanescan.saneapps.com/` return HTTP `200` while serving
+  `data-appstore-ios-link` and
+  `data-appstore-ios-url="https://apps.apple.com/us/app/sanescan/id6770391054"`.
+- 2026-06-17 05:44 EDT App Store go-live watch: fresh Mini ASC check via
+  `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
+  confirms SaneScan iOS `1.0` is still `READY_FOR_SALE`; version id
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, linked submission
+  `528b035a-b097-445f-834b-257d4e059720`, submission state `COMPLETE`. Public
+  App Store checks at 2026-06-17 05:44 EDT show both
+  `https://apps.apple.com/us/app/id6770391054` and
+  `https://apps.apple.com/us/app/sanescan/id6770391054` resolving with final
+  HTTP `200`, and Apple iTunes Lookup still returns `resultCount: 1`,
+  `trackName: SaneScan`, version `1.0`, and current release date
+  `2026-06-06T17:17:06Z`. Re-ran the required website-only deploy on the Mini
+  with `TEAM_ID=M78L6FXD48`; the wrapper confirmed the App Store iOS link
+  marker was already current in `website/index.html`, latest Cloudflare Pages
+  preview is `https://882cb4f5.sanescan-site.pages.dev`, and both preview and
+  production `https://sanescan.saneapps.com/` return HTTP `200` while serving
+  `data-appstore-ios-link` and
+  `data-appstore-ios-url="https://apps.apple.com/us/app/sanescan/id6770391054"`.
+- 2026-06-16 23:42 EDT App Store go-live watch: fresh Mini ASC check via
+  `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
+  confirms SaneScan iOS `1.0` is still `READY_FOR_SALE`; version id
+  `2898846c-163e-4d53-8cdc-e4788b7ec9fa`, linked submission
+  `528b035a-b097-445f-834b-257d4e059720`, submission state `COMPLETE`. Public
+  App Store checks at 2026-06-16 23:42 EDT show both
+  `https://apps.apple.com/us/app/id6770391054` and
+  `https://apps.apple.com/us/app/sanescan/id6770391054` resolving with final
+  HTTP `200`, and Apple iTunes Lookup still returns `resultCount: 1`,
+  `trackName: SaneScan`, version `1.0`, and current release date
+  `2026-06-06T17:17:06Z`. Re-ran the required website-only deploy on the Mini
+  with `TEAM_ID=M78L6FXD48`; the wrapper confirmed the App Store iOS link
+  marker was already current in `website/index.html`, latest Cloudflare Pages
+  preview is `https://d7c0acc0.sanescan-site.pages.dev`, and both preview and
+  production `https://sanescan.saneapps.com/` return HTTP `200` while serving
+  `data-appstore-ios-link` and
+  `data-appstore-ios-url="https://apps.apple.com/us/app/sanescan/id6770391054"`.
 - 2026-06-16 17:41 EDT App Store go-live watch: fresh Mini ASC check via
   `ruby ~/SaneApps/infra/SaneProcess/scripts/appstore_submit.rb --app-id 6770391054 --platform ios --list-versions`
   confirms SaneScan iOS `1.0` is still `READY_FOR_SALE`; version id

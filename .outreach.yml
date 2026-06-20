@@ -8,7 +8,7 @@ project:
 
 positioning:
   one_liner: "Private iPhone/iPad document scanner with local OCR and PDF export."
-  pricing: "Basic includes 10 scans per month. Pro is a StoreKit yearly subscription for unlimited scans and batch import up to 50 images."
+  pricing: "Basic includes 10 scans per month. Pro is a $9.99/year StoreKit subscription for unlimited scans and batch import up to 50 images."
   privacy_claim: "Scans, OCR text, and exported PDFs stay on device unless the user explicitly shares or saves them elsewhere."
   avoid_claims:
     - "No data collection"
@@ -68,17 +68,20 @@ launch_calendar:
       action: "Connect and trust a physical iPhone/iPad on the Mini, run a real scan/import/export smoke test, and record screenshot/video proof."
       gate: "Physical device must be visible to `xcrun devicectl list devices`; simulator proof is not enough."
       success_metric: "Clean proof paths and device UDID recorded in outputs/qa_status.json."
+      last_reviewed: "2026-06-19"
+      result: "On 2026-06-19, canonical Mini `launch_readiness --json` reran from the repo root and still returned `ok: false`: real-device VisionKit proof is still missing, exact public launch copy still has not been approved, and the repo still has no `outputs/release_preflight_status.json` receipt, so `./scripts/SaneMaster.rb release_preflight` must run before any launch recommendation can turn green. No public launch, directory, or social action was executed."
   last_launch_readiness:
-    date: "2026-06-16"
+    date: "2026-06-19"
     status: "no_go_device_proof_pending"
     launch_readiness_exit: 1
     blocker_summary:
-      - "Canonical Mini `launch_readiness --json` reran on 2026-06-16 and exited nonzero."
+      - "Canonical Mini `launch_readiness --json` reran on 2026-06-19 and still exited nonzero."
       - "The App Store listing is live and the website CTA already points at the production App Store URL."
       - "Real-device VisionKit proof is still blocked until a trusted iPhone or iPad is attached to the Mini."
       - "Broad public-launch copy still needs exact user approval before posting."
-      - "Run a fresh Mini `launch_readiness` after real-device proof is captured."
-    next_date: "2026-06-23"
+      - "The repo still has no `outputs/release_preflight_status.json` receipt, so `./scripts/SaneMaster.rb release_preflight` must run before launch-readiness can clear."
+      - "Run a fresh Mini `launch_readiness` after real-device proof is captured and a release_preflight receipt exists."
+    next_date: "2026-06-26"
 
 public_posting_policy:
   approval_required: true
@@ -90,7 +93,7 @@ launch_package:
   problem: "Mobile scanner apps often push accounts, subscriptions, or cloud workflows for sensitive documents."
   solution: "SaneScan uses Apple's document scanner, local OCR, local cleanup, and PDF export without a SaneApps account or document upload."
   primary_story: "A private scanner for sensitive paper: local OCR, local PDFs, and no account."
-  pricing_proof: "App Store metadata states Basic includes 10 scans per month and Pro unlocks unlimited scans plus batch import up to 50 images through StoreKit."
+  pricing_proof: "App Store metadata states Basic includes 10 scans per month and Pro unlocks unlimited scans plus batch import up to 50 images through StoreKit; June 2026 remediation targets a $9.99/year first pricing test."
   privacy_proof: "Website privacy page and App Store review notes state scan contents are not uploaded to SaneApps servers."
   proof_assets:
     - type: "website_hero"

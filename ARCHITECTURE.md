@@ -89,7 +89,7 @@ SaneScan follows SaneClip's iOS target shape and OCR sorting approach, and SaneV
   `528b035a-b097-445f-834b-257d4e059720`.
 - The public US App Store URL returns HTTP 200 at
   `https://apps.apple.com/us/app/sanescan/id6770391054`.
-- Annual subscription `com.sanescan.app.pro.yearly6` is the current yearly StoreKit product. It uses a replacement subscription group after Apple rejected earlier group/product localizations and ASC refused edits to rejected localizations.
+- Annual subscription `com.sanescan.app.pro.yearly6` is the current yearly StoreKit product. It uses a replacement subscription group after Apple rejected earlier group/product localizations and ASC refused edits to rejected localizations. June 2026 pricing remediation targets `$9.99/year` for the first App Store conversion test.
 - Local and public privacy policy copy has been updated for aggregate
   purchase-flow diagnostics; App Store Connect App Privacy metadata still needs
   review before the next editable submission if those diagnostics remain active.

@@ -188,7 +188,7 @@ struct ScanQuotaTests {
         let annual = try #require(subscriptions.first { $0["productID"] as? String == PurchaseManager.yearlyID })
 
         #expect(subscriptions.count == 1)
-        #expect(annual["displayPrice"] as? String == "29.99")
+        #expect(annual["displayPrice"] as? String == "9.99")
         #expect(annual["recurringSubscriptionPeriod"] as? String == "P1Y")
         #expect(annual["type"] as? String == "RecurringSubscription")
     }

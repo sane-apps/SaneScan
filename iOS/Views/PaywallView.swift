@@ -64,7 +64,7 @@ struct PaywallView: View {
             previewProductButton(
                 title: "SaneScan Pro Annual",
                 detail: "Unlimited scans and batch import up to 50 images",
-                price: "$29.99/year"
+                price: "$9.99/year"
             )
         } else if purchases.products.isEmpty {
             productsUnavailableView

@@ -98,7 +98,7 @@ Current App Store Connect state, 2026-06-07:
 - App Store Connect app ID is `6770391054`.
 - App Store version `1.0` reports `READY_FOR_SALE`; submission ID `528b035a-b097-445f-834b-257d4e059720`.
 - Public US App Store URL `https://apps.apple.com/us/app/sanescan/id6770391054` returns HTTP 200.
-- The annual subscription product is `com.sanescan.app.pro.yearly6` and is approved.
+- The annual subscription product is `com.sanescan.app.pro.yearly6` and is approved. June 2026 pricing remediation targets `$9.99/year` for the first App Store conversion test.
 - Local/public privacy policy copy has been updated for limited aggregate
   purchase-flow diagnostics; App Store Connect App Privacy metadata should be
   reviewed before the next editable submission.

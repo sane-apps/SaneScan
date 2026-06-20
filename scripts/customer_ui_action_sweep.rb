@@ -103,7 +103,7 @@ class SaneScanCustomerUIActionSweep
       paths: ['iOS/Views/PaywallView.swift', 'iOS/SaneScan.storekit', 'UITests/SaneScanUITests.swift'],
       required: [
         ['iOS/Views/PaywallView.swift', 'SaneScan Pro Annual'],
-        ['iOS/Views/PaywallView.swift', '$29.99/year'],
+        ['iOS/Views/PaywallView.swift', '$9.99/year'],
         ['iOS/Views/PaywallView.swift', 'restore-purchases'],
         ['iOS/SaneScan.storekit', 'com.sanescan.app.pro.yearly6'],
         ['UITests/SaneScanUITests.swift', 'testFixtureLibraryPaywall']
