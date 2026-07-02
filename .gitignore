@@ -9,6 +9,9 @@ DerivedData/
 test_output.txt
 outputs/
 
+# Internal outreach/marketing config — never in a public repo
+.outreach.yml
+
 # Local agent/research artifacts
 .claude/research.md
 .claude/.gitignore
