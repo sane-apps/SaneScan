@@ -3,6 +3,8 @@
 build/
 DerivedData/
 *.xcuserstate
+.claude/state.json
+.claude/state.json.lock
 *.xcworkspace/xcuserdata/
 *.xcodeproj/xcuserdata/
 .swiftlint-cache/
