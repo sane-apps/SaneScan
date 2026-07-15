@@ -11,7 +11,7 @@ Use plain English. Keep it short and direct.
 
 ## Project Rules
 
-- SaneScan is an iOS-first App Store app.
+- SaneScan is an iPhone/iPad-only App Store app.
 - Keep customer scan data local by default.
 - Do not add analytics, tracking, cloud sync, or account requirements without an explicit product decision.
 - Camera and Photos permissions are feature-scoped: request them only when the user starts scanning or importing.
