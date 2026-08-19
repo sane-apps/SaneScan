@@ -13,7 +13,7 @@ Public site: https://sanescan.saneapps.com
 - Clean up scans with local Core Image adjustments.
 - Run local OCR with Apple's Vision framework.
 - Export scanned pages and recognized text as a PDF through the system share sheet.
-- Free monthly quota with StoreKit Pro hooks for unlimited scanning.
+- Unlimited local scans. The old paywall is now a Donate screen.
 
 ## Privacy
 
@@ -27,7 +27,7 @@ Details:
 
 ## License
 
-SaneScan is public, auditable code under the PolyForm Shield License. Personal use and experimentation are allowed; commercial use has restrictions. See [LICENSE](LICENSE).
+SaneScan is free and open source under the MIT License. See [LICENSE](LICENSE). Contribute at https://github.com/sane-apps/SaneScan or [donate](https://github.com/sponsors/MrSaneApps).
 
 ## Build
 

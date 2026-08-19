@@ -15,13 +15,12 @@ struct PaywallView: View {
                         PaywallFeature(title: "Unlimited scans", systemImage: "infinity")
                         PaywallFeature(title: "Batch import up to 50 images", systemImage: "square.stack.3d.up")
                         PaywallFeature(title: "No monthly scan limit", systemImage: "gauge.with.dots.needle.100percent")
-                        purchaseErrorView
-                        productSection
+                        donateSection
                     }
                     .padding(18)
                 }
             }
-            .navigationTitle("SaneScan Pro")
+            .navigationTitle("Support SaneScan")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbarBackground(SaneScanTheme.background.opacity(0.92), for: .navigationBar)
@@ -55,6 +54,37 @@ struct PaywallView: View {
                         .stroke(Color.white.opacity(0.22), lineWidth: 1)
                 )
                 .accessibilityIdentifier("purchase-error")
+        }
+    }
+
+    private var donateSection: some View {
+        VStack(spacing: 12) {
+            Text("SaneScan is free and open source. Every scan tool stays unlocked.")
+                .font(.headline)
+                .foregroundStyle(SaneScanTheme.primaryText)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Button {
+                openURL(OpenSourceRelease.donationURL)
+            } label: {
+                HStack {
+                    Text("Donate")
+                    Spacer()
+                    Image(systemName: "heart.fill")
+                }
+                .font(.headline)
+                .foregroundStyle(SaneScanTheme.primaryText)
+                .padding(16)
+                .background(SaneScanTheme.premiumGradient, in: RoundedRectangle(cornerRadius: 8))
+            }
+            .accessibilityIdentifier("donate-button")
+            Button("Contribute on GitHub") {
+                openURL(URL(string: "https://github.com/sane-apps/SaneScan")!)
+            }
+            .foregroundStyle(SaneScanTheme.primaryText)
+            .frame(maxWidth: .infinity)
+            .padding(16)
+            .background(SaneScanTheme.panelGradient, in: RoundedRectangle(cornerRadius: 8))
+            .accessibilityIdentifier("contribute-button")
         }
     }
 
@@ -227,7 +257,7 @@ private struct PaywallHero: View {
             Image(systemName: "checkmark.seal.fill")
                 .font(.system(size: 48, weight: .semibold))
                 .foregroundStyle(SaneScanTheme.proGradient)
-            Text("SaneScan Pro")
+            Text("SaneScan is free")
                 .font(.largeTitle.bold())
                 .foregroundStyle(SaneScanTheme.primaryText)
                 .minimumScaleFactor(0.82)

@@ -28,6 +28,7 @@
 		EE4620586AE7A933FA049463 /* OCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708CDF61E4C0BE14B248A640 /* OCRService.swift */; };
 		F209C45FB03A91FCCE693D0A /* DocumentCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EEA1E9BCFC37C670883198 /* DocumentCameraView.swift */; };
 		F41C5DC53A0D0499C980D51A /* DocumentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0340AB090346A265FF4A9D7D /* DocumentDetailView.swift */; };
+		FEE7E7A141D2E1703F79ED65 /* OpenSourceRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBEAD41FD5476C1D128A63B /* OpenSourceRelease.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		70E8ECD8D0F33A9E968BF8E5 /* SaneScan.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SaneScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E1A80F7A7DAF8B2908F6BB /* SaneScanVisualComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaneScanVisualComponents.swift; sourceTree = "<group>"; };
 		7A5DF8519D232D4399D8A002 /* ImageEnhancementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEnhancementService.swift; sourceTree = "<group>"; };
+		8BBEAD41FD5476C1D128A63B /* OpenSourceRelease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceRelease.swift; sourceTree = "<group>"; };
 		8E7F0190D079B3D4A487A691 /* SaneScan.storekit */ = {isa = PBXFileReference; path = SaneScan.storekit; sourceTree = "<group>"; };
 		A8F703F3B74274C60B694F35 /* ScanSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSheets.swift; sourceTree = "<group>"; };
 		AEB2AFCF8B764CBAB9766F84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		4912C7C898CC1839B3F354EB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				8BBEAD41FD5476C1D128A63B /* OpenSourceRelease.swift */,
 				2AC8E3A55E1A4F3DBFB0C589 /* Models */,
 				DA40FEE6667A632FA2271848 /* Services */,
 			);
@@ -259,7 +262,6 @@
 				};
 			};
 			buildConfigurationList = 0052CEC5C5AF5FC8118AB08C /* Build configuration list for PBXProject "SaneScan" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -269,6 +271,7 @@
 			mainGroup = A937FD00589F619B0E3E2207;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
+			productRefGroup = 7D809D441B7EF1CBC3EAA488 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -310,6 +313,7 @@
 				F41C5DC53A0D0499C980D51A /* DocumentDetailView.swift in Sources */,
 				B3310EAB7F587112F1BC48F4 /* ImageEnhancementService.swift in Sources */,
 				EE4620586AE7A933FA049463 /* OCRService.swift in Sources */,
+				FEE7E7A141D2E1703F79ED65 /* OpenSourceRelease.swift in Sources */,
 				88FC877173EB4E54373E8D4A /* PDFExportService.swift in Sources */,
 				D08673466D39B7FB6008DA63 /* PaywallView.swift in Sources */,
 				418602D1A7D352BC77C832B8 /* PurchaseManager.swift in Sources */,
@@ -361,7 +365,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1000;
+				CURRENT_PROJECT_VERSION = 1001;
 				DEVELOPMENT_TEAM = M78L6FXD48;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -370,7 +374,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.dev;
 				PRODUCT_NAME = SaneScan;
 				SDKROOT = iphoneos;
@@ -385,7 +389,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1000;
+				CURRENT_PROJECT_VERSION = 1001;
 				DEVELOPMENT_TEAM = M78L6FXD48;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -394,7 +398,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				OTHER_SWIFT_FLAGS = "-D APP_STORE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.app;
 				PRODUCT_NAME = SaneScan;
@@ -590,7 +594,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1000;
+				CURRENT_PROJECT_VERSION = 1001;
 				DEVELOPMENT_TEAM = M78L6FXD48;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -599,7 +603,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sanescan.app;
 				PRODUCT_NAME = SaneScan;
 				SDKROOT = iphoneos;

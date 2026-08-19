@@ -65,7 +65,7 @@ final class PurchaseManager: ObservableObject {
     nonisolated static let activeProductIDs = [yearlyID]
 
     @Published private(set) var products: [Product] = []
-    @Published private(set) var isPro = false
+    @Published private(set) var isPro = true
     @Published var purchaseError: String?
 
     private var transactionListener: Task<Void, Never>?
@@ -103,30 +103,7 @@ final class PurchaseManager: ObservableObject {
 
     func purchasePro(_ product: Product) async {
         purchaseError = nil
-        trackFunnel(.purchaseStarted)
-        do {
-            let result = try await product.purchase()
-            switch result {
-            case let .success(verification):
-                _ = try checkVerified(verification)
-                await updateEntitlements()
-                purchaseError = nil
-                trackFunnel(.purchaseCompleted)
-            case .userCancelled, .pending:
-                if case .userCancelled = result {
-                    trackFunnel(.purchaseCancelled)
-                } else {
-                    trackFunnel(.purchasePending)
-                }
-                break
-            @unknown default:
-                trackFunnel(.purchaseFailed)
-                break
-            }
-        } catch {
-            purchaseError = Self.purchaseFailedMessage
-            trackFunnel(.purchaseFailed)
-        }
+        _ = product
     }
 
     func purchase(_ product: Product) async {
@@ -176,7 +153,8 @@ final class PurchaseManager: ObservableObject {
                 unlocked = true
             }
         }
-        isPro = unlocked
+        isPro = true
+        _ = unlocked
     }
 
     private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {

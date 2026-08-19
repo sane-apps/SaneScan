@@ -26,4 +26,4 @@ The wedge is a private scanner for old photos and documents:
 - VisionKit document scanning for receipts, forms, and papers.
 - Vision OCR for searchable text.
 - PDF export with images and recognized text.
-- StoreKit Pro upgrade for ongoing sales.
+- Free MIT app. Keep setup. Donate replaces purchase.
