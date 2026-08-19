@@ -89,9 +89,9 @@ appstore:
         to SaneApps servers.
         Terms of Use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
       keywords: "scanner,document,receipt,ocr,pdf,form,private,archive,photo scan"
-      whats_new: "Initial release."
+      whats_new: "SaneScan is free. Every scan tool stays unlocked. Donate only if you want to support it."
       marketing_url: "https://sanescan.saneapps.com"
-  review_notes: "SaneScan is a freemium iOS document scanner. Basic includes 10 scans per month and smaller imports. SaneScan Pro is sold through StoreKit only and unlocks unlimited scans and batch import up to 50 images. OCR and PDF export are handled locally. No account, external checkout, license key, or server upload is used. SaneScan uses Apple's standard Terms of Use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. Camera permission is requested only when starting a scan; Photos permission is requested only when importing selected photos; export uses the system share sheet."
+  review_notes: "The app is free. Donate is optional. SaneScan is a private iOS document scanner. Every scan tool stays unlocked: document scanning, photo import, local OCR, and PDF export. No account, paywall, or in-app purchase is required. OCR and PDF export are handled locally. No server upload is used. Camera permission is requested only when starting a scan; Photos permission is requested only when importing selected photos; export uses the system share sheet."
   iap:
     product_id: "com.sanescan.app.pro.yearly6"
     display_name: "SaneScan Pro Annual"
