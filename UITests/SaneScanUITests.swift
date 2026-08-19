@@ -28,7 +28,7 @@ final class SaneScanUITests: XCTestCase {
         launch(reset: true, fixtures: true)
 
         XCTAssertTrue(anyElement(id: "library-view").waitForExistence(timeout: 8))
-        XCTAssertTrue(app.staticTexts["10 free scans left"].exists)
+        XCTAssertTrue(app.staticTexts["Free and open source"].exists)
         XCTAssertTrue(app.buttons["Contract Packet"].exists)
         XCTAssertTrue(app.buttons["Tax Receipt"].exists)
         XCTAssertTrue(app.buttons["Clinic Intake Form"].exists)
@@ -41,19 +41,13 @@ final class SaneScanUITests: XCTestCase {
         XCTAssertTrue(app.buttons["export-button"].exists)
     }
 
-    func testFixtureLibraryPaywall() {
-        launch(reset: true, fixtures: true, paywallPreview: true)
+    func testFixtureLibraryShowsDonate() {
+        launch(reset: true, fixtures: true)
 
         XCTAssertTrue(anyElement(id: "library-view").waitForExistence(timeout: 8))
-        XCTAssertTrue(app.buttons["Upgrade"].waitForExistence(timeout: 5))
-        app.buttons["Upgrade"].tap()
-        XCTAssertTrue(anyElement(id: "paywall").waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["SaneScan Pro Annual"].exists)
-        XCTAssertTrue(app.staticTexts["$9.99/year"].exists)
-        XCTAssertTrue(anyElement(id: "subscription-disclosure").exists)
-        assertLegalLinksReachable()
-        XCTAssertTrue(app.buttons["restore-purchases"].exists)
-        XCTAssertTrue(app.buttons["paywall-done"].exists)
+        XCTAssertTrue(app.buttons["sticky-donate"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Free and open source"].exists)
+        XCTAssertFalse(app.buttons["Upgrade"].exists)
     }
 
     func testLargeTextAccessibilityPrimarySurfaces() {
@@ -62,7 +56,7 @@ final class SaneScanUITests: XCTestCase {
         XCTAssertTrue(anyElement(id: "library-view").waitForExistence(timeout: 8))
         XCTAssertTrue(app.buttons["scan-button"].exists)
         XCTAssertTrue(app.buttons["import-button"].exists)
-        XCTAssertTrue(app.buttons["Upgrade"].exists)
+        XCTAssertTrue(app.buttons["sticky-donate"].exists)
         XCTAssertTrue(app.buttons["Contract Packet"].exists)
         captureAccessibilityHierarchy("01-large-text-library")
 
@@ -74,15 +68,9 @@ final class SaneScanUITests: XCTestCase {
         captureAccessibilityHierarchy("02-large-text-detail")
 
         app.buttons["detail-done"].tap()
-        XCTAssertTrue(app.buttons["Upgrade"].waitForExistence(timeout: 5))
-        app.buttons["Upgrade"].tap()
-        XCTAssertTrue(anyElement(id: "paywall").waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["$9.99/year"].exists)
-        XCTAssertTrue(anyElement(id: "subscription-disclosure").exists)
-        assertLegalLinksReachable()
-        XCTAssertTrue(app.buttons["restore-purchases"].exists)
-        captureAccessibilityHierarchy("03-large-text-paywall")
-        captureVisualState("07-large-text-paywall")
+        XCTAssertTrue(app.buttons["sticky-donate"].waitForExistence(timeout: 5))
+        captureAccessibilityHierarchy("03-large-text-library-donate")
+        captureVisualState("07-large-text-donate")
     }
 
     func testLaunchPerformance() {
@@ -116,13 +104,10 @@ final class SaneScanUITests: XCTestCase {
         XCTAssertTrue(waitForShareSheet())
         captureVisualState("05-share-sheet")
 
-        launch(reset: true, fixtures: true, paywallPreview: true)
+        launch(reset: true, fixtures: true)
         XCTAssertTrue(anyElement(id: "library-view").waitForExistence(timeout: 8))
-        app.buttons["Upgrade"].tap()
-        XCTAssertTrue(anyElement(id: "paywall").waitForExistence(timeout: 5))
-        XCTAssertTrue(anyElement(id: "subscription-disclosure").exists)
-        assertLegalLinksReachable()
-        captureVisualState("06-paywall")
+        XCTAssertTrue(app.buttons["sticky-donate"].exists)
+        captureVisualState("06-donate")
     }
 
     private func launch(

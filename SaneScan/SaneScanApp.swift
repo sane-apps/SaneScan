@@ -5,6 +5,10 @@ struct SaneScanApp: App {
     @StateObject private var library = ScanLibrary()
     @StateObject private var purchases = PurchaseManager()
 
+    init() {
+        OpenSourceRelease.activate()
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()

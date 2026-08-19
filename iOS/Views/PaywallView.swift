@@ -3,7 +3,6 @@ import SwiftUI
 struct PaywallView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.openURL) private var openURL
-    @EnvironmentObject private var purchases: PurchaseManager
 
     var body: some View {
         NavigationStack {
@@ -12,9 +11,9 @@ struct PaywallView: View {
                 ScrollView {
                     VStack(spacing: 16) {
                         PaywallHero()
-                        PaywallFeature(title: "Unlimited scans", systemImage: "infinity")
+                        PaywallFeature(title: "Document and photo scans", systemImage: "doc.viewfinder")
                         PaywallFeature(title: "Batch import up to 50 images", systemImage: "square.stack.3d.up")
-                        PaywallFeature(title: "No monthly scan limit", systemImage: "gauge.with.dots.needle.100percent")
+                        PaywallFeature(title: "Local OCR and PDF export", systemImage: "text.viewfinder")
                         donateSection
                     }
                     .padding(18)
@@ -34,27 +33,6 @@ struct PaywallView: View {
         }
         .tint(SaneScanTheme.accent)
         .accessibilityIdentifier("paywall")
-        .task {
-            purchases.recordPaywallShown()
-            await purchases.refreshProductsIfNeeded()
-        }
-    }
-
-    @ViewBuilder
-    private var purchaseErrorView: some View {
-        if let purchaseError = purchases.purchaseError {
-            Text(purchaseError)
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(SaneScanTheme.primaryText)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(16)
-                .background(Color.red.opacity(0.42), in: RoundedRectangle(cornerRadius: 8))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.white.opacity(0.22), lineWidth: 1)
-                )
-                .accessibilityIdentifier("purchase-error")
-        }
     }
 
     private var donateSection: some View {
@@ -88,167 +66,6 @@ struct PaywallView: View {
         }
     }
 
-    @ViewBuilder
-    private var productSection: some View {
-        if showsPreviewProducts {
-            previewProductButton(
-                title: "SaneScan Pro Annual",
-                detail: "Unlimited scans and batch import up to 50 images",
-                price: "$9.99/year"
-            )
-        } else if purchases.products.isEmpty {
-            productsUnavailableView
-            retryPurchasesButton
-        } else {
-            ForEach(purchases.products, id: \.id) { product in
-                Button {
-                    Task { await purchases.purchasePro(product) }
-                } label: {
-                    HStack {
-                        Text(product.displayName)
-                        Spacer()
-                        Text(product.displayPrice)
-                    }
-                    .font(.headline)
-                    .foregroundStyle(SaneScanTheme.primaryText)
-                    .padding(16)
-                    .background(SaneScanTheme.premiumGradient, in: RoundedRectangle(cornerRadius: 8))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.white.opacity(0.24), lineWidth: 1)
-                    )
-                }
-                .accessibilityIdentifier("product-\(product.id)")
-            }
-        }
-
-        subscriptionDisclosure
-
-        restorePurchasesButton
-    }
-
-    private var showsPreviewProducts: Bool {
-        ProcessInfo.processInfo.arguments.contains("--sanescan-paywall-preview")
-    }
-
-    private func previewProductButton(title: String, detail: String, price: String) -> some View {
-        Button {} label: {
-            HStack(spacing: 14) {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(title)
-                        .font(.headline)
-                    Text(detail)
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(SaneScanTheme.primaryText.opacity(0.9))
-                }
-                Spacer(minLength: 8)
-                Text(price)
-                    .font(.footnote.weight(.bold))
-                    .multilineTextAlignment(.trailing)
-                    .foregroundStyle(SaneScanTheme.primaryText)
-            }
-            .foregroundStyle(SaneScanTheme.primaryText)
-            .padding(16)
-            .background(SaneScanTheme.premiumGradient, in: RoundedRectangle(cornerRadius: 8))
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.white.opacity(0.24), lineWidth: 1)
-            )
-        }
-        .accessibilityIdentifier("preview-product-\(title.replacingOccurrences(of: " ", with: "-").lowercased())")
-    }
-
-    private var productsUnavailableView: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("App Store options loading")
-                .font(.headline)
-                .foregroundStyle(SaneScanTheme.primaryText)
-            Text("Connect to the App Store to view Pro options, or restore purchases if you already have Pro.")
-                .font(.subheadline)
-                .foregroundStyle(SaneScanTheme.secondaryText)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
-        .background(SaneScanTheme.panelGradient, in: RoundedRectangle(cornerRadius: 8))
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(SaneScanTheme.warmHairline, lineWidth: 1)
-        )
-        .accessibilityIdentifier("products-unavailable")
-    }
-
-    private var retryPurchasesButton: some View {
-        Button("Try Again") {
-            Task { await purchases.refreshProductsIfNeeded() }
-        }
-        .foregroundStyle(SaneScanTheme.primaryText)
-        .frame(maxWidth: .infinity)
-        .padding(16)
-        .background(SaneScanTheme.panelGradient, in: RoundedRectangle(cornerRadius: 8))
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(SaneScanTheme.hairline, lineWidth: 1)
-        )
-        .accessibilityIdentifier("retry-purchases")
-    }
-
-    private var restorePurchasesButton: some View {
-        Button("Restore Purchases") {
-            Task { await purchases.restore() }
-        }
-        .foregroundStyle(SaneScanTheme.primaryText)
-        .frame(maxWidth: .infinity)
-        .padding(16)
-        .background(SaneScanTheme.panelGradient, in: RoundedRectangle(cornerRadius: 8))
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(SaneScanTheme.hairline, lineWidth: 1)
-        )
-        .accessibilityIdentifier("restore-purchases")
-    }
-
-    private var subscriptionDisclosure: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Subscription details")
-                .font(.headline)
-                .foregroundStyle(SaneScanTheme.primaryText)
-            Text("SaneScan Pro Yearly is an auto-renewable subscription billed once per year. The App Store shows the current price, confirms renewal terms before purchase, and lets you cancel anytime in subscription settings.")
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(SaneScanTheme.primaryText)
-            HStack(spacing: 12) {
-                Button {
-                    openURL(Self.termsURL)
-                } label: {
-                    Text("Terms of Use")
-                }
-                .buttonStyle(.plain)
-                .accessibilityIdentifier("terms-of-use-link")
-                Text("•")
-                    .foregroundStyle(SaneScanTheme.primaryText)
-                Button {
-                    openURL(Self.privacyURL)
-                } label: {
-                    Text("Privacy Policy")
-                }
-                .buttonStyle(.plain)
-                .accessibilityIdentifier("privacy-policy-link")
-            }
-            .font(.subheadline.weight(.bold))
-            .foregroundStyle(SaneScanTheme.accentSoft)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
-        .background(SaneScanTheme.panelGradient, in: RoundedRectangle(cornerRadius: 8))
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(SaneScanTheme.warmHairline, lineWidth: 1)
-        )
-        .accessibilityElement(children: .contain)
-        .accessibilityIdentifier("subscription-disclosure")
-    }
-
-    private static let termsURL = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
-    private static let privacyURL = URL(string: "https://sanescan.saneapps.com/privacy/")!
 }
 
 private struct PaywallHero: View {

@@ -5,6 +5,7 @@ import VisionKit
 struct ContentView: View {
     @EnvironmentObject private var library: ScanLibrary
     @EnvironmentObject private var purchases: PurchaseManager
+    @Environment(\.openURL) private var openURL
     @State private var showDocumentCamera = false
     @State private var showPhotoPicker = false
     @State private var selectedPhotos: [PhotosPickerItem] = []
@@ -32,7 +33,7 @@ struct ContentView: View {
                 selectedDocument: $selectedDocument,
                 exportedFile: $exportedFile,
                 showPaywall: $showPaywall,
-                maxPhotoSelection: purchases.isPro ? 50 : 6,
+                maxPhotoSelection: 50,
                 createDocument: createDocument,
                 importPhotos: importPhotos,
                 reportError: { errorMessage = $0 }
@@ -45,6 +46,24 @@ struct ContentView: View {
         }
         .tint(SaneScanTheme.accent)
         .preferredColorScheme(.dark)
+        .overlay(alignment: .bottomTrailing) {
+            Button {
+                openURL(OpenSourceRelease.donationURL)
+            } label: {
+                HStack(spacing: 6) {
+                    Image(systemName: "heart.fill")
+                    Text("Donate")
+                }
+                .font(.headline)
+                .foregroundStyle(SaneScanTheme.primaryText)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 10)
+                .background(SaneScanTheme.premiumGradient, in: Capsule())
+            }
+            .padding(18)
+            .accessibilityIdentifier("sticky-donate")
+            .accessibilityLabel("Donate")
+        }
     }
 
     @ViewBuilder
@@ -57,9 +76,9 @@ struct ContentView: View {
         } else {
             LibraryView(
                 documents: library.documents,
-                quota: library.quota(hasPro: purchases.isPro),
-                isPro: purchases.isPro,
-                onUpgrade: { showPaywall = true },
+                quota: library.quota(hasPro: true),
+                isPro: true,
+                onUpgrade: { openURL(OpenSourceRelease.donationURL) },
                 onScan: startDocumentScan,
                 onImport: startPhotoImport,
                 onSelect: { selectedDocument = $0 },
@@ -88,10 +107,6 @@ struct ContentView: View {
     }
 
     private func startDocumentScan() {
-        guard library.quota(hasPro: purchases.isPro).canCreateScan else {
-            showPaywall = true
-            return
-        }
         if VNDocumentCameraViewController.isSupported {
             showDocumentCamera = true
         } else {
@@ -100,10 +115,6 @@ struct ContentView: View {
     }
 
     private func startPhotoImport() {
-        guard library.quota(hasPro: purchases.isPro).canCreateScan else {
-            showPaywall = true
-            return
-        }
         showPhotoPicker = true
     }
 
@@ -236,22 +247,18 @@ private struct QuotaCard: View {
                 )
 
             VStack(alignment: .leading, spacing: 2) {
-                Text(isPro ? "Pro active" : "\(quota.remainingFreeScans) free scans left")
+                Text("Free and open source")
                     .font(.headline)
                     .foregroundStyle(SaneScanTheme.primaryText)
-                Text(isPro ? "Unlimited scans" : "Go unlimited")
+                Text("Every scan tool stays unlocked")
                     .font(.subheadline)
                     .foregroundStyle(SaneScanTheme.secondaryText)
             }
 
             Spacer()
 
-            if isPro {
-                ProStatusPill()
-            } else {
-                GradientActionPill(title: "Upgrade", action: onUpgrade)
-                    .accessibilityIdentifier("upgrade-button")
-            }
+            GradientActionPill(title: "Donate", action: onUpgrade)
+                .accessibilityIdentifier("sticky-donate-card")
         }
         .padding(16)
         .premiumPanel()
