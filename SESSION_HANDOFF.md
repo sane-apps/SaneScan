@@ -1,3 +1,10 @@
+## 2026-09-07 — Free-release startup no longer starts StoreKit
+
+- Removed unused PurchaseManager from the app root and ContentView. Library load and test fixture setup remain; launch no longer loads subscription products, listens for purchase transactions, or sends product-load funnel events. Existing scan/import/OCR/PDF behavior and Donate controls are unchanged.
+- Mini was four commits behind origin/main354921d and the Air. Preserved all pending work in stash portfolio-scan-before-main-sync-20260907, fast-forwarded, reapplied only differences beyond current main. Existing pink hearts and website changes remain separately pending.
+- First build exposed the earlier unregistered OpenSourceRelease.swift; xcodegen generate repaired the project. The corrected pre-sync suite passed15 tests, workflow5a691e1206d2633e48a075f10defbf7d. Final current-main verification is recorded in outputs/portfolio-startup-20260907/verify-main.log.
+- This is startup/build/unit-test verification, not a measured launch-time improvement or App Store release. Remaining13-inch iPad/customer workflow/visual proof and public1.0.1 submission remain open. Current receipt directory preserves failure and recovery logs.
+
 # SaneScan Session Handoff
 
 ## Current State

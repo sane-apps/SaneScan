@@ -3,7 +3,6 @@ import SwiftUI
 @main
 struct SaneScanApp: App {
     @StateObject private var library = ScanLibrary()
-    @StateObject private var purchases = PurchaseManager()
 
     init() {
         OpenSourceRelease.activate()
@@ -13,13 +12,10 @@ struct SaneScanApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(library)
-                .environmentObject(purchases)
                 .modifier(UITestDynamicTypeModifier())
                 .task {
                     library.load()
                     library.installUITestFixtureIfNeeded()
-                    purchases.startTransactionListener()
-                    await purchases.refresh()
                 }
                 .preferredColorScheme(.dark)
         }

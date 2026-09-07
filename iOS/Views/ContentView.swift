@@ -4,7 +4,6 @@ import VisionKit
 
 struct ContentView: View {
     @EnvironmentObject private var library: ScanLibrary
-    @EnvironmentObject private var purchases: PurchaseManager
     @Environment(\.openURL) private var openURL
     @State private var showDocumentCamera = false
     @State private var showPhotoPicker = false
