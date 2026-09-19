@@ -1,7 +1,8 @@
 {
-  "consecutive_failures": 1,
-  "last_result": "failed",
-  "last_failure_at": "2026-06-27T17:40:49-04:00",
-  "last_failure_message": "verify failure",
-  "escalated_at": null
+  "consecutive_failures": 0,
+  "last_result": "passed",
+  "last_failure_at": null,
+  "last_failure_message": null,
+  "escalated_at": null,
+  "last_failure_fingerprint": null
 }
