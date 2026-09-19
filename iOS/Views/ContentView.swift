@@ -51,6 +51,7 @@ struct ContentView: View {
             } label: {
                 HStack(spacing: 6) {
                     Image(systemName: "heart.fill")
+                        .foregroundStyle(.pink)
                     Text("Donate")
                 }
                 .font(.headline)

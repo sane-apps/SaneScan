@@ -48,6 +48,7 @@ struct PaywallView: View {
                     Text("Donate")
                     Spacer()
                     Image(systemName: "heart.fill")
+                        .foregroundStyle(.pink)
                 }
                 .font(.headline)
                 .foregroundStyle(SaneScanTheme.primaryText)
