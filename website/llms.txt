@@ -1,6 +1,6 @@
 # SaneScan
 
-> SaneScan is a free private document scanner for iPhone and iPad with unlimited scans, local OCR, batch import, and PDF export. No account or SaneApps cloud upload.
+> SaneScan is a private document scanner for iPhone and iPad: Apple's document scanner, automatic cleanup, on-device OCR, batch photo import and PDF export. Free to download; the App Store version includes 10 free scans a month, and an optional in-app Pro upgrade removes the limit. No account, and no scan contents go to SaneApps servers. MIT licensed.
 
 ## Key pages
 - https://sanescan.saneapps.com/
